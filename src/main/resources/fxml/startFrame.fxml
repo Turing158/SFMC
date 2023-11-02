@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controller.StartFrameController"
+            prefHeight="500.0" prefWidth="800.0">
+    <Button fx:id="selectDirBtn" text="选择.minecraft目录" onAction="#selectDirBtn"/>
+    <TextField fx:id="dirPath" prefWidth="300" prefHeight="20" translateY="20"/>
+    <TextField fx:id="username" prefWidth="100" promptText="请输入用户名" prefHeight="20" translateY="50"/>
+    <Button fx:id="startBtn" text="启动" onAction="#startBtn" translateY="80"/>
+</AnchorPane>
