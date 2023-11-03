@@ -1,16 +1,13 @@
-import Launch.LaunchData;
+
+import com.sun.management.OperatingSystemMXBean;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.to2mbn.jmccc.auth.OfflineAuthenticator;
-import org.to2mbn.jmccc.launch.LaunchException;
-import org.to2mbn.jmccc.launch.Launcher;
-import org.to2mbn.jmccc.launch.LauncherBuilder;
-import org.to2mbn.jmccc.option.LaunchOption;
-import org.to2mbn.jmccc.option.MinecraftDirectory;
 
-import java.io.IOException;
 
-import static javafx.application.Application.launch;
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
+import java.lang.management.MemoryUsage;
+
 
 public class main extends Application {
     public static void main(String[] args) {

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.Text?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="Controller.StartFrameController"
@@ -13,5 +14,10 @@
     <Button fx:id="selectDirBtn" text="选择.minecraft目录" onAction="#selectDirBtn"/>
     <TextField fx:id="dirPath" prefWidth="300" prefHeight="20" translateY="20"/>
     <TextField fx:id="username" prefWidth="100" promptText="请输入用户名" prefHeight="20" translateY="50"/>
-    <Button fx:id="startBtn" text="启动" onAction="#startBtn" translateY="80"/>
+    <Slider fx:id="memorySlider" translateY="80"/>
+    <Text fx:id="memorySliderData" translateY="80" translateX="100"/>
+    <Button fx:id="download" text="下载1.9版本" translateY="100" onAction="#downloadMC"/>
+    <Text fx:id="downloadTips" translateY="140"/>
+    <Button fx:id="startBtn" text="启动" onAction="#startBtn" translateY="150"/>
+
 </AnchorPane>
