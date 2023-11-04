@@ -1,12 +1,7 @@
 
-import com.sun.management.OperatingSystemMXBean;
+import Controller.Frame;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
-
-import java.lang.management.ManagementFactory;
-import java.lang.management.MemoryMXBean;
-import java.lang.management.MemoryUsage;
 
 
 public class main extends Application {

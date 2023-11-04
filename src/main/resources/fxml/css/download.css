@@ -1,0 +1,36 @@
+#exit{
+    -fx-translate-x: 580px;
+}
+#versionChoiceBox{
+    -fx-translate-x: 90px;
+    -fx-translate-y: 20px;
+    -fx-pref-width: 80px;
+}
+#downloadInfo{
+    -fx-translate-x: 50px;
+    -fx-translate-y: 80px;
+    -fx-pref-width: 500px;
+    -fx-pref-height: 250px;
+}
+#downloadDir{
+    -fx-translate-x: 90px;
+    -fx-translate-y: 50px;
+    -fx-pref-width: 400px;
+}
+#selectDirBtn{
+    -fx-translate-x: 500px;
+    -fx-translate-y: 50px;
+    -fx-font-size: 12px;
+}
+
+.versionText {
+    -fx-font-size: 15px;
+    -fx-translate-x: 50px;
+    -fx-translate-y: 40px;
+}
+
+.categoryText {
+    -fx-font-size: 15px;
+    -fx-translate-x: 50px;
+    -fx-translate-y: 70px;
+}

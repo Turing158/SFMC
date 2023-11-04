@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controller.DownloadController"
+            prefHeight="400" prefWidth="600.0" style="-fx-background-color: #919191" stylesheets="@css/download.css">
+    <Button fx:id="exit" text="x" onAction="#exit"/>
+    <Text text="版本：" styleClass="versionText"/>
+    <ComboBox fx:id="versionChoiceBox" prefWidth="200" prefHeight="20" translateY="20"/>
+    <Text text="目录：" styleClass="categoryText"/>
+    <TextField fx:id="downloadDir"/>
+    <Button fx:id="selectDirBtn" text="选择" onAction="#selectDir"/>
+    <TextArea fx:id="downloadInfo" editable="false"/>
+    <Button fx:id="download" text="开始下载" onAction="#downloadStart"/>
+</AnchorPane>
