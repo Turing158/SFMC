@@ -1,17 +1,16 @@
-*{
-    -fx-padding: 0px;
-}
+
 #version{
-    -fx-background-color: #000000;
     -fx-background-radius: 10px;
     -fx-border-radius: 5px;
-    -fx-border-color: #ffffff;
-}
-.versionText{
-    -fx-font-size: 15px;
-    -fx-translate-x: 50px;
-    -fx-translate-y: 40px;
 }
 #selectDirBtn{
     -fx-font-size: 12px;
+}
+.versionChoiceBox{
+    -fx-background-color: lightblue;
+    -fx-font-size: 15px;
+    -fx-padding: -5px;
+}
+.download{
+    -fx-text-alignment: center;
 }

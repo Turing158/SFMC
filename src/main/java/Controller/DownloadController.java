@@ -17,7 +17,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class DownloadController {
-    File file;
+    static File file;
     @FXML
     Button download;
     @FXML
@@ -32,6 +32,10 @@ public class DownloadController {
     Button selectDirBtn;
     @FXML
     public void initialize(){
+        System.out.println(file);
+        if(file != null){
+            downloadDir.setText(file.getPath());
+        }
         versionChoiceBox.getItems().addAll("1.8","1.9","1.10","1.11","1.12");
         versionChoiceBox.setOnAction(event -> {
             downloadInfo.setText(downloadInfo.getText()+"\n选择了"+versionChoiceBox.getValue()+"版本");
@@ -90,8 +94,10 @@ public class DownloadController {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("选择Minecraft目录");
         file = directoryChooser.showDialog(new Stage());
-        downloadInfo.setText(downloadInfo.getText()+"\n选择了下载目录目录："+file.getPath());
-        downloadDir.setText(file.getPath());
+        if(file != null){
+            downloadInfo.setText(downloadInfo.getText()+"\n选择了下载目录目录："+file.getPath());
+            downloadDir.setText(file.getPath());
+        }
     }
     public void exit(){
         Stage stage = (Stage) exit.getScene().getWindow();

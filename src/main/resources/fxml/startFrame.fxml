@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Text?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controller.StartFrameController"
-            prefHeight="500.0" prefWidth="800.0" stylesheets="@css/startFrame.css">
-    <AnchorPane fx:id="version" prefHeight="50">
-        <Button fx:id="selectDirBtn" text="未找到Minecraft版本" onAction="#selectDirBtn" prefWidth="150" prefHeight="50"/>
-        <ComboBox fx:id="versionChoiceBox" prefWidth="150" prefHeight="50"/>
+<AnchorPane prefHeight="500.0" prefWidth="800.0" stylesheets="@css/startFrame.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StartFrameController">
+    <AnchorPane fx:id="version" translateX="620" translateY="400">
+        <Button fx:id="download" onAction="#downloadMC" prefHeight="50" prefWidth="150" styleClass="download" text="未发现版本,下载Minecraft" wrapText="true" />
+        <ComboBox fx:id="versionChoiceBox" maxWidth="25" prefHeight="50" styleClass="versionChoiceBox" translateX="100" />
+        <Button fx:id="startBtn" onAction="#startBtn" prefHeight="50" prefWidth="130" text="启动" />
     </AnchorPane>
-    <TextField fx:id="username" prefWidth="100" promptText="请输入用户名" prefHeight="20" translateY="80"/>
-    <Slider fx:id="memorySlider" translateY="110"/>
-    <Text fx:id="memorySliderData" translateY="110" translateX="100"/>
-    <Button fx:id="download" text="下载Minecraft" translateY="130" onAction="#downloadMC"/>
-    <Button fx:id="startBtn" text="启动" onAction="#startBtn" translateY="150"/>
+    <AnchorPane fx:id="leftMenu" prefHeight="500.0" prefWidth="150.0">
+        <Button fx:id="selectDirBtn" layoutX="8.0" layoutY="64.0" onAction="#" prefHeight="50" prefWidth="150" text="玩家设置" />
+        <Button fx:id="gameSetting" layoutX="8.0" layoutY="125.0" onAction="#" prefHeight="50" prefWidth="150" text="游戏设置" />
+
+    </AnchorPane>
+
+<!--        <Button fx:id="selectDirBtn" text="选择目录" onAction="#selectDirBtn" prefWidth="150" prefHeight="50"/>-->
+
 
 </AnchorPane>
