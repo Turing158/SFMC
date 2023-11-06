@@ -1,6 +1,8 @@
 package Controller;
 
+import Launch.LaunchMC;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -54,8 +56,9 @@ public class DownloadController {
             downloadMinecraft.download(file.getPath(),versionChoiceBox.getValue(),new CallbackAdapter<Version>() {
                 @Override
                 public void done(Version result) {
-//                    System.out.println("下载完成：Minecraft v"+result.getVersion());
+                    System.out.println("下载完成：Minecraft v"+result.getVersion());
                     downloadInfo.setText(downloadInfo.getText()+"\n下载完成：Minecraft "+result.getVersion());
+                    LaunchMC.directory = new File(file.getPath()+"./minecraft").getAbsolutePath();
                 }
 
                 @Override
@@ -84,7 +87,7 @@ public class DownloadController {
 
                 @Override
                 public <R> DownloadCallback<R> taskStart(DownloadTask<R> task) {
-//                    System.out.println("download:"+task.getURI());
+                    System.out.println("download:"+task.getURI());
                     return super.taskStart(task);
                 }
             });
@@ -100,8 +103,9 @@ public class DownloadController {
         }
     }
     public void exit(){
-        Stage stage = (Stage) exit.getScene().getWindow();
+        exit.getParent().getParent().getParent().setVisible(false);
+        Stage stage = (Stage) exit.getParent().getParent().getParent().getParent().getScene().getWindow();
+        stage.setScene(new Frame().StartFrame());
         StartFrameController.downloadFlag = false;
-        stage.close();
     }
 }

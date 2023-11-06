@@ -1,4 +1,9 @@
-
+.sonFrame {
+    -fx-background-color: #13131355;
+}
+#sonFrameSource{
+    -fx-background-color: #131313;
+}
 #version{
     -fx-background-radius: 10px;
     -fx-border-radius: 5px;
@@ -14,3 +19,4 @@
 .download{
     -fx-text-alignment: center;
 }
+

@@ -3,6 +3,7 @@ package Controller;
 import Launch.LaunchMC;
 import com.sun.management.OperatingSystemMXBean;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
@@ -15,10 +16,14 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.lang.management.ManagementFactory;
 
-
 public class StartFrameController {
 
 
+
+    @FXML
+    AnchorPane sonFrame;
+    @FXML
+    AnchorPane sonFrameSource;
     String rootPath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
     static boolean downloadFlag = false;
     static boolean playerFlag = false;
@@ -44,9 +49,9 @@ public class StartFrameController {
 
     @FXML
     public void initialize(){
-        download.setText("未发现版本\n下载Minecraft");
         File MinecraftDir = new File(rootPath+".minecraft");
-        getVersion(MinecraftDir);
+        LaunchMC.directory = MinecraftDir.getAbsolutePath();
+        getVersion();
 //        memorySlider.setMax(maxMemory);
 //        memorySlider.setValue(1024);
 //        memorySlider.setValueChanging(true);
@@ -56,30 +61,24 @@ public class StartFrameController {
     }
 
     public void playerSetting(){
-        if(!playerFlag){
-            Stage mainStage = (Stage) startBtn.getScene().getWindow();
-            Stage stage = new Stage();
-            stage.setScene(new Frame().playerSetting());
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setWidth(600);
-            stage.setHeight(400);
-            mainStage.getScene().setOnMousePressed(event -> {
-                offX = event.getSceneX()+7.5;
-                offY = event.getSceneY()+32.5;
-            });
-            mainStage.getScene().setOnMouseDragged(event -> {
-                mainStage.setX(event.getScreenX() - offX);
-                mainStage.setY(event.getScreenY() - offY);
-                stage.setX(mainStage.getX() + 100);
-                stage.setY(mainStage.getY() + 50);
-            });
-            playerFlag = true;
-            stage.show();
-        }
+        sonFrame.setVisible(true);
+        sonFrameSource.getChildren().setAll(new Frame().playerSetting());
+//        if(!downloadFlag && !playerFlag){
+//            newStageSon(new Frame().playerSetting(),600,400);
+//            playerFlag = true;
+//        }
+    }
+    public void versionSetting(){
+
     }
     public void startBtn(){
-        LaunchMC launchMC = new LaunchMC();
-        launchMC.start();
+        if(LaunchMC.version.isEmpty()){
+            System.out.println("请输入用户名");
+        }
+        else {
+            LaunchMC launchMC = new LaunchMC();
+            launchMC.start();
+        }
     }
 //    public void selectDirBtn(){
 //        DirectoryChooser chooser = new DirectoryChooser();
@@ -113,62 +112,38 @@ public class StartFrameController {
 //        });
 //    }
     public void downloadMC(){
-        if(!downloadFlag){
+        if(!downloadFlag && !playerFlag){
             DownloadController.file = new File(rootPath);
-            Stage mainStage = (Stage) download.getScene().getWindow();
-            Stage stage = new Stage();
-            stage.setWidth(600);
-            stage.setHeight(400);
-            stage.setX(mainStage.getX() + 100);
-            stage.setY(mainStage.getY() + 50);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.initOwner(mainStage);
-            stage.setScene(new Frame().downloadFrame());
-            mainStage.getScene().setOnMousePressed(event -> {
-                offX = event.getSceneX()+7.5;
-                offY = event.getSceneY()+32.5;
-            });
-            mainStage.getScene().setOnMouseDragged(event -> {
-                mainStage.setX(event.getScreenX() - offX);
-                mainStage.setY(event.getScreenY() - offY);
-                stage.setX(mainStage.getX() + 100);
-                stage.setY(mainStage.getY() + 50);
-            });
+            sonFrame.setVisible(true);
+            sonFrameSource.getChildren().setAll(new Frame().downloadFrame());
             downloadFlag = true;
-            stage.show();
+
         }
     }
-    public void getVersion(File MinecraftDir){
-        if(MinecraftDir.exists()){
-            LaunchMC.directory = MinecraftDir.getAbsolutePath();
-            File versionFilePath = new File(MinecraftDir.getPath()+"/versions");
-            if(versionFilePath.exists()){
-                File[] versionFiles = versionFilePath.listFiles(File::isDirectory);
-                if (versionFiles != null) {
-                    String firstVersion = versionFiles[0].getName();
-                    for (int i = 0; i < versionFiles.length; i++) {
-                        versionChoiceBox.getItems().add(versionFiles[i].getName());
-                    }
-                    LaunchMC.version = firstVersion;
-                    versionChoiceBox.setValue(firstVersion);
-                    versionChoiceBox.setOnAction(event -> {
-                        LaunchMC.version = versionChoiceBox.getValue();
-                        startBtn.setText("启动\n"+versionChoiceBox.getValue());
-                    });
-                    versionChoiceBox.setVisible(true);
-                    startBtn.setVisible(true);
-                    download.setVisible(false);
+    public void getVersion(){
+        download.setText("未发现版本\n下载Minecraft");
+        File versionFilePath = new File(LaunchMC.directory+"/versions");
+        if(versionFilePath.exists()){
+            File[] versionFiles = versionFilePath.listFiles(File::isDirectory);
+            if (versionFiles != null) {
+                String firstVersion = versionFiles[0].getName();
+                for (int i = 0; i < versionFiles.length; i++) {
+                    versionChoiceBox.getItems().add(versionFiles[i].getName());
                 }
-                else {
-                    versionChoiceBox.setVisible(false);
-                    startBtn.setVisible(false);
-                    download.setVisible(true);
-                }
+                LaunchMC.version = firstVersion;
+                versionChoiceBox.setValue(firstVersion);
+                versionChoiceBox.setOnAction(event -> {
+                    LaunchMC.version = versionChoiceBox.getValue();
+                    startBtn.setText("启动\n"+versionChoiceBox.getValue());
+                });
+                versionChoiceBox.setVisible(true);
+                startBtn.setVisible(true);
+                download.setVisible(false);
             }
-            else{
-                download.setVisible(true);
+            else {
                 versionChoiceBox.setVisible(false);
                 startBtn.setVisible(false);
+                download.setVisible(true);
             }
         }
         else{

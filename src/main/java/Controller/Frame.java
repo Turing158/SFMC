@@ -1,11 +1,9 @@
 package Controller;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-
-import java.io.IOException;
 
 public class Frame {
     public Frame(){}
@@ -18,19 +16,28 @@ public class Frame {
         }
         return null;
     }
-    public Scene playerSetting(){
+    public Node playerSetting(){
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/player.fxml"));
-            return new Scene(pane);
-        } catch (IOException e) {
+            return pane;
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-    public Scene downloadFrame(){
+    public Node downloadFrame(){
         try{
             AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/download.fxml"));
-            return new Scene(pane);
+            return pane;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public Node versionFrame(){
+        try{
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("..fxml/version.fxml"));
+            return pane;
         }catch (Exception e){
             e.printStackTrace();
         }

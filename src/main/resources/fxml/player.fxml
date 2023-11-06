@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controller.PlayerController"
-            prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../../../../15818/桌面/MinecraftStart/src/main/resources/fxml/css/player.css">
-    <TextField fx:id="playerName"/>
-    <Button fx:id="save" text="保存" translateY="20" onAction="#save"/>
-    <Button fx:id="exit" onAction="#close"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@css/player.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerController">
+    <TextField fx:id="playerName" layoutX="7.0" layoutY="60.0" />
+    <Button fx:id="exit" onAction="#close" text="x" />
 </AnchorPane>
