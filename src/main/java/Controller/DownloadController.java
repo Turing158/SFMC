@@ -102,7 +102,7 @@ public class DownloadController {
             downloadDir.setText(file.getPath());
         }
     }
-    public void exit(){
+    public void close(){
         exit.getParent().getParent().getParent().setVisible(false);
         Stage stage = (Stage) exit.getParent().getParent().getParent().getParent().getScene().getWindow();
         stage.setScene(new Frame().StartFrame());

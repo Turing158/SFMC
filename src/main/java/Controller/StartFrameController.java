@@ -25,8 +25,10 @@ public class StartFrameController {
     @FXML
     AnchorPane sonFrameSource;
     String rootPath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+    static String settingGamePath = "";
     static boolean downloadFlag = false;
     static boolean playerFlag = false;
+    static boolean gameFlag = false;
     double offX = 0;
     double offY = 0;
     OperatingSystemMXBean os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
@@ -49,7 +51,12 @@ public class StartFrameController {
 
     @FXML
     public void initialize(){
-        File MinecraftDir = new File(rootPath+".minecraft");
+        System.out.println(settingGamePath.isEmpty());
+        File MinecraftDir = new File(settingGamePath);
+        if(settingGamePath.isEmpty()){
+            MinecraftDir = new File(rootPath+".minecraft");
+
+        }
         LaunchMC.directory = MinecraftDir.getAbsolutePath();
         getVersion();
 //        memorySlider.setMax(maxMemory);
@@ -61,15 +68,16 @@ public class StartFrameController {
     }
 
     public void playerSetting(){
-        sonFrame.setVisible(true);
-        sonFrameSource.getChildren().setAll(new Frame().playerSetting());
-//        if(!downloadFlag && !playerFlag){
-//            newStageSon(new Frame().playerSetting(),600,400);
-//            playerFlag = true;
-//        }
+        if(!downloadFlag && !playerFlag && !gameFlag){
+            sonFrame.setVisible(true);
+            sonFrameSource.getChildren().setAll(new Frame().playerSetting());
+        }
     }
-    public void versionSetting(){
-
+    public void gameSetting(){
+        if(!downloadFlag && !playerFlag && !gameFlag){
+            sonFrame.setVisible(true);
+            sonFrameSource.getChildren().setAll(new Frame().gameSetting());
+        }
     }
     public void startBtn(){
         if(LaunchMC.version.isEmpty()){

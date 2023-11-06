@@ -1,3 +1,7 @@
+.main{
+    -fx-background-image: url("/img/bg.png");
+    -fx-background-size: cover;
+}
 .sonFrame {
     -fx-background-color: #13131355;
 }
@@ -18,5 +22,13 @@
 }
 .download{
     -fx-text-alignment: center;
+    -fx-background-color: #66B6D1;
+    -fx-border-color: #66B6FF;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, #13131388, 10, 0, 0, 2);
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
 }
-
+.leftMenu{
+    -fx-background-color: #f1f1f122;
+}

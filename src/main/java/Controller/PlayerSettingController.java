@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class PlayerController {
+public class PlayerSettingController {
     @FXML
     TextField playerName;
     @FXML
@@ -14,8 +14,6 @@ public class PlayerController {
     public void close(){
         LaunchMC.username = playerName.getText();
         exit.getParent().getParent().getParent().setVisible(false);
-        Stage stage = (Stage) exit.getParent().getParent().getParent().getParent().getScene().getWindow();
-        stage.setScene(new Frame().StartFrame());
         StartFrameController.playerFlag = false;
     }
 }

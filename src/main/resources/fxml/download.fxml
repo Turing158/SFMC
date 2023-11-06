@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400" prefWidth="600.0" style="-fx-background-color: #919191" stylesheets="@css/download.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DownloadController">
-    <Button fx:id="exit" onAction="#exit" text="x" />
+    <Button fx:id="exit" onAction="#close" text="x" />
     <Text styleClass="versionText" text="版本：" />
     <ComboBox fx:id="versionChoiceBox" prefHeight="20" prefWidth="200" translateY="20" />
     <Text styleClass="categoryText" text="目录：" />

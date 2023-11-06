@@ -18,7 +18,7 @@ public class Frame {
     }
     public Node playerSetting(){
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/player.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/playerSetting.fxml"));
             return pane;
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,9 +34,9 @@ public class Frame {
         }
         return null;
     }
-    public Node versionFrame(){
+    public Node gameSetting(){
         try{
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("..fxml/version.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/gameSetting.fxml"));
             return pane;
         }catch (Exception e){
             e.printStackTrace();
