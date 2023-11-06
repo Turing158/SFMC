@@ -9,7 +9,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -18,8 +17,11 @@ import java.lang.management.ManagementFactory;
 
 
 public class StartFrameController {
+
+
     String rootPath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
     static boolean downloadFlag = false;
+    static boolean playerFlag = false;
     double offX = 0;
     double offY = 0;
     OperatingSystemMXBean os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
@@ -32,13 +34,11 @@ public class StartFrameController {
     @FXML
     Button startBtn;
     @FXML
-    TextField username;
+    AnchorPane leftMenu;
     @FXML
-    Button selectDirBtn;
+    Button playerSetting;
     @FXML
-    Slider memorySlider;
-    @FXML
-    Text memorySliderData;
+    Button gameSetting;
     @FXML
     Button download;
 
@@ -47,27 +47,39 @@ public class StartFrameController {
         download.setText("未发现版本\n下载Minecraft");
         File MinecraftDir = new File(rootPath+".minecraft");
         getVersion(MinecraftDir);
-        memorySlider.setMax(maxMemory);
-        memorySlider.setValue(1024);
-        memorySlider.setValueChanging(true);
-        memorySliderData.setText("最大启动内存："+(int) memorySlider.getValue()+"MB");
-        memorySlider();
+//        memorySlider.setMax(maxMemory);
+//        memorySlider.setValue(1024);
+//        memorySlider.setValueChanging(true);
+//        memorySliderData.setText("最大启动内存："+(int) memorySlider.getValue()+"MB");
+//        memorySlider();
 
     }
 
-
+    public void playerSetting(){
+        if(!playerFlag){
+            Stage mainStage = (Stage) startBtn.getScene().getWindow();
+            Stage stage = new Stage();
+            stage.setScene(new Frame().playerSetting());
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setWidth(600);
+            stage.setHeight(400);
+            mainStage.getScene().setOnMousePressed(event -> {
+                offX = event.getSceneX()+7.5;
+                offY = event.getSceneY()+32.5;
+            });
+            mainStage.getScene().setOnMouseDragged(event -> {
+                mainStage.setX(event.getScreenX() - offX);
+                mainStage.setY(event.getScreenY() - offY);
+                stage.setX(mainStage.getX() + 100);
+                stage.setY(mainStage.getY() + 50);
+            });
+            playerFlag = true;
+            stage.show();
+        }
+    }
     public void startBtn(){
-        if(LaunchMC.directory.isEmpty()){
-            System.out.println("请选择Minecraft目录");
-        }
-        else if(username.getText().isEmpty()){
-            System.out.println("请输入用户名");
-        }
-        else {
-            LaunchMC.username = username.getText();
-            LaunchMC launchMC = new LaunchMC();
-            launchMC.start();
-        }
+        LaunchMC launchMC = new LaunchMC();
+        launchMC.start();
     }
 //    public void selectDirBtn(){
 //        DirectoryChooser chooser = new DirectoryChooser();
@@ -86,20 +98,20 @@ public class StartFrameController {
 //            }
 //        }
 //    }
-    public void memorySlider(){
-        memorySlider.valueProperty().addListener((observable,oldV,newV)->{
-            int valueInt = newV.intValue();
-            memorySliderData.setText(String.valueOf(valueInt));
-            if(valueInt < 1024){
-                memorySlider.setValue(1024);
-            }
-            else if(valueInt > freeMemory){
-                memorySlider.setValue(freeMemory);
-            }
-            memorySliderData.setText("最大启动内存："+(int) memorySlider.getValue()+"MB");
-            LaunchMC.memory = valueInt;
-        });
-    }
+//    public void memorySlider(){
+//        memorySlider.valueProperty().addListener((observable,oldV,newV)->{
+//            int valueInt = newV.intValue();
+//            memorySliderData.setText(String.valueOf(valueInt));
+//            if(valueInt < 1024){
+//                memorySlider.setValue(1024);
+//            }
+//            else if(valueInt > freeMemory){
+//                memorySlider.setValue(freeMemory);
+//            }
+//            memorySliderData.setText("最大启动内存："+(int) memorySlider.getValue()+"MB");
+//            LaunchMC.memory = valueInt;
+//        });
+//    }
     public void downloadMC(){
         if(!downloadFlag){
             DownloadController.file = new File(rootPath);
@@ -128,6 +140,7 @@ public class StartFrameController {
     }
     public void getVersion(File MinecraftDir){
         if(MinecraftDir.exists()){
+            LaunchMC.directory = MinecraftDir.getAbsolutePath();
             File versionFilePath = new File(MinecraftDir.getPath()+"/versions");
             if(versionFilePath.exists()){
                 File[] versionFiles = versionFilePath.listFiles(File::isDirectory);

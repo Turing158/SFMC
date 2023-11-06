@@ -10,7 +10,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="Controller.DownloadController"
-            prefHeight="400" prefWidth="600.0" style="-fx-background-color: #919191" stylesheets="@css/download.css">
+            prefHeight="400" prefWidth="600.0" style="-fx-background-color: #919191" stylesheets="@../../../../../../../15818/桌面/MinecraftStart/src/main/resources/fxml/css/download.css">
     <Button fx:id="exit" text="x" onAction="#exit"/>
     <Text text="版本：" styleClass="versionText"/>
     <ComboBox fx:id="versionChoiceBox" prefWidth="200" prefHeight="20" translateY="20"/>

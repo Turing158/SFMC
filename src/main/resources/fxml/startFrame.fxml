@@ -4,19 +4,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" stylesheets="@css/startFrame.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StartFrameController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" stylesheets="@../../../../../../../15818/桌面/MinecraftStart/src/main/resources/fxml/css/startFrame.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StartFrameController">
     <AnchorPane fx:id="version" translateX="620" translateY="400">
         <Button fx:id="download" onAction="#downloadMC" prefHeight="50" prefWidth="150" styleClass="download" text="未发现版本,下载Minecraft" wrapText="true" />
         <ComboBox fx:id="versionChoiceBox" maxWidth="25" prefHeight="50" styleClass="versionChoiceBox" translateX="100" />
         <Button fx:id="startBtn" onAction="#startBtn" prefHeight="50" prefWidth="130" text="启动" />
     </AnchorPane>
     <AnchorPane fx:id="leftMenu" prefHeight="500.0" prefWidth="150.0">
-        <Button fx:id="selectDirBtn" layoutX="8.0" layoutY="64.0" onAction="#" prefHeight="50" prefWidth="150" text="玩家设置" />
-        <Button fx:id="gameSetting" layoutX="8.0" layoutY="125.0" onAction="#" prefHeight="50" prefWidth="150" text="游戏设置" />
+        <Button fx:id="playerSetting" onAction="#playerSetting" layoutX="8.0" layoutY="64.0" prefHeight="50" prefWidth="150" text="玩家设置" />
+        <Button fx:id="gameSetting" layoutX="8.0" layoutY="125.0" prefHeight="50" prefWidth="150" text="游戏设置" />
 
     </AnchorPane>
-
-<!--        <Button fx:id="selectDirBtn" text="选择目录" onAction="#selectDirBtn" prefWidth="150" prefHeight="50"/>-->
-
-
 </AnchorPane>
