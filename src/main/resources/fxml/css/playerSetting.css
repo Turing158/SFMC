@@ -1,3 +1,6 @@
+.playSetting{
+    -fx-background-color: #f1f1f1;
+}
 #exit{
     -fx-translate-x: 580px;
 }

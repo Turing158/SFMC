@@ -17,7 +17,7 @@ public class LaunchMC {
     public static String version = "";
     public static String username = "";
     public static String directory = "";
-    public static int memory = 0;
+    public static int memory = 1024;
     public void start(){
         Launcher launcher = LauncherBuilder.create().printDebugCommandline(true).nativeFastCheck(true).build();
 
@@ -28,7 +28,7 @@ public class LaunchMC {
                     new MinecraftDirectory(directory));
             option.commandlineVariables().put("version_type","StarFall Starter");
             if(memory != 0){
-                option.setMinMemory(memory);
+                option.setMaxMemory(memory);
             }
             launcher.launch(option);
         } catch (LaunchException | IOException e) {

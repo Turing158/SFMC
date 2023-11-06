@@ -11,6 +11,10 @@ public class PlayerSettingController {
     TextField playerName;
     @FXML
     Button exit;
+    @FXML
+    public void initialize(){
+        playerName.setText(LaunchMC.username);
+    }
     public void close(){
         LaunchMC.username = playerName.getText();
         exit.getParent().getParent().getParent().setVisible(false);

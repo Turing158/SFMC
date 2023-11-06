@@ -29,11 +29,7 @@ public class StartFrameController {
     static boolean downloadFlag = false;
     static boolean playerFlag = false;
     static boolean gameFlag = false;
-    double offX = 0;
-    double offY = 0;
-    OperatingSystemMXBean os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-    long maxMemory = os.getTotalPhysicalMemorySize()/(1024*1024);
-    long freeMemory = os.getFreePhysicalMemorySize()/(1024*1024);
+
     @FXML
     AnchorPane version;
     @FXML
@@ -51,7 +47,10 @@ public class StartFrameController {
 
     @FXML
     public void initialize(){
-        System.out.println(settingGamePath.isEmpty());
+        System.out.println("LaunchMC.directory : " + LaunchMC.directory);
+        System.out.println("LaunchMC.username : " + LaunchMC.username);
+        System.out.println("LaunchMC.version : " + LaunchMC.version);
+        System.out.println("LaunchMC.memory : " + LaunchMC.memory);
         File MinecraftDir = new File(settingGamePath);
         if(settingGamePath.isEmpty()){
             MinecraftDir = new File(rootPath+".minecraft");
@@ -59,11 +58,7 @@ public class StartFrameController {
         }
         LaunchMC.directory = MinecraftDir.getAbsolutePath();
         getVersion();
-//        memorySlider.setMax(maxMemory);
-//        memorySlider.setValue(1024);
-//        memorySlider.setValueChanging(true);
-//        memorySliderData.setText("最大启动内存："+(int) memorySlider.getValue()+"MB");
-//        memorySlider();
+
 
     }
 
@@ -88,37 +83,7 @@ public class StartFrameController {
             launchMC.start();
         }
     }
-//    public void selectDirBtn(){
-//        DirectoryChooser chooser = new DirectoryChooser();
-//        chooser.setTitle("选择.minecraft目录");
-//        String currentDirectory = System.getProperty("user.dir");
-//        chooser.setInitialDirectory(new File(currentDirectory));
-//        Stage stage = (Stage) selectDirBtn.getScene().getWindow();
-//        File file = chooser.showDialog(stage);
-//        if (file != null){
-//            if(file.getName().equals(".minecraft")){
-//                LaunchMC.directory = file.getAbsolutePath();
-//                getVersion(file);
-//            }
-//            else {
-//                System.out.println("你选择的目录不是.minecraft目录，请选择.minecraft目录");
-//            }
-//        }
-//    }
-//    public void memorySlider(){
-//        memorySlider.valueProperty().addListener((observable,oldV,newV)->{
-//            int valueInt = newV.intValue();
-//            memorySliderData.setText(String.valueOf(valueInt));
-//            if(valueInt < 1024){
-//                memorySlider.setValue(1024);
-//            }
-//            else if(valueInt > freeMemory){
-//                memorySlider.setValue(freeMemory);
-//            }
-//            memorySliderData.setText("最大启动内存："+(int) memorySlider.getValue()+"MB");
-//            LaunchMC.memory = valueInt;
-//        });
-//    }
+
     public void downloadMC(){
         if(!downloadFlag && !playerFlag){
             DownloadController.file = new File(rootPath);

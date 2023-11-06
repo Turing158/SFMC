@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@css/playerSetting.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSettingController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@css/playerSetting.css" styleClass="playSetting" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSettingController">
     <TextField fx:id="playerName" layoutX="7.0" layoutY="60.0" />
     <Button fx:id="exit" onAction="#close" text="x" />
 </AnchorPane>
