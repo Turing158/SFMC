@@ -2,20 +2,22 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" stylesheets="@css/startFrame.css"
-            xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controller.StartFrameController" styleClass="main">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="main" stylesheets="@css/startFrame.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StartFrameController">
+    <HBox fx:id="tipsBox" styleClass="tipsBox" visible="false">
+        <Text fx:id="tips" styleClass="tips" />
+    </HBox>
     <AnchorPane fx:id="version" translateX="620" translateY="400">
         <Button fx:id="download" onAction="#downloadMC" prefHeight="50" prefWidth="150" styleClass="download" text="未发现版本,下载Minecraft" wrapText="true" />
-        <ComboBox fx:id="versionChoiceBox" prefWidth="150" prefHeight="51" styleClass="versionChoiceBox" />
-        <Button fx:id="startBtn" onAction="#startBtn" prefHeight="50" prefWidth="130" text="启动" styleClass="startBtn"/>
+        <ComboBox fx:id="versionChoiceBox" prefHeight="51" prefWidth="150" styleClass="versionChoiceBox" />
+        <Button fx:id="startBtn" onAction="#startBtn" prefHeight="50" prefWidth="130" styleClass="startBtn" text="启动" />
     </AnchorPane>
     <AnchorPane fx:id="leftMenu" prefHeight="500.0" prefWidth="150.0" styleClass="leftMenu">
-        <Button fx:id="playerSetting" layoutY="64.0" onAction="#playerSetting" prefHeight="50" prefWidth="158.0" text="玩家设置" />
-        <Button fx:id="gameSetting" layoutY="125.0" onAction="#gameSetting" prefHeight="50" prefWidth="158.0" text="游戏设置" />
+        <Button fx:id="playerSetting" layoutY="75.0" onAction="#playerSetting" prefHeight="50" prefWidth="158.0" styleClass="playSettingBtn" text="玩家设置" />
+        <Button fx:id="gameSetting" layoutY="125.0" onAction="#gameSetting" prefHeight="50" prefWidth="158.0" styleClass="gameSettingBtn" text="游戏设置" />
     </AnchorPane>
     <AnchorPane fx:id="sonFrame" prefHeight="500.0" prefWidth="800.0" styleClass="sonFrame" visible="false">
-        <AnchorPane fx:id="sonFrameSource" translateX="100" translateY="425"/>
+        <AnchorPane fx:id="sonFrameSource" translateX="100" translateY="425" />
     </AnchorPane>
 </AnchorPane>

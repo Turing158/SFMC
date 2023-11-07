@@ -20,14 +20,16 @@
     -fx-effect: dropshadow(gaussian, #13131388, 5, 0, 0, 2);
 }
 .startBtn{
+    -fx-text-alignment: center;
     -fx-background-color: #66B6D1;
     -fx-border-color: linear-gradient(to top,transparent, #131313,transparent);
     -fx-border-width: 0 1 0 0;
     -fx-font-weight: bold;
     -fx-font-size: 15px;
 }
-.startBtn:hover{
+.startBtn:hover,.versionChoiceBox:hover{
     -fx-background-color: #7ebed4;
+    -fx-cursor: hand;
 }
 .download{
     -fx-text-alignment: center;
@@ -39,9 +41,33 @@
     -fx-font-size: 13px;
 }
 .download:hover{
-    -fx-background-color: #3b8a36;
+    -fx-background-color: #478d42;
+    -fx-cursor: hand;
 }
 .leftMenu{
-    -fx-background-color: #f1f1f122;
+    -fx-background-color: #f1f1f155;
+}
+.tipsBox{
+    -fx-background-color: #f1f1f1aa;
+    -fx-padding: 5px 10px;
+    -fx-position-shape: center;
+    -fx-translate-Y: 400px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, #13131388, 10, 0, 0, 2);
+}
+.tips{
+    -fx-font-size: 15px;
+    -fx-text-fill: #131313;
+    -fx-font-weight: bold;
 }
 
+.playSettingBtn,.gameSettingBtn {
+    -fx-text-fill: #131313;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+}
+.playSettingBtn:hover,.gameSettingBtn:hover{
+    -fx-background-color: #f1f1f155;
+    -fx-cursor: hand;
+}

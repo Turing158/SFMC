@@ -5,10 +5,13 @@ import javafx.animation.*;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class EffectAnimation {
@@ -95,6 +98,11 @@ public class EffectAnimation {
         rotate.setToAngle(to);
         rotate.setInterpolator(new SplineInterpolator(0.1,0.1,0.1,1));
         return rotate;
+    }
+    public Timeline tipsEffect(Node tipsBox,Text text, double seconds, double waitTime,String tips){
+        text.setText(tips);
+        tipsBox.setTranslateX(tipsBox.getScene().getWidth()/2 - text.getLayoutBounds().getWidth()/2 - ((HBox) tipsBox).getPadding().getLeft());
+        return fadeEffect(tipsBox, seconds, waitTime);
     }
 //    用于停止动画
     public void stopAnimation(Transition transition){

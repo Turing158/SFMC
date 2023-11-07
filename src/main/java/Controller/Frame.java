@@ -1,15 +1,34 @@
 package Controller;
 
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-public class Frame {
+import java.net.URL;
+
+public class Frame extends Application {
     public Frame(){}
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        stage.setScene(new Frame().StartFrame());
+        stage.getIcons().add(new Image("img/ico.png"));
+        stage.setHeight(500);
+        stage.setWidth(800);
+        stage.setResizable(false);
+        stage.setFullScreen(false);
+        stage.show();
+    }
+
     public Scene StartFrame() {
         try{
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/startFrame.fxml"));
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(getClass().getClassLoader().getResource("fxml/startFrame.fxml"));
+            AnchorPane pane = fxml.load();
             return new Scene(pane);
         }catch (Exception e){
             e.printStackTrace();
@@ -18,7 +37,9 @@ public class Frame {
     }
     public Node playerSetting(){
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/playerSetting.fxml"));
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(getClass().getClassLoader().getResource("fxml/playerSetting.fxml"));
+            AnchorPane pane = fxml.load();
             return pane;
         } catch (Exception e) {
             e.printStackTrace();
@@ -27,7 +48,9 @@ public class Frame {
     }
     public Node downloadFrame(){
         try{
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/download.fxml"));
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(getClass().getClassLoader().getResource("fxml/download.fxml"));
+            AnchorPane pane = fxml.load();
             return pane;
         }catch (Exception e){
             e.printStackTrace();
@@ -36,7 +59,9 @@ public class Frame {
     }
     public Node gameSetting(){
         try{
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/gameSetting.fxml"));
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(getClass().getClassLoader().getResource("fxml/gameSetting.fxml"));
+            AnchorPane pane = fxml.load();
             return pane;
         }catch (Exception e){
             e.printStackTrace();

@@ -79,7 +79,6 @@ public class gameSettingController {
 
     public void close(){
         EffectAnimation effect = new EffectAnimation();
-
         effect.fadeEmergeVanish(0.2,false,exit.getParent().getParent().getParent());
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO,event -> {
@@ -90,8 +89,6 @@ public class gameSettingController {
                     stage.setScene(new Frame().StartFrame());
                 })
         );
-        timeline.play();
-
         timeline.play();
         StartFrameController.gameFlag = false;
     }

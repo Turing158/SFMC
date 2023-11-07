@@ -1,27 +1,23 @@
 package Controller;
 
 import Launch.LaunchMC;
-import javafx.animation.FillTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
-import sun.java2d.cmm.ColorTransform;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import util.EffectAnimation;
 
-import javax.rmi.CORBA.Tie;
 import java.io.File;
 
 public class StartFrameController {
 
-
-
+    @FXML
+    HBox tipsBox;
+    @FXML
+    Text tips;
     @FXML
     AnchorPane sonFrame;
     @FXML
@@ -60,7 +56,6 @@ public class StartFrameController {
         }
         LaunchMC.directory = MinecraftDir.getAbsolutePath();
         getVersion();
-
     }
 
     public void playerSetting(){
@@ -83,9 +78,13 @@ public class StartFrameController {
             timeline.play();
         }
     }
+    int a ;
     public void startBtn(){
         if(LaunchMC.username.isEmpty()){
-            System.out.println("请输入用户名");
+            checkTimeline();
+            EffectAnimation effect = new EffectAnimation();
+            timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"请输入用户名");
+            timeline.play();
         }
         else {
             LaunchMC launchMC = new LaunchMC();
@@ -95,9 +94,13 @@ public class StartFrameController {
 
     public void downloadMC(){
         if(!downloadFlag && !playerFlag){
+            checkTimeline();
             DownloadController.file = new File(rootPath);
-            sonFrame.setVisible(true);
             sonFrameSource.getChildren().setAll(new Frame().downloadFrame());
+            EffectAnimation effect = new EffectAnimation();
+            effect.fadeEmergeVanish(0.1,true,sonFrame);
+            timeline =  effect.switchPage(sonFrameSource,0.3,425,25,true);
+            timeline.play();
             downloadFlag = true;
 
         }
@@ -112,6 +115,7 @@ public class StartFrameController {
                 for (int i = 0; i < versionFiles.length; i++) {
                     versionChoiceBox.getItems().add(versionFiles[i].getName());
                 }
+                startBtn.setText("启动\n"+firstVersion);
                 LaunchMC.version = firstVersion;
                 versionChoiceBox.setValue(firstVersion);
                 versionChoiceBox.setOnAction(event -> {

@@ -1,6 +1,8 @@
 package Controller;
 
 import Launch.LaunchMC;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,11 +11,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.CallbackAdapter;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.DownloadCallback;
 import org.to2mbn.jmccc.mcdownloader.download.tasks.DownloadTask;
 import org.to2mbn.jmccc.version.Version;
 import util.DownloadMinecraft;
+import util.EffectAnimation;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -103,9 +107,18 @@ public class DownloadController {
         }
     }
     public void close(){
-        exit.getParent().getParent().getParent().setVisible(false);
-        Stage stage = (Stage) exit.getParent().getParent().getParent().getParent().getScene().getWindow();
-        stage.setScene(new Frame().StartFrame());
+        EffectAnimation effect = new EffectAnimation();
+        effect.fadeEmergeVanish(0.2,false,exit.getParent().getParent().getParent());
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, event -> {
+                    effect.switchPage(exit.getParent().getParent(),0.2,25,425,false).play();
+                }),
+                new KeyFrame(Duration.seconds(0.2),event -> {
+                    Stage stage = (Stage) exit.getScene().getWindow();
+                    stage.setScene(new Frame().StartFrame());
+                })
+        );
+        timeline.play();
         StartFrameController.downloadFlag = false;
     }
 }
