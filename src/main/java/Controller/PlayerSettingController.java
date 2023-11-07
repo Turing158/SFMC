@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import util.EffectAnimation;
 
 public class PlayerSettingController {
     @FXML
@@ -17,7 +18,9 @@ public class PlayerSettingController {
     }
     public void close(){
         LaunchMC.username = playerName.getText();
-        exit.getParent().getParent().getParent().setVisible(false);
+        EffectAnimation effect = new EffectAnimation();
+        effect.fadeEmergeVanish(0.2,false,exit.getParent().getParent().getParent());
+        effect.switchPage(exit.getParent().getParent(),0.2,25,425,false).play();
         StartFrameController.playerFlag = false;
     }
 }

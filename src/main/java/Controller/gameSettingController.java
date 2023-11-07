@@ -2,6 +2,8 @@ package Controller;
 
 import Launch.LaunchMC;
 import com.sun.management.OperatingSystemMXBean;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +11,8 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import util.EffectAnimation;
 
 import java.io.File;
 import java.lang.management.ManagementFactory;
@@ -74,9 +78,21 @@ public class gameSettingController {
     }
 
     public void close(){
-        exit.getParent().getParent().getParent().setVisible(false);
-        Stage stage = (Stage) exit.getParent().getParent().getParent().getParent().getScene().getWindow();
-        stage.setScene(new Frame().StartFrame());
+        EffectAnimation effect = new EffectAnimation();
+
+        effect.fadeEmergeVanish(0.2,false,exit.getParent().getParent().getParent());
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO,event -> {
+                    effect.switchPage(exit.getParent().getParent(),0.2,25,425,false).play();
+                }),
+                new KeyFrame(Duration.seconds(0.2),event -> {
+                    Stage stage = (Stage) exit.getScene().getWindow();
+                    stage.setScene(new Frame().StartFrame());
+                })
+        );
+        timeline.play();
+
+        timeline.play();
         StartFrameController.gameFlag = false;
     }
 }

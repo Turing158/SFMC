@@ -4,6 +4,7 @@
 }
 .sonFrame {
     -fx-background-color: #13131355;
+    -fx-opacity: 0;
 }
 #sonFrameSource{
     -fx-background-color: #131313;
@@ -12,23 +13,35 @@
     -fx-background-radius: 10px;
     -fx-border-radius: 5px;
 }
-#selectDirBtn{
-    -fx-font-size: 12px;
-}
 .versionChoiceBox{
-    -fx-background-color: lightblue;
+    -fx-background-color: #66B6D1;
     -fx-font-size: 15px;
     -fx-padding: -5px;
+    -fx-effect: dropshadow(gaussian, #13131388, 5, 0, 0, 2);
+}
+.startBtn{
+    -fx-background-color: #66B6D1;
+    -fx-border-color: linear-gradient(to top,transparent, #131313,transparent);
+    -fx-border-width: 0 1 0 0;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+.startBtn:hover{
+    -fx-background-color: #7ebed4;
 }
 .download{
     -fx-text-alignment: center;
-    -fx-background-color: #66B6D1;
-    -fx-border-color: #66B6FF;
+    -fx-background-color: #30882a;
+    -fx-border-color: #257720;
     -fx-border-radius: 5px;
     -fx-effect: dropshadow(gaussian, #13131388, 10, 0, 0, 2);
     -fx-font-weight: bold;
     -fx-font-size: 13px;
 }
+.download:hover{
+    -fx-background-color: #3b8a36;
+}
 .leftMenu{
     -fx-background-color: #f1f1f122;
 }
+
