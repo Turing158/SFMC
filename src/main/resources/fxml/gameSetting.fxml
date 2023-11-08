@@ -10,7 +10,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="Controller.gameSettingController"
             prefHeight="400.0" prefWidth="600.0" stylesheets="@css/gameSetting.css" styleClass="gameSetting">
-    <Button fx:id="exit" onAction="#close" text="x" />
+    <Button fx:id="exit" onAction="#close" text="×" />
     <Button fx:id="selectDir" onAction="#selectDir" text="选择目录"/>
     <TextField fx:id="dir" translateY="30"/>
     <Label fx:id="memoryLabel" layoutY="60" text="内存大小" translateY="80"/>

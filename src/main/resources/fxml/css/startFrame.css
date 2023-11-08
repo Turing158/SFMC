@@ -3,11 +3,24 @@
     -fx-background-size: cover;
 }
 .sonFrame {
-    -fx-background-color: #13131355;
+    -fx-background-color: #13131322;
     -fx-opacity: 0;
 }
 #sonFrameSource{
-    -fx-background-color: #131313;
+    -fx-effect: dropshadow(gaussian, #13131388, 10, 0, 0, 2);
+}
+#exit{
+    -fx-background-color: transparent;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-translate-x: 576px;
+    -fx-text-fill: #131313;
+    -fx-padding: 0px 5px;
+    -fx-background-radius: 3 8 3 3;
+}
+#exit:hover{
+    -fx-background-color: #44444444;
+    -fx-text-fill: green;
 }
 #version{
     -fx-background-radius: 10px;
@@ -67,6 +80,7 @@
     -fx-font-weight: bold;
     -fx-background-color: transparent;
 }
+
 .playSettingBtn:hover,.gameSettingBtn:hover{
     -fx-background-color: #f1f1f155;
     -fx-cursor: hand;

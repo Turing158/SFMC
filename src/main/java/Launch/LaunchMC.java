@@ -14,13 +14,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LaunchMC {
+    public static  String playerFunc = "";
     public static String version = "";
     public static String username = "";
     public static String directory = "";
     public static int memory = 1024;
     public void start(){
         Launcher launcher = LauncherBuilder.create().printDebugCommandline(true).nativeFastCheck(true).build();
-
         try {
             LaunchOption option = new LaunchOption(
                     version,
