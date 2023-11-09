@@ -29,6 +29,8 @@ public class gameSettingController {
     public Slider memorySlider;
     @FXML
     public Button exit;
+    @FXML
+    public Label maxPhyMemory;
     OperatingSystemMXBean os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     long maxMemory = os.getTotalPhysicalMemorySize()/(1024*1024);
     long freeMemory = os.getFreePhysicalMemorySize()/(1024*1024);
@@ -39,7 +41,8 @@ public class gameSettingController {
         memorySlider.setMax(maxMemory);
         memorySlider.setValue(LaunchMC.memory);
         memorySlider.setValueChanging(true);
-        memoryLabel.setText("最大启动内存："+(int) memorySlider.getValue()+"MB");
+        memoryLabel.setText("已分配内存:"+(int) memorySlider.getValue()+"MB/空闲内存:"+freeMemory+"MB");
+        maxPhyMemory.setText(maxMemory+"MB");
         memorySlider();
     }
 
@@ -72,7 +75,7 @@ public class gameSettingController {
                 memorySlider.setValue(freeMemory);
                 LaunchMC.memory = (int) freeMemory;
             }
-            memoryLabel.setText("最大启动内存："+(int) memorySlider.getValue()+"MB");
+            memoryLabel.setText("已分配内存:"+(int) memorySlider.getValue()+"MB/空闲内存:"+freeMemory+"MB");
 
         });
     }

@@ -1,38 +1,54 @@
 .downloadPage{
-    -fx-background-color: #f1f1f1;
+    -fx-background-color: #ffffffcc;
     -fx-background-radius: 8px;
 }
 
 #versionChoiceBox{
-    -fx-translate-x: 90px;
-    -fx-translate-y: 20px;
-    -fx-pref-width: 80px;
+    -fx-background-color: #f1f1f1;
+    -fx-cursor: hand;
 }
-#downloadInfo{
-    -fx-translate-x: 50px;
-    -fx-translate-y: 80px;
-    -fx-pref-width: 500px;
-    -fx-pref-height: 250px;
+#versionChoiceBox:hover{
+    -fx-background-color: #e9e9e9;
 }
-#downloadDir{
-    -fx-translate-x: 90px;
-    -fx-translate-y: 50px;
-    -fx-pref-width: 400px;
+.textArea{
+    -fx-background-color: #f1f1f1,#f1f1f1;
+    -fx-border-color: #131313;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-font-size: 13px;
+    -fx-effect: innershadow(gaussian, #13131333, 5, 0, 2, 2);
 }
 #selectDirBtn{
-    -fx-translate-x: 500px;
-    -fx-translate-y: 50px;
     -fx-font-size: 12px;
 }
 
 .versionText {
     -fx-font-size: 15px;
-    -fx-translate-x: 50px;
-    -fx-translate-y: 40px;
 }
 
 .categoryText {
     -fx-font-size: 15px;
-    -fx-translate-x: 50px;
-    -fx-translate-y: 70px;
+}
+.input{
+    -fx-background-color: #f1f1f1;
+    -fx-border-color: #131313;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-padding: 2px 5px;
+    -fx-font-size: 13px;
+    -fx-effect: innershadow(gaussian, #13131333, 5, 0, 2, 2);
+}
+.btn{
+    -fx-background-radius: 2px;
+    -fx-background-color: #66B6D1;
+    -fx-font-size: 14px;
+    -fx-padding: 2px 10px;
+    -fx-effect: dropshadow(gaussian, #13131388, 2, 0, 1, 1);
+    -fx-cursor: hand;
+}
+.btn:hover{
+    -fx-background-color: #7ebed4;
+}
+.btn:pressed{
+    -fx-effect: dropshadow(gaussian, #13131388, 2, 0, -1, -1);
 }

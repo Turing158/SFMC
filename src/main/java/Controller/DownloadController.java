@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.to2mbn.jmccc.mcdownloader.download.Downloader;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.CallbackAdapter;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.DownloadCallback;
 import org.to2mbn.jmccc.mcdownloader.download.tasks.DownloadTask;
@@ -23,7 +24,14 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class DownloadController {
+    DownloadMinecraft downloadMinecraft = new DownloadMinecraft();
     static File file;
+    @FXML
+    public Button downloadCancel;
+    @FXML
+    public Button openDir;
+    @FXML
+    public Button downloadRetry;
     @FXML
     Button download;
     @FXML
@@ -38,12 +46,16 @@ public class DownloadController {
     Button selectDirBtn;
     @FXML
     public void initialize(){
-        System.out.println(file);
+        download.setVisible(false);
+        downloadCancel.setVisible(false);
+        downloadRetry.setVisible(false);
         if(file != null){
             downloadDir.setText(file.getPath());
         }
+        downloadMinecraft.getDownloadList();
         versionChoiceBox.getItems().addAll("1.8","1.9","1.10","1.11","1.12");
         versionChoiceBox.setOnAction(event -> {
+            download.setVisible(true);
             downloadInfo.setText(downloadInfo.getText()+"\n选择了"+versionChoiceBox.getValue()+"版本");
         });
     }
@@ -55,14 +67,18 @@ public class DownloadController {
             downloadInfo.setText(downloadInfo.getText()+"\n请选择下载目录");
         }
         else{
-            DownloadMinecraft downloadMinecraft = new DownloadMinecraft();
             downloadInfo.setText(downloadInfo.getText()+"\n正在下载，请稍后...");
+            download.setVisible(false);
+            downloadCancel.setVisible(true);
             downloadMinecraft.download(file.getPath(),versionChoiceBox.getValue(),new CallbackAdapter<Version>() {
                 @Override
                 public void done(Version result) {
                     System.out.println("下载完成：Minecraft v"+result.getVersion());
                     downloadInfo.setText(downloadInfo.getText()+"\n下载完成：Minecraft "+result.getVersion());
                     LaunchMC.directory = new File(file.getPath()+"./minecraft").getAbsolutePath();
+                    download.setVisible(false);
+                    downloadCancel.setVisible(false);
+                    downloadRetry.setVisible(false);
                 }
 
                 @Override
@@ -70,12 +86,14 @@ public class DownloadController {
 //                    System.out.println("下载失败");
                     downloadInfo.setText(downloadInfo.getText()+"\n下载失败");
                     e.printStackTrace();
+                    downloadRetry.setVisible(true);
                 }
 
                 @Override
                 public void cancelled() {
 //                    System.out.println("取消下载");
                     downloadInfo.setText(downloadInfo.getText()+"\n已取消下载");
+
                 }
 
                 @Override

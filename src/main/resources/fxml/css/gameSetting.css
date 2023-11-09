@@ -1,4 +1,9 @@
 .gameSetting{
-    -fx-background-color: #f1f1f1;
+    -fx-background-color: #ffffffcc;
     -fx-background-radius: 8px;
+}
+.funcTitle{
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #131313;
 }

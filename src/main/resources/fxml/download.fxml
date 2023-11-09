@@ -4,13 +4,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400" prefWidth="600.0" stylesheets="@css/download.css" styleClass="downloadPage" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DownloadController">
+<AnchorPane prefHeight="400" prefWidth="600.0" styleClass="downloadPage" stylesheets="@css/download.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DownloadController">
     <Button fx:id="exit" onAction="#close" text="×" />
-    <Text styleClass="versionText" text="版本：" />
-    <ComboBox fx:id="versionChoiceBox" prefHeight="20" prefWidth="200" translateY="20" />
-    <Text styleClass="categoryText" text="目录：" />
-    <TextField fx:id="downloadDir" />
-    <Button fx:id="selectDirBtn" onAction="#selectDir" text="选择" />
-    <TextArea fx:id="downloadInfo" editable="false" />
-    <Button fx:id="download" layoutX="488.0" layoutY="363.0" onAction="#downloadStart" text="开始下载" />
+    <Text styleClass="versionText" text="版本：" translateX="50" translateY="40" />
+    <ComboBox fx:id="versionChoiceBox" prefWidth="80" translateX="90" translateY="20" />
+    <Text styleClass="categoryText" text="目录：" translateX="50" translateY="70" />
+    <TextField fx:id="downloadDir" layoutX="90.0" layoutY="53.0" prefHeight="23.0" prefWidth="432.0" styleClass="input" />
+    <Button fx:id="selectDirBtn" layoutX="29.0" layoutY="6.0" onAction="#selectDir" styleClass="btn" text="..." translateX="500" translateY="50" />
+    <TextArea fx:id="downloadInfo" editable="false" layoutX="-40.0" layoutY="37.0" prefHeight="250" prefWidth="500" styleClass="textArea" translateX="90" translateY="50" />
+    <Button fx:id="download" layoutX="477.0" layoutY="344.0" onAction="#downloadStart" styleClass="btn" text="开始下载" />
+   <Button fx:id="downloadCancel" layoutX="477.0" layoutY="344.0" mnemonicParsing="false" styleClass="btn" text="取消下载" />
+   <Button fx:id="openDir" layoutX="50.0" layoutY="344.0" mnemonicParsing="false" styleClass="btn" text="打开目录" />
+   <Button fx:id="downloadRetry" layoutX="482.0" layoutY="344.0" mnemonicParsing="false" styleClass="btn" text="  重试  " />
 </AnchorPane>
