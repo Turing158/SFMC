@@ -31,7 +31,7 @@ public class LaunchMC {
                     version,
                     new OfflineAuthenticator(username),
                     new MinecraftDirectory(directory));
-            option.commandlineVariables().put("version_type","StarFall Starter");
+            option.commandlineVariables().put("version_type","StarFall 1.0");
             option.setWindowSize(WindowSize.window(windowSizeWidth,windowSizeHeight));
             if(memory != 0){
                 option.setMaxMemory(memory);

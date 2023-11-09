@@ -17,9 +17,12 @@ public class Frame extends Application {
         stage.getIcons().add(new Image("img/ico.png"));
         stage.setHeight(500);
         stage.setWidth(800);
-        stage.setTitle("StarFall MC Starter");
+        stage.setTitle("SFMC 1.0");
         stage.setResizable(false);
         stage.setFullScreen(false);
+        stage.setOnCloseRequest(event -> {
+            System.gc();
+        });
         stage.show();
     }
 
