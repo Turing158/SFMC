@@ -7,13 +7,18 @@ import org.to2mbn.jmccc.launch.LauncherBuilder;
 import org.to2mbn.jmccc.option.JavaEnvironment;
 import org.to2mbn.jmccc.option.LaunchOption;
 import org.to2mbn.jmccc.option.MinecraftDirectory;
+import org.to2mbn.jmccc.option.WindowSize;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LaunchMC {
+    public static  int windowSizeWidth = 854;
+    public static  int windowSizeHeight = 480;
+    public static ArrayList<String> versions = new ArrayList<>();
     public static  String playerFunc = "";
     public static String version = "";
     public static String username = "";
@@ -27,6 +32,7 @@ public class LaunchMC {
                     new OfflineAuthenticator(username),
                     new MinecraftDirectory(directory));
             option.commandlineVariables().put("version_type","StarFall Starter");
+            option.setWindowSize(WindowSize.window(windowSizeWidth,windowSizeHeight));
             if(memory != 0){
                 option.setMaxMemory(memory);
             }

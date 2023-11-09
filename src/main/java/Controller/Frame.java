@@ -8,17 +8,16 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.net.URL;
-
 public class Frame extends Application {
     public Frame(){}
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception{
         stage.setScene(new Frame().StartFrame());
         stage.getIcons().add(new Image("img/ico.png"));
         stage.setHeight(500);
         stage.setWidth(800);
+        stage.setTitle("StarFall MC Starter");
         stage.setResizable(false);
         stage.setFullScreen(false);
         stage.show();
@@ -49,7 +48,7 @@ public class Frame extends Application {
     public Node downloadFrame(){
         try{
             FXMLLoader fxml = new FXMLLoader();
-            fxml.setLocation(getClass().getClassLoader().getResource("fxml/download.fxml"));
+            fxml.setLocation(getClass().getClassLoader().getResource("fxml/downloadPage.fxml"));
             AnchorPane pane = fxml.load();
             return pane;
         }catch (Exception e){

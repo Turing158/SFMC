@@ -5,10 +5,7 @@ import com.sun.management.OperatingSystemMXBean;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -16,6 +13,8 @@ import util.EffectAnimation;
 
 import java.io.File;
 import java.lang.management.ManagementFactory;
+import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 public class gameSettingController {
 
@@ -31,12 +30,20 @@ public class gameSettingController {
     public Button exit;
     @FXML
     public Label maxPhyMemory;
+    @FXML
+    public TextField windowSizeW;
+    @FXML
+    public TextField windowSizeH;
     OperatingSystemMXBean os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     long maxMemory = os.getTotalPhysicalMemorySize()/(1024*1024);
     long freeMemory = os.getFreePhysicalMemorySize()/(1024*1024);
 
     @FXML
     public void initialize(){
+        windowSizeW.setText(String.valueOf(LaunchMC.windowSizeWidth));
+        windowSizeH.setText(String.valueOf(LaunchMC.windowSizeHeight));
+        windowSizeW.setTextFormatter(new TextFormatter<>(new IntegerFilter()));
+        windowSizeH.setTextFormatter(new TextFormatter<>(new IntegerFilter()));
         dir.setText(LaunchMC.directory);
         memorySlider.setMax(maxMemory);
         memorySlider.setValue(LaunchMC.memory);
@@ -81,6 +88,12 @@ public class gameSettingController {
     }
 
     public void close(){
+        if(!windowSizeW.getText().isEmpty()){
+            LaunchMC.windowSizeWidth = Integer.parseInt(windowSizeW.getText());
+        }
+        if(!windowSizeH.getText().isEmpty()){
+            LaunchMC.windowSizeHeight = Integer.parseInt(windowSizeH.getText());
+        }
         EffectAnimation effect = new EffectAnimation();
         effect.fadeEmergeVanish(0.2,false,exit.getParent().getParent().getParent());
         Timeline timeline = new Timeline(
@@ -95,4 +108,16 @@ public class gameSettingController {
         timeline.play();
         StartFrameController.gameFlag = false;
     }
+    private static class IntegerFilter implements UnaryOperator<TextFormatter.Change> {
+        private static final Pattern DIGIT_PATTERN = Pattern.compile("\\d*");
+
+        @Override
+        public TextFormatter.Change apply(TextFormatter.Change change) {
+            if (DIGIT_PATTERN.matcher(change.getControlNewText()).matches()) {
+                return change;
+            }
+            return null;
+        }
+    }
 }
+

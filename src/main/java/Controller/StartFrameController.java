@@ -8,6 +8,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import org.to2mbn.jmccc.mcdownloader.MinecraftDownloader;
+import org.to2mbn.jmccc.mcdownloader.MinecraftDownloaderBuilder;
+import org.to2mbn.jmccc.mcdownloader.RemoteVersionList;
+import org.to2mbn.jmccc.mcdownloader.download.concurrent.CallbackAdapter;
 import util.EffectAnimation;
 
 import java.io.File;
@@ -22,7 +26,7 @@ public class StartFrameController {
     AnchorPane sonFrame;
     @FXML
     AnchorPane sonFrameSource;
-    String rootPath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+    String rootPath = new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent();
     Timeline timeline;
     static String settingGamePath = "";
     static boolean downloadFlag = false;
@@ -46,13 +50,10 @@ public class StartFrameController {
 
     @FXML
     public void initialize(){
-        System.out.println("LaunchMC.directory : " + LaunchMC.directory);
-        System.out.println("LaunchMC.username : " + LaunchMC.username);
-        System.out.println("LaunchMC.version : " + LaunchMC.version);
-        System.out.println("LaunchMC.memory : " + LaunchMC.memory);
+        updateVersions();
         File MinecraftDir = new File(settingGamePath);
         if(settingGamePath.isEmpty()){
-            MinecraftDir = new File(rootPath+".minecraft");
+            MinecraftDir = new File(rootPath+"/.minecraft");
         }
         LaunchMC.directory = MinecraftDir.getAbsolutePath();
         getVersion();
@@ -78,7 +79,17 @@ public class StartFrameController {
             timeline.play();
         }
     }
-    int a ;
+    public void downloadMC(){
+        if(!downloadFlag && !playerFlag && !gameFlag){
+            checkTimeline();
+            DownloadController.file = new File(rootPath);
+            sonFrameSource.getChildren().setAll(new Frame().downloadFrame());
+            EffectAnimation effect = new EffectAnimation();
+            effect.fadeEmergeVanish(0.1,true,sonFrame);
+            timeline =  effect.switchPage(sonFrameSource,0.3,425,25,true);
+            timeline.play();
+        }
+    }
     public void startBtn(){
         if(LaunchMC.username.isEmpty()){
             checkTimeline();
@@ -92,19 +103,7 @@ public class StartFrameController {
         }
     }
 
-    public void downloadMC(){
-        if(!downloadFlag && !playerFlag){
-            checkTimeline();
-            DownloadController.file = new File(rootPath);
-            sonFrameSource.getChildren().setAll(new Frame().downloadFrame());
-            EffectAnimation effect = new EffectAnimation();
-            effect.fadeEmergeVanish(0.1,true,sonFrame);
-            timeline =  effect.switchPage(sonFrameSource,0.3,425,25,true);
-            timeline.play();
-            downloadFlag = true;
 
-        }
-    }
     public void getVersion(){
         download.setText("未发现版本\n下载Minecraft");
         File versionFilePath = new File(LaunchMC.directory+"/versions");
@@ -136,6 +135,24 @@ public class StartFrameController {
             download.setVisible(true);
             versionChoiceBox.setVisible(false);
             startBtn.setVisible(false);
+        }
+    }
+    public void updateVersions(){
+        if(LaunchMC.versions.isEmpty()){
+            MinecraftDownloader versionDownloader = MinecraftDownloaderBuilder.buildDefault();
+            versionDownloader.fetchRemoteVersionList(new CallbackAdapter<RemoteVersionList>() {
+                @Override
+                public void done(RemoteVersionList result) {
+                    LaunchMC.versions.add(result.getLatestSnapshot());
+                    result.getVersions().forEach((k,v) -> {
+                        if(k.matches("\\d+\\.\\d+(\\.\\d+)?")){
+                            LaunchMC.versions.add(k);
+                        }
+                    });
+                    versionDownloader.shutdown();
+                }
+            });
+
         }
     }
     public void checkTimeline(){

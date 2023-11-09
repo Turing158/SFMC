@@ -15,22 +15,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DownloadMinecraft {
-    public MinecraftDownloader downloader = MinecraftDownloaderBuilder.create().build();
-    public void getDownloadList(){
-        downloader.fetchRemoteVersionList(new CallbackAdapter<RemoteVersionList>() {
-            @Override
-            public void done(RemoteVersionList result) {
-                Map<String, RemoteVersion> versionMap = result.getVersions();
-                versionMap.forEach((k,v)->{
-                    if(k.matches("\\d+\\.\\d+(\\.\\d+)?")){
-                        System.out.println(k);
-                    }
-                });
-            }
-        });
-    }
+    MinecraftDownloader downloader = MinecraftDownloaderBuilder.create().build();
     public void download(String filePath,String version,CallbackAdapter<Version> callbackAdapter){
+
         MinecraftDirectory dir = new MinecraftDirectory(filePath+"/.minecraft");
-        downloader.downloadIncrementally(dir, version,callbackAdapter );
+        downloader.downloadIncrementally(dir, version,callbackAdapter);
+    }
+    public void shutdown(){
+        downloader.shutdown();
     }
 }
