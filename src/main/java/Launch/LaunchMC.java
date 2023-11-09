@@ -25,7 +25,7 @@ public class LaunchMC {
     public static String directory = "";
     public static int memory = 1024;
     public void start(){
-        Launcher launcher = LauncherBuilder.create().printDebugCommandline(true).nativeFastCheck(true).build();
+        Launcher launcher = LauncherBuilder.create().printDebugCommandline(true).nativeFastCheck(false).build();
         try {
             LaunchOption option = new LaunchOption(
                     version,

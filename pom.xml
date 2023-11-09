@@ -25,11 +25,15 @@
             <version>11.0.2</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.to2mbn/jmccc -->
+        <!-- https://mvnrepository.com/artifact/dev.3-3/jmccc -->
+        <!-- https://mvnrepository.com/artifact/dev.3-3/jmccc -->
         <dependency>
-            <groupId>org.to2mbn</groupId>
+            <groupId>dev.3-3</groupId>
             <artifactId>jmccc</artifactId>
-            <version>2.5-beta-1</version>
+            <version>3.1.4</version>
         </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/dev.3-3/jmccc-mcdownloader -->
         <dependency>
             <groupId>dev.3-3</groupId>
