@@ -7,7 +7,7 @@
     <Button fx:id="exit" onAction="#close" text="×" />
     <Label layoutX="30.0" layoutY="32.0" prefHeight="23.0" prefWidth="95.0" styleClass="funcTitle" text="选择目录:" />
     <Button fx:id="selectDir" layoutX="567.0" layoutY="55.0" onAction="#selectDir" prefHeight="23.0" prefWidth="25.0" text="..." />
-    <TextField fx:id="dir" layoutX="23.0" layoutY="25.0" prefHeight="23.0" prefWidth="536.0" translateY="30" styleClass="input"/>
+    <TextField fx:id="dir" layoutX="23.0" layoutY="25.0" prefHeight="23.0" prefWidth="536.0" styleClass="input" translateY="30" />
 
     <Label layoutX="27.0" layoutY="104.0" styleClass="funcTitle" text="最大启动内存" />
     <Label layoutX="27.0" layoutY="140.0" text="0MB" />
@@ -16,9 +16,12 @@
     <Slider fx:id="memorySlider" layoutX="30.0" layoutY="26.0" prefHeight="14.0" prefWidth="536.0" translateY="100" />
 
     <Label layoutX="20.0" layoutY="170.0" styleClass="funcTitle" text="Minecraft窗口大小：" />
-   <TextField fx:id="windowSizeW" layoutX="166.0" layoutY="169.0" prefHeight="23.0" prefWidth="60.0" styleClass="input"/>
-   <TextField fx:id="windowSizeH" layoutX="238.0" layoutY="169.0" prefHeight="23.0" prefWidth="60.0" styleClass="input"/>
+   <TextField fx:id="windowSizeW" layoutX="166.0" layoutY="169.0" prefHeight="23.0" prefWidth="60.0" styleClass="input" />
+   <TextField fx:id="windowSizeH" layoutX="238.0" layoutY="169.0" prefHeight="23.0" prefWidth="60.0" styleClass="input" />
    <Label layoutX="229.0" layoutY="173.0" text="x" />
 
+    <Label layoutX="28.0" layoutY="200.0" styleClass="funcTitle" text="Java版本：" />
+    <ComboBox fx:id="jreVersion" layoutX="23.0" layoutY="220.0" prefHeight="23.0" prefWidth="536.0" styleClass="combobox" />
+    <Button fx:id="selectJreDir" layoutX="567.0" layoutY="220.0" text="+" onAction="#addJreVersion"/>
 
 </AnchorPane>

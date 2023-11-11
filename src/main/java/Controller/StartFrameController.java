@@ -12,7 +12,9 @@ import org.to2mbn.jmccc.mcdownloader.MinecraftDownloader;
 import org.to2mbn.jmccc.mcdownloader.MinecraftDownloaderBuilder;
 import org.to2mbn.jmccc.mcdownloader.RemoteVersionList;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.CallbackAdapter;
+import org.to2mbn.jmccc.option.JavaEnvironment;
 import util.EffectAnimation;
+import util.OtherUtil;
 
 import java.io.File;
 
@@ -56,7 +58,8 @@ public class StartFrameController {
             MinecraftDir = new File(rootPath+"/.minecraft");
         }
         LaunchMC.directory = MinecraftDir.getAbsolutePath();
-        getVersion();
+        getLocalVersions();
+        initJreVersion();
     }
 
     public void playerSetting(){
@@ -104,7 +107,7 @@ public class StartFrameController {
     }
 
 
-    public void getVersion(){
+    public void getLocalVersions(){
         download.setText("未发现版本\n下载Minecraft");
         File versionFilePath = new File(LaunchMC.directory+"/versions");
         if(versionFilePath.exists()){
@@ -154,6 +157,10 @@ public class StartFrameController {
             });
 
         }
+    }
+    public void initJreVersion(){
+        OtherUtil otherUtil = new OtherUtil();
+        LaunchMC.jreVersions =  otherUtil.getJreVersions();
     }
     public void checkTimeline(){
         if(timeline != null){

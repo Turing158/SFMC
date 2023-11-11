@@ -48,7 +48,6 @@ public class DownloadController {
         download.setVisible(false);
         downloadCancel.setVisible(false);
         downloadRetry.setVisible(false);
-        System.out.println(file);
         if(file != null){
             downloadDir.setText(file.getPath());
         }

@@ -16,3 +16,10 @@
     -fx-font-size: 13px;
     -fx-effect: innershadow(gaussian, #13131333, 5, 0, 2, 2);
 }
+.combobox{
+    -fx-background-color: #f1f1f1;
+    -fx-cursor: hand;
+}
+.combobox:hover{
+    -fx-background-color: #e9e9e9;
+}

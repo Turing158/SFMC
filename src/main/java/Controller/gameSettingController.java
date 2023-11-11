@@ -7,12 +7,15 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.util.StringConverter;
 import util.EffectAnimation;
 
 import java.io.File;
 import java.lang.management.ManagementFactory;
+import java.util.Map;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
@@ -34,6 +37,10 @@ public class gameSettingController {
     public TextField windowSizeW;
     @FXML
     public TextField windowSizeH;
+    @FXML
+    public ComboBox<String> jreVersion;
+    @FXML
+    public Button selectJreDir;
     OperatingSystemMXBean os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     long maxMemory = os.getTotalPhysicalMemorySize()/(1024*1024);
     long freeMemory = os.getFreePhysicalMemorySize()/(1024*1024);
@@ -51,6 +58,48 @@ public class gameSettingController {
         memoryLabel.setText("已分配内存:"+(int) memorySlider.getValue()+"MB/空闲内存:"+freeMemory+"MB");
         maxPhyMemory.setText(maxMemory+"MB");
         memorySlider();
+        jreVersion.getItems().clear();
+        Map<String,String> jreVersions = LaunchMC.jreVersions;
+        jreVersions.forEach((k,v) -> {
+            jreVersion.getItems().add(v);
+            System.out.println(k+" "+v);
+        });
+        jreVersion.setConverter(new StringConverter<String>() {
+            @Override
+            public String toString(String object) {
+                for(String key : jreVersions.keySet()){
+                    if(jreVersions.get(key).equals(object)){
+                        return key;
+                    }
+                }
+                return null;
+            }
+            @Override
+            public String fromString(String string) {
+                return LaunchMC.jreVersions.get(string);
+            }
+        });
+        jreVersion.setOnAction(event -> {
+            LaunchMC.jreDir = new File(jreVersion.getValue()+"\\bin\\javaw.exe");
+        });
+    }
+    public void addJreVersion(){
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("选择.minecraft目录");
+        String currentDirectory = System.getProperty("user.dir");
+        chooser.setInitialDirectory(new File(currentDirectory));
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("javaw.exe","javaw.exe"));
+        Stage stage = (Stage) selectDir.getScene().getWindow();
+        File jreBinJavaWDir = chooser.showOpenDialog(stage);
+        if(jreBinJavaWDir != null){
+            File jreBinDir = jreBinJavaWDir.getParentFile();
+            File jreDir = jreBinDir.getParentFile();
+            Map<String,String> jreVersions = LaunchMC.jreVersions;
+            jreVersions.put(jreDir.getName(),jreDir.getAbsolutePath());
+            LaunchMC.jreVersions = jreVersions;
+            initialize();
+        }
+
     }
 
     public void selectDir(){
@@ -83,7 +132,6 @@ public class gameSettingController {
                 LaunchMC.memory = (int) freeMemory;
             }
             memoryLabel.setText("已分配内存:"+(int) memorySlider.getValue()+"MB/空闲内存:"+freeMemory+"MB");
-
         });
     }
 

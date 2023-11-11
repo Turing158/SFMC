@@ -16,9 +16,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LaunchMC {
+
+    public static ArrayList<String> versions = new ArrayList<>();
+    public static Map<String, String> jreVersions = new HashMap<>();
+    public static File selfJreDir;
+
+
+    public static File jreDir;
     public static  int windowSizeWidth = 854;
     public static  int windowSizeHeight = 480;
-    public static ArrayList<String> versions = new ArrayList<>();
     public static  String playerFunc = "";
     public static String version = "";
     public static String username = "";
@@ -33,6 +39,9 @@ public class LaunchMC {
                     new MinecraftDirectory(directory));
             option.commandlineVariables().put("version_type","StarFall 1.0");
             option.setWindowSize(WindowSize.window(windowSizeWidth,windowSizeHeight));
+            if(jreDir != null){
+                option.setJavaEnvironment(new JavaEnvironment(jreDir));
+            }
             if(memory != 0){
                 option.setMaxMemory(memory);
             }
