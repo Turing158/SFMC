@@ -19,7 +19,6 @@ public class LaunchMC {
 
     public static ArrayList<String> versions = new ArrayList<>();
     public static Map<String, String> jreVersions = new HashMap<>();
-    public static File selfJreDir;
 
 
     public static File jreDir;
