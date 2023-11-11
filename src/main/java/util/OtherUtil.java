@@ -16,7 +16,7 @@ public class OtherUtil {
             File jreDir = new File(javaHome + File.separator + "jre");
             if (jreDir.exists() && jreDir.isDirectory()) {
                 String version = getJavaVersion(jreDir.getAbsolutePath());
-                jreVersions.put(version,jreDir.getAbsolutePath());
+                jreVersions.put(jreDir.getAbsolutePath(),version);
             }
         }
         Preferences prefs = Preferences.userRoot().node("Software\\JavaSoft\\Java Runtime Environment");
@@ -27,7 +27,7 @@ public class OtherUtil {
                 Preferences jrePref = prefs.node(key);
                 String javaHomeDir = jrePref.get("JavaHome", "Unknown");
                 String version = jrePref.get("MicroVersion", "Unknown");
-                jreVersions.put(version,javaHomeDir);
+                jreVersions.put(javaHomeDir,version);
 
             }
             return jreVersions;

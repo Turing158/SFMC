@@ -52,12 +52,12 @@ public class StartFrameController {
 
     @FXML
     public void initialize(){
-        updateVersions();
         File MinecraftDir = new File(settingGamePath);
         if(settingGamePath.isEmpty()){
             MinecraftDir = new File(rootPath+"/.minecraft");
         }
         LaunchMC.directory = MinecraftDir.getAbsolutePath();
+        updateDownloadVersions();
         getLocalVersions();
         initJreVersion();
     }
@@ -140,7 +140,7 @@ public class StartFrameController {
             startBtn.setVisible(false);
         }
     }
-    public void updateVersions(){
+    public void updateDownloadVersions(){
         if(LaunchMC.versions.isEmpty()){
             MinecraftDownloader versionDownloader = MinecraftDownloaderBuilder.buildDefault();
             versionDownloader.fetchRemoteVersionList(new CallbackAdapter<RemoteVersionList>() {

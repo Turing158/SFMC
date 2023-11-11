@@ -58,21 +58,20 @@ public class gameSettingController {
         memoryLabel.setText("已分配内存:"+(int) memorySlider.getValue()+"MB/空闲内存:"+freeMemory+"MB");
         maxPhyMemory.setText(maxMemory+"MB");
         memorySlider();
+        updateJreVersion();
+    }
+
+
+    public void updateJreVersion(){
         jreVersion.getItems().clear();
         Map<String,String> jreVersions = LaunchMC.jreVersions;
         jreVersions.forEach((k,v) -> {
-            jreVersion.getItems().add(v);
-            System.out.println(k+" "+v);
+            jreVersion.getItems().add(k);
         });
         jreVersion.setConverter(new StringConverter<String>() {
             @Override
             public String toString(String object) {
-                for(String key : jreVersions.keySet()){
-                    if(jreVersions.get(key).equals(object)){
-                        return key;
-                    }
-                }
-                return null;
+                return jreVersions.get(object)+"\t\t"+object;
             }
             @Override
             public String fromString(String string) {
