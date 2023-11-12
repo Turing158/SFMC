@@ -19,9 +19,11 @@ import util.DownloadMinecraft;
 import util.EffectAnimation;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DownloadController {
+    DownloadMinecraft downloadMinecraft = null;
 
     static File file;
     @FXML
@@ -79,7 +81,7 @@ public class DownloadController {
             selectDirBtn.setDisable(true);
             versionChoiceBox.setDisable(true);
             downloadDir.setDisable(true);
-            DownloadMinecraft downloadMinecraft = new DownloadMinecraft();
+            downloadMinecraft = new DownloadMinecraft();
             downloadMinecraft.download(file.getPath(),versionChoiceBox.getValue(),new CallbackAdapter<Version>() {
                 @Override
                 public void done(Version result) {
@@ -93,13 +95,11 @@ public class DownloadController {
                     selectDirBtn.setDisable(false);
                     versionChoiceBox.setDisable(false);
                     downloadDir.setDisable(false);
-
                     downloadMinecraft.shutdown();
                 }
 
                 @Override
                 public void failed(Throwable e) {
-//                    System.out.println("下载失败");
                     downloadInfo.setText(downloadInfo.getText()+"\n下载失败");
                     e.printStackTrace();
                     downloadRetry.setVisible(true);
@@ -117,13 +117,6 @@ public class DownloadController {
                     versionChoiceBox.setDisable(false);
                     downloadDir.setDisable(false);
                 }
-
-                @Override
-                public void updateProgress(long done, long total) {
-                    System.out.println(done);
-                    System.out.println(total);
-                }
-
                 @Override
                 public void retry(Throwable e, int current, int max) {
                     System.out.println("重试");
@@ -131,11 +124,17 @@ public class DownloadController {
 
                 @Override
                 public <R> DownloadCallback<R> taskStart(DownloadTask<R> task) {
-                    System.out.println("download:"+task.getURI());
+                    if(task.isCacheable()){
+                        downloadInfo.appendText("\n开始下载："+task.getURI()+"\n...");
+                    }
                     return super.taskStart(task);
                 }
             });
+
         }
+    }
+    public void cancelDownload(){
+        downloadMinecraft.cancel();
     }
     public void selectDir(){
         DirectoryChooser directoryChooser = new DirectoryChooser();

@@ -13,15 +13,20 @@ import org.to2mbn.jmccc.version.Version;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Future;
 
 public class DownloadMinecraft {
     MinecraftDownloader downloader = MinecraftDownloaderBuilder.create().build();
+    Future<Version> downloading;
     public void download(String filePath,String version,CallbackAdapter<Version> callbackAdapter){
-
         MinecraftDirectory dir = new MinecraftDirectory(filePath+"/.minecraft");
-        downloader.downloadIncrementally(dir, version,callbackAdapter);
+        downloading = downloader.downloadIncrementally(dir, version,callbackAdapter);
+
     }
     public void shutdown(){
         downloader.shutdown();
+    }
+    public void cancel(){
+        downloading.cancel(true);
     }
 }
