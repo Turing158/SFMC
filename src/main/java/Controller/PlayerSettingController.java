@@ -35,6 +35,8 @@ public class PlayerSettingController {
     @FXML
     public AnchorPane Microsoft;
     @FXML
+    public AnchorPane microsoftVerify;
+    @FXML
     TextField playerName;
     @FXML
     Button exit;
@@ -66,18 +68,9 @@ public class PlayerSettingController {
         });
     }
     public void microsoftLogin() {
-        Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                MicrosoftAuthenticator.login(microsoftVerification -> {
-                    System.out.println(microsoftVerification.verificationUri);
-                    System.out.println(microsoftVerification.userCode);
-                });
-                return null;
-            }
-        };
-        new Thread(task).start();
-
+        EffectAnimation effect =  new EffectAnimation();
+        microsoftVerify.getChildren().setAll(new Frame().verifyMicrosoft());
+        effect.fadeEmergeVanish(0.2,true,microsoftVerify);
     }
     public void close(){
         LaunchMC.username = playerName.getText();

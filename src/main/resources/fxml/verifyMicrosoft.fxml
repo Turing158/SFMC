@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controller.VerifyMicrosoft"
-            prefHeight="375.0" prefWidth="375.0">
-
+<AnchorPane prefHeight="375.0" prefWidth="375.0" stylesheets="@css/verifyMicrosoft.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VerifyMicrosoft">
+    <Label fx:id="waitTips" layoutX="162.0" layoutY="180.0" text="请稍后. . ." />
+    <Label fx:id="tips" text="若未自动打开浏览器进行Microsoft账号的验证界面，请点下面的连接复制到浏览器打开" prefWidth="200"/>
+    <Label fx:id="url" layoutX="100" layoutY="100"/>
+    <Label fx:id="code" layoutX="100" layoutY="200" />
 </AnchorPane>
