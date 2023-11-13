@@ -1,6 +1,7 @@
 package Controller;
 
 import Launch.LaunchMC;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,9 +10,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import jmccc.microsoft.MicrosoftAuthenticator;
 import org.to2mbn.jmccc.auth.AuthenticationException;
 import util.EffectAnimation;
 import util.MicrosoftLogin;
+
+import java.io.IOException;
 
 public class PlayerSettingController {
     @FXML
@@ -61,9 +65,19 @@ public class PlayerSettingController {
             }
         });
     }
-    public void microsoftLogin() throws AuthenticationException {
-        MicrosoftLogin ml = new MicrosoftLogin();
-        ml.login();
+    public void microsoftLogin() {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                MicrosoftAuthenticator.login(microsoftVerification -> {
+                    System.out.println(microsoftVerification.verificationUri);
+                    System.out.println(microsoftVerification.userCode);
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
+
     }
     public void close(){
         LaunchMC.username = playerName.getText();
