@@ -74,14 +74,15 @@
     -fx-font-weight: bold;
 }
 
-.playSettingBtn,.gameSettingBtn {
+.playSettingBtn,.gameSettingBtn,.downloadGameBtn{
     -fx-text-fill: #131313;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
     -fx-background-color: transparent;
 }
 
-.playSettingBtn:hover,.gameSettingBtn:hover{
+.playSettingBtn:hover,.gameSettingBtn:hover,.downloadGameBtn:hover{
     -fx-background-color: #f1f1f155;
     -fx-cursor: hand;
 }
+

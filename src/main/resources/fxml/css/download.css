@@ -52,3 +52,4 @@
 .btn:pressed{
     -fx-effect: dropshadow(gaussian, #13131388, 2, 0, -1, -1);
 }
+

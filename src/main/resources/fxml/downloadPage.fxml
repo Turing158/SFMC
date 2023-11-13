@@ -12,7 +12,7 @@
     <Button fx:id="selectDirBtn" layoutX="29.0" layoutY="6.0" onAction="#selectDir" styleClass="btn" text="..." translateX="500" translateY="50" />
     <TextArea fx:id="downloadInfo" editable="false" layoutX="-40.0" layoutY="37.0" prefHeight="250" prefWidth="500" styleClass="textArea" translateX="90" translateY="50" />
     <Button fx:id="download" layoutX="477.0" layoutY="344.0" onAction="#downloadStart" styleClass="btn" text="开始下载" />
-   <Button fx:id="downloadCancel" layoutX="477.0" layoutY="344.0" mnemonicParsing="false" styleClass="btn" text="取消下载" />
-   <Button fx:id="openDir" layoutX="50.0" layoutY="344.0" mnemonicParsing="false" styleClass="btn" text="打开目录" />
-   <Button fx:id="downloadRetry" layoutX="482.0" layoutY="344.0" mnemonicParsing="false" styleClass="btn" text="  重试  " />
+   <Button fx:id="downloadCancel" layoutX="477.0" layoutY="344.0" styleClass="btn" text="取消下载" onAction="#cancelDownload"/>
+   <Button fx:id="openDir" layoutX="50.0" layoutY="344.0" styleClass="btn" text="打开目录" />
+   <Button fx:id="downloadRetry" layoutX="482.0" layoutY="344.0" styleClass="btn" text="  重试  " />
 </AnchorPane>

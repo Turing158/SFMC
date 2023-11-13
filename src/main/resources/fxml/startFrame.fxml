@@ -16,6 +16,7 @@
     <AnchorPane fx:id="leftMenu" prefHeight="500.0" prefWidth="150.0" styleClass="leftMenu">
         <Button fx:id="playerSetting" layoutY="75.0" onAction="#playerSetting" prefHeight="50" prefWidth="158.0" styleClass="playSettingBtn" text="玩家设置" />
         <Button fx:id="gameSetting" layoutY="125.0" onAction="#gameSetting" prefHeight="50" prefWidth="158.0" styleClass="gameSettingBtn" text="游戏设置" />
+        <Button fx:id="downloadGame" layoutY="175.0" onAction="#downloadMC" prefHeight="50" prefWidth="158.0" styleClass="downloadGameBtn" text="游戏下载" />
     </AnchorPane>
     <AnchorPane fx:id="sonFrame" prefHeight="500.0" prefWidth="800.0" styleClass="sonFrame" visible="false">
         <AnchorPane fx:id="sonFrameSource" translateX="100" translateY="425" />

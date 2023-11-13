@@ -33,6 +33,12 @@
             <version>3.1.4</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/dev.3-3/jmccc-microsoft-authenticator -->
+        <dependency>
+            <groupId>dev.3-3</groupId>
+            <artifactId>jmccc-microsoft-authenticator</artifactId>
+            <version>3.1.4</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/dev.3-3/jmccc-mcdownloader -->
         <dependency>

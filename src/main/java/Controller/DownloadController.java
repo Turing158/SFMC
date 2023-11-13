@@ -104,18 +104,18 @@ public class DownloadController {
                     e.printStackTrace();
                     downloadRetry.setVisible(true);
 
-                    selectDirBtn.setDisable(false);
-                    versionChoiceBox.setDisable(false);
-                    downloadDir.setDisable(false);
+                    selectDirBtn.setDisable(true);
+                    versionChoiceBox.setDisable(true);
+                    downloadDir.setDisable(true);
                 }
 
                 @Override
                 public void cancelled() {
 //                    System.out.println("取消下载");
                     downloadInfo.setText(downloadInfo.getText()+"\n已取消下载");
-                    selectDirBtn.setDisable(false);
-                    versionChoiceBox.setDisable(false);
-                    downloadDir.setDisable(false);
+                    selectDirBtn.setDisable(true);
+                    versionChoiceBox.setDisable(true);
+                    downloadDir.setDisable(true);
                 }
                 @Override
                 public void retry(Throwable e, int current, int max) {

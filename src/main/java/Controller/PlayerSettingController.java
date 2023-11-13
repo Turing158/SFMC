@@ -2,12 +2,16 @@ package Controller;
 
 import Launch.LaunchMC;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.to2mbn.jmccc.auth.AuthenticationException;
 import util.EffectAnimation;
+import util.MicrosoftLogin;
 
 public class PlayerSettingController {
     @FXML
@@ -56,6 +60,10 @@ public class PlayerSettingController {
                 System.out.println("选择登录方式");
             }
         });
+    }
+    public void microsoftLogin() throws AuthenticationException {
+        MicrosoftLogin ml = new MicrosoftLogin();
+        ml.login();
     }
     public void close(){
         LaunchMC.username = playerName.getText();

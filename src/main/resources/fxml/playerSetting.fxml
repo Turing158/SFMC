@@ -22,7 +22,7 @@
     </AnchorPane>
 
     <AnchorPane fx:id="Microsoft" layoutX="4.0" layoutY="74.0" prefHeight="30.0" prefWidth="168.0" visible="false">
-        <Button fx:id="playerMicrosoft" layoutX="4.0" layoutY="3.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="161.0" text="微软验证" styleClass="btn"/>
+        <Button fx:id="playerMicrosoft" layoutX="4.0" layoutY="3.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="161.0" text="微软验证" onAction="#microsoftLogin" styleClass="btn"/>
     </AnchorPane>
 
 

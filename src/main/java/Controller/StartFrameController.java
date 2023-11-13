@@ -48,6 +48,8 @@ public class StartFrameController {
     @FXML
     Button gameSetting;
     @FXML
+    Button downloadGame;
+    @FXML
     Button download;
 
     @FXML
