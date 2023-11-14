@@ -8,7 +8,6 @@ import java.util.prefs.Preferences;
 
 public class main {
     public static void main(String[] args) throws BackingStoreException {
-
         Frame.launch(Frame.class,args);
     }
 

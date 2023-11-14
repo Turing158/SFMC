@@ -1,5 +1,7 @@
 package Launch;
 
+import org.to2mbn.jmccc.auth.AuthInfo;
+import org.to2mbn.jmccc.auth.Authenticator;
 import org.to2mbn.jmccc.auth.OfflineAuthenticator;
 import org.to2mbn.jmccc.launch.LaunchException;
 import org.to2mbn.jmccc.launch.Launcher;
@@ -19,6 +21,8 @@ public class LaunchMC {
 
     public static ArrayList<String> versions = new ArrayList<>();
     public static Map<String, String> jreVersions = new HashMap<>();
+    public static String Model = "offline";
+    public static AuthInfo authInfo;
 
 
     public static File jreDir;
@@ -29,12 +33,16 @@ public class LaunchMC {
     public static String username = "";
     public static String directory = "";
     public static int memory = 1024;
+    public static Authenticator authenticator;
     public void start(){
+        if (authenticator == null){
+            authenticator = new OfflineAuthenticator(username);
+        }
         Launcher launcher = LauncherBuilder.create().printDebugCommandline(true).nativeFastCheck(false).build();
         try {
             LaunchOption option = new LaunchOption(
                     version,
-                    new OfflineAuthenticator(username),
+                    authenticator,
                     new MinecraftDirectory(directory));
             option.commandlineVariables().put("version_type","StarFall 1.0");
             option.setWindowSize(WindowSize.window(windowSizeWidth,windowSizeHeight));

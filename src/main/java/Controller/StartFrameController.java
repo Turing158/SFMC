@@ -15,6 +15,7 @@ import org.to2mbn.jmccc.mcdownloader.download.concurrent.CallbackAdapter;
 import org.to2mbn.jmccc.option.JavaEnvironment;
 import util.EffectAnimation;
 import util.OtherUtil;
+import util.SaveJson;
 
 import java.io.File;
 
@@ -62,6 +63,8 @@ public class StartFrameController {
         updateDownloadVersions();
         getLocalVersions();
         initJreVersion();
+        System.out.println(LaunchMC.directory);
+
     }
 
     public void playerSetting(){
@@ -96,7 +99,7 @@ public class StartFrameController {
         }
     }
     public void startBtn(){
-        if(LaunchMC.username.isEmpty()){
+        if(LaunchMC.username.isEmpty() && LaunchMC.authenticator == null){
             checkTimeline();
             EffectAnimation effect = new EffectAnimation();
             timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"请输入用户名");

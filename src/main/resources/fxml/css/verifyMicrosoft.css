@@ -1,0 +1,22 @@
+.url {
+    -fx-font-size: 16px;
+    -fx-text-fill: #003366;
+    -fx-cursor: hand;
+}
+.url:hover{
+    -fx-underline: true;
+}
+
+.code {
+    -fx-font-size: 25px;
+    -fx-text-fill: #131313;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+.code:hover{
+    -fx-effect: dropshadow(gaussian, #13131388, 5, 0, 0, 2);
+}
+
+.message {
+    -fx-font-size: 15px;
+}

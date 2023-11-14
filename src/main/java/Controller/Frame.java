@@ -7,12 +7,17 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import util.SaveJson;
 
 public class Frame extends Application {
     public Frame(){}
 
     @Override
     public void start(Stage stage) throws Exception{
+        SaveJson json = new SaveJson();
+        if(json.exist()){
+            json.load();
+        }
         stage.setScene(new Frame().StartFrame());
         stage.getIcons().add(new Image("img/ico.png"));
         stage.setHeight(500);
@@ -21,6 +26,7 @@ public class Frame extends Application {
         stage.setResizable(false);
         stage.setFullScreen(false);
         stage.setOnCloseRequest(event -> {
+            json.save();
             System.gc();
         });
         stage.show();
