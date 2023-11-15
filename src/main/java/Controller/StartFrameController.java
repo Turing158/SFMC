@@ -8,14 +8,16 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import jmccc.microsoft.MicrosoftAuthenticator;
+import org.to2mbn.jmccc.auth.AuthInfo;
+import org.to2mbn.jmccc.auth.AuthenticationException;
 import org.to2mbn.jmccc.mcdownloader.MinecraftDownloader;
 import org.to2mbn.jmccc.mcdownloader.MinecraftDownloaderBuilder;
 import org.to2mbn.jmccc.mcdownloader.RemoteVersionList;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.CallbackAdapter;
-import org.to2mbn.jmccc.option.JavaEnvironment;
+import util.initAuthenticator;
 import util.EffectAnimation;
 import util.OtherUtil;
-import util.SaveJson;
 
 import java.io.File;
 
@@ -55,6 +57,7 @@ public class StartFrameController {
 
     @FXML
     public void initialize(){
+        initAuthenticator();
         File MinecraftDir = new File(settingGamePath);
         if(settingGamePath.isEmpty()){
             MinecraftDir = new File(rootPath+"/.minecraft");
@@ -98,20 +101,29 @@ public class StartFrameController {
             timeline.play();
         }
     }
-    public void startBtn(){
-        if(LaunchMC.username.isEmpty() && LaunchMC.authenticator == null){
+    public void startBtn() throws AuthenticationException {
+        if(LaunchMC.username.isEmpty() && LaunchMC.playerFunc.equals("offline")){
             checkTimeline();
             EffectAnimation effect = new EffectAnimation();
             timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"请输入用户名");
             timeline.play();
         }
         else {
+            if(LaunchMC.playerFunc.equals("microsoft") && LaunchMC.authenticator == null){
+                AuthInfo authInfo = LaunchMC.authInfo;
+
+            }
             LaunchMC launchMC = new LaunchMC();
             launchMC.start();
         }
     }
 
-
+    public void initAuthenticator(){
+        if(LaunchMC.playerFunc.equals("microsoft")){
+            MicrosoftAuthenticator authenticator = LaunchMC.microsoftAuthenticator;
+            LaunchMC.authenticator = new initAuthenticator(authenticator);
+        }
+    }
     public void getLocalVersions(){
         download.setText("未发现版本\n下载Minecraft");
         File versionFilePath = new File(LaunchMC.directory+"/versions");

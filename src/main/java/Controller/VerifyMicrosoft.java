@@ -49,8 +49,8 @@ public class VerifyMicrosoft {
                     });
                 });
                 LaunchMC.authInfo = microsoftAuthenticator.auth();
+                LaunchMC.microsoftAuthenticator = microsoftAuthenticator;
                 LaunchMC.authenticator = microsoftAuthenticator;
-
                 return null;
             }
         };

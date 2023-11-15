@@ -3,13 +3,14 @@ package util;
 import Launch.LaunchData;
 import Launch.LaunchMC;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.to2mbn.jmccc.auth.AuthInfo;
 
 import java.io.File;
 import java.io.FileWriter;
 
 public class SaveJson {
     public void save(){
-        LaunchData launchData = new LaunchData(LaunchMC.versions,LaunchMC.jreVersions,LaunchMC.Model,LaunchMC.authInfo,LaunchMC.jreDir,LaunchMC.windowSizeWidth,LaunchMC.windowSizeHeight,LaunchMC.playerFunc,LaunchMC.version,LaunchMC.username,LaunchMC.directory,LaunchMC.memory,LaunchMC.authenticator);
+        LaunchData launchData = new LaunchData(LaunchMC.versions,LaunchMC.jreVersions,LaunchMC.authInfo,LaunchMC.microsoftAuthenticator,LaunchMC.jreDir,LaunchMC.windowSizeWidth,LaunchMC.windowSizeHeight,LaunchMC.playerFunc,LaunchMC.version,LaunchMC.username,LaunchMC.directory,LaunchMC.memory);
         ObjectMapper mapper = new ObjectMapper();
         try {
             String json = mapper.writeValueAsString(launchData);
@@ -23,13 +24,14 @@ public class SaveJson {
     }
     public void load(){
         ObjectMapper mapper = new ObjectMapper();
+        mapper.addMixIn(AuthInfo.class, AuthInfoMixin.class);
         try {
             File file = new File(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent()+"/SFMC.json");
             LaunchData launchData = mapper.readValue(file,LaunchData.class);
             LaunchMC.versions = launchData.getVersions();
             LaunchMC.jreVersions = launchData.getJreVersions();
-            LaunchMC.Model = launchData.getModel();
             LaunchMC.authInfo = launchData.getAuthInfo();
+            LaunchMC.microsoftAuthenticator = launchData.getMicrosoftAuthenticator();
             LaunchMC.jreDir = launchData.getJreDir();
             LaunchMC.windowSizeWidth = launchData.getWindowSizeWidth();
             LaunchMC.windowSizeHeight = launchData.getWindowSizeHeight();
@@ -38,7 +40,6 @@ public class SaveJson {
             LaunchMC.username = launchData.getUsername();
             LaunchMC.directory = launchData.getDirectory();
             LaunchMC.memory = launchData.getMemory();
-            LaunchMC.authenticator = launchData.getAuthenticator();
         }catch (Exception e){
             e.printStackTrace();
         }

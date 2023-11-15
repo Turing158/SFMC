@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import jmccc.microsoft.MicrosoftAuthenticator;
+import org.to2mbn.jmccc.auth.AuthenticationException;
 import util.EffectAnimation;
 
 public class PlayerSettingController {
@@ -33,15 +35,26 @@ public class PlayerSettingController {
     Button exit;
     @FXML
     public void initialize(){
+        initSelectFunc();
+        initInfo();
+
+    }
+    public void microsoftLogin() {
+        EffectAnimation effect =  new EffectAnimation();
+        microsoftVerify.getChildren().setAll(new Frame().verifyMicrosoft());
+        effect.fadeEmergeVanish(0.2,true,microsoftVerify);
+    }
+    public void initSelectFunc(){
+         playerName.setText(LaunchMC.username);
         selectFunc.getItems().addAll("离线登录","正版登录","微软登录");
         selectFunc.setOnAction(event -> {
             if(selectFunc.getValue().equals("离线登录")){
                 outline.setVisible(true);
                 online.setVisible(false);
                 Microsoft.setVisible(false);
-                LaunchMC.playerFunc = "outline";
+                LaunchMC.playerFunc = "offline";
             }
-            else  if(selectFunc.getValue().equals("正版登录")){
+            else if(selectFunc.getValue().equals("正版登录")){
                 outline.setVisible(false);
                 online.setVisible(true);
                 Microsoft.setVisible(false);
@@ -57,11 +70,33 @@ public class PlayerSettingController {
                 System.out.println("选择登录方式");
             }
         });
+        if(LaunchMC.playerFunc.equals("microsoft")){
+            selectFunc.setValue("微软登录");
+            outline.setVisible(false);
+            online.setVisible(false);
+            Microsoft.setVisible(true);
+        }
+        else if(LaunchMC.playerFunc.equals("online")){
+            selectFunc.setValue("正版登录");
+            outline.setVisible(false);
+            online.setVisible(true);
+            Microsoft.setVisible(false);
+        }
+        else {
+            selectFunc.setValue("离线登录");
+            outline.setVisible(true);
+            online.setVisible(false);
+            Microsoft.setVisible(false);
+        }
     }
-    public void microsoftLogin() {
-        EffectAnimation effect =  new EffectAnimation();
-        microsoftVerify.getChildren().setAll(new Frame().verifyMicrosoft());
-        effect.fadeEmergeVanish(0.2,true,microsoftVerify);
+    public void initInfo() {
+        if(LaunchMC.authInfo != null){
+            System.out.println("显示角色信息");
+            System.out.println(LaunchMC.authInfo.toString());
+        }
+        else {
+            System.out.println("隐藏角色信息");
+        }
     }
     public void close(){
         LaunchMC.username = playerName.getText();

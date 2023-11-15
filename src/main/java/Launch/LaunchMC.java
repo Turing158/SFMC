@@ -1,5 +1,7 @@
 package Launch;
 
+import jmccc.microsoft.MicrosoftAuthenticator;
+import jmccc.microsoft.entity.MicrosoftSession;
 import org.to2mbn.jmccc.auth.AuthInfo;
 import org.to2mbn.jmccc.auth.Authenticator;
 import org.to2mbn.jmccc.auth.OfflineAuthenticator;
@@ -21,10 +23,8 @@ public class LaunchMC {
 
     public static ArrayList<String> versions = new ArrayList<>();
     public static Map<String, String> jreVersions = new HashMap<>();
-    public static String Model = "offline";
     public static AuthInfo authInfo;
-
-
+    public static MicrosoftAuthenticator microsoftAuthenticator;
     public static File jreDir;
     public static  int windowSizeWidth = 854;
     public static  int windowSizeHeight = 480;
@@ -35,7 +35,7 @@ public class LaunchMC {
     public static int memory = 1024;
     public static Authenticator authenticator;
     public void start(){
-        if (authenticator == null){
+        if (playerFunc.equals("offline")){
             authenticator = new OfflineAuthenticator(username);
         }
         Launcher launcher = LauncherBuilder.create().printDebugCommandline(true).nativeFastCheck(false).build();
