@@ -7,14 +7,15 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import util.SaveJson;
+import util.JsonOperate;
 
 public class Frame extends Application {
     public Frame(){}
 
     @Override
     public void start(Stage stage) throws Exception{
-        SaveJson json = new SaveJson();
+        JsonOperate json = new JsonOperate();
+//        存在则读取
         if(json.exist()){
             json.load();
         }
@@ -26,6 +27,7 @@ public class Frame extends Application {
         stage.setResizable(false);
         stage.setFullScreen(false);
         stage.setOnCloseRequest(event -> {
+//            退出时保存
             json.save();
             System.gc();
         });

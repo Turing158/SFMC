@@ -1,7 +1,6 @@
 package Launch;
 
 import jmccc.microsoft.MicrosoftAuthenticator;
-import jmccc.microsoft.entity.MicrosoftSession;
 import org.to2mbn.jmccc.auth.AuthInfo;
 import org.to2mbn.jmccc.auth.Authenticator;
 import org.to2mbn.jmccc.auth.OfflineAuthenticator;
@@ -18,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+//启动类
 public class LaunchMC {
 
     public static ArrayList<String> versions = new ArrayList<>();

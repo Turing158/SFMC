@@ -6,8 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import jmccc.microsoft.MicrosoftAuthenticator;
-import org.to2mbn.jmccc.auth.AuthenticationException;
 import util.EffectAnimation;
 
 public class PlayerSettingController {
@@ -39,11 +37,13 @@ public class PlayerSettingController {
         initInfo();
 
     }
+//    微软认证按钮
     public void microsoftLogin() {
         EffectAnimation effect =  new EffectAnimation();
         microsoftVerify.getChildren().setAll(new Frame().verifyMicrosoft());
         effect.fadeEmergeVanish(0.2,true,microsoftVerify);
     }
+//    初始化选择登录方式
     public void initSelectFunc(){
          playerName.setText(LaunchMC.username);
         selectFunc.getItems().addAll("离线登录","正版登录","微软登录");
@@ -66,8 +66,10 @@ public class PlayerSettingController {
                 Microsoft.setVisible(true);
                 LaunchMC.playerFunc = "microsoft";
             }
+//            初始化玩家角色信息[用于正版]
             initInfo();
         });
+//        用于切换登录方式的小模块
         if(LaunchMC.playerFunc.equals("microsoft")){
             selectFunc.setValue("微软登录");
             outline.setVisible(false);
@@ -87,6 +89,7 @@ public class PlayerSettingController {
             Microsoft.setVisible(false);
         }
     }
+//    初始化玩家角色信息[用于正版]，由小界面来实现初始化，这个只是用于打开小界面
     public void initInfo() {
         if(LaunchMC.playerFunc.equals("microsoft") && LaunchMC.authInfo != null) {
             microsoftVerify.setVisible(false);

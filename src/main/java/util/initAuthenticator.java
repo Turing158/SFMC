@@ -4,7 +4,7 @@ import Launch.LaunchMC;
 import jmccc.microsoft.MicrosoftAuthenticator;
 import org.to2mbn.jmccc.auth.AuthInfo;
 import org.to2mbn.jmccc.auth.Authenticator;
-
+//这个类为了能让启动类接收json储存的MicrosoftAuthenticator类
 public class initAuthenticator implements Authenticator{
         private MicrosoftAuthenticator microsoftAuthenticator;
 

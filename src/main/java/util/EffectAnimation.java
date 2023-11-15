@@ -3,17 +3,11 @@ package util;
 import com.sun.scenario.animation.SplineInterpolator;
 import javafx.animation.*;
 import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+//自制动画库
 public class EffectAnimation {
 //    用于元素的淡入淡出
     public Timeline fadeEffect(Node node,double seconds,double waitTime){

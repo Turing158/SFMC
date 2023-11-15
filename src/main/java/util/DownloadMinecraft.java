@@ -2,19 +2,12 @@ package util;
 
 import org.to2mbn.jmccc.mcdownloader.MinecraftDownloader;
 import org.to2mbn.jmccc.mcdownloader.MinecraftDownloaderBuilder;
-import org.to2mbn.jmccc.mcdownloader.RemoteVersion;
-import org.to2mbn.jmccc.mcdownloader.RemoteVersionList;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.CallbackAdapter;
-import org.to2mbn.jmccc.mcdownloader.download.concurrent.DownloadCallback;
-import org.to2mbn.jmccc.mcdownloader.download.tasks.DownloadTask;
-import org.to2mbn.jmccc.mcdownloader.download.tasks.ResultProcessor;
 import org.to2mbn.jmccc.option.MinecraftDirectory;
 import org.to2mbn.jmccc.version.Version;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.Future;
-
+//下载类
 public class DownloadMinecraft {
     MinecraftDownloader downloader = MinecraftDownloaderBuilder.create().build();
     Future<Version> downloading;

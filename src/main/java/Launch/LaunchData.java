@@ -1,15 +1,12 @@
 package Launch;
 
 import jmccc.microsoft.MicrosoftAuthenticator;
-import jmccc.microsoft.entity.MicrosoftSession;
 import org.to2mbn.jmccc.auth.AuthInfo;
-import org.to2mbn.jmccc.auth.Authenticator;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-
+//用于json储存和写入
 public class LaunchData {
     public ArrayList<String> versions;
     public Map<String, String> jreVersions;

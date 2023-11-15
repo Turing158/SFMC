@@ -9,15 +9,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import jmccc.microsoft.MicrosoftAuthenticator;
-import org.to2mbn.jmccc.auth.AuthInfo;
-import org.to2mbn.jmccc.auth.AuthenticationException;
 import org.to2mbn.jmccc.mcdownloader.MinecraftDownloader;
 import org.to2mbn.jmccc.mcdownloader.MinecraftDownloaderBuilder;
 import org.to2mbn.jmccc.mcdownloader.RemoteVersionList;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.CallbackAdapter;
-import util.initAuthenticator;
 import util.EffectAnimation;
 import util.OtherUtil;
+import util.initAuthenticator;
 
 import java.io.File;
 
@@ -31,13 +29,17 @@ public class StartFrameController {
     AnchorPane sonFrame;
     @FXML
     AnchorPane sonFrameSource;
+//    用于获取当前jar包的位置
     String rootPath = new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent();
+//    用于防止动画撞车
     Timeline timeline;
+//    用于接收游戏目录
     static String settingGamePath = "";
+//    判断界面的开关，以免撞车==============
     static boolean downloadFlag = false;
     static boolean playerFlag = false;
     static boolean gameFlag = false;
-
+//====================================
     @FXML
     AnchorPane version;
     @FXML
@@ -59,11 +61,11 @@ public class StartFrameController {
     public void initialize(){
         initAuthenticator();
         initDir();
-        updateDownloadVersions();
+        initDownloadVersions();
         getLocalVersions();
         initJreVersion();
     }
-
+//  打开玩家角色设置界面
     public void playerSetting(){
         if(!downloadFlag && !playerFlag && !gameFlag){
             checkTimeline();
@@ -74,6 +76,7 @@ public class StartFrameController {
             timeline.play();
         }
     }
+//    打开游戏设置界面
     public void gameSetting(){
         if(!downloadFlag && !playerFlag && !gameFlag){
             checkTimeline();
@@ -84,6 +87,7 @@ public class StartFrameController {
             timeline.play();
         }
     }
+//    打开下载版本界面
     public void downloadMC(){
         if(!downloadFlag && !playerFlag && !gameFlag){
             checkTimeline();
@@ -95,7 +99,8 @@ public class StartFrameController {
             timeline.play();
         }
     }
-    public void startBtn() throws AuthenticationException {
+//    开始游戏按钮
+    public void startBtn() {
         if(LaunchMC.username.isEmpty() && LaunchMC.playerFunc.equals("offline")){
             checkTimeline();
             EffectAnimation effect = new EffectAnimation();
@@ -107,13 +112,14 @@ public class StartFrameController {
             launchMC.start();
         }
     }
-
+//    初始化正版验证信息
     public void initAuthenticator(){
         if(LaunchMC.playerFunc.equals("microsoft")){
             MicrosoftAuthenticator authenticator = LaunchMC.microsoftAuthenticator;
             LaunchMC.authenticator = new initAuthenticator(authenticator);
         }
     }
+//    初始化游戏目录
     public void initDir(){
         if(LaunchMC.selfDir != null){
             settingGamePath = LaunchMC.selfDir.getPath();
@@ -124,6 +130,7 @@ public class StartFrameController {
         }
         LaunchMC.directory = MinecraftDir.getAbsolutePath();
     }
+//    获取jar包当前目录是否有.minecraft和版本
     public void getLocalVersions(){
         download.setText("未发现版本\n下载Minecraft");
         File versionFilePath = new File(LaunchMC.directory+"/versions");
@@ -157,7 +164,8 @@ public class StartFrameController {
             startBtn.setVisible(false);
         }
     }
-    public void updateDownloadVersions(){
+//    初始化下载版本
+    public void initDownloadVersions(){
         if(LaunchMC.versions.isEmpty()){
             MinecraftDownloader versionDownloader = MinecraftDownloaderBuilder.buildDefault();
             versionDownloader.fetchRemoteVersionList(new CallbackAdapter<RemoteVersionList>() {
@@ -175,10 +183,12 @@ public class StartFrameController {
 
         }
     }
+//    初始化jre版本
     public void initJreVersion(){
         OtherUtil otherUtil = new OtherUtil();
         LaunchMC.jreVersions =  otherUtil.getJreVersions();
     }
+//    防止动画撞车
     public void checkTimeline(){
         if(timeline != null){
             timeline.stop();

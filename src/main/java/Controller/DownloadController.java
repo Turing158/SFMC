@@ -19,12 +19,12 @@ import util.DownloadMinecraft;
 import util.EffectAnimation;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class DownloadController {
+//    初始化下载类
     DownloadMinecraft downloadMinecraft = null;
-
+//    用来从其他类传递下载目录
     static File file;
     @FXML
     public Button downloadCancel;
@@ -47,43 +47,41 @@ public class DownloadController {
     @FXML
     public void initialize(){
         updateVersions();
-        download.setVisible(false);
-        downloadCancel.setVisible(false);
-        downloadRetry.setVisible(false);
-        if(file != null){
-            downloadDir.setText(file.getPath());
-        }
-        versionChoiceBox.setOnAction(event -> {
-            download.setVisible(true);
-            downloadInfo.setText(downloadInfo.getText()+"\n选择了"+versionChoiceBox.getValue()+"版本");
-        });
+        initDownloadInfo();
     }
-
+//    初始化/更新下载信息
     private void updateVersions() {
+//        获取版本列表[json缓存]
         ArrayList<String> versions = LaunchMC.versions;
         for (int i = 0; i < versions.size(); i++) {
             versionChoiceBox.getItems().add(versions.get(i));
         }
     }
-
+//  开始下载按钮事件
     public void downloadStart(){
+//        检查下载版本是否为空
         if(versionChoiceBox.getValue()==null){
             downloadInfo.setText(downloadInfo.getText()+"\n请选择版本");
         }
+//        检查下载目录是否为空
         else if(file==null){
             downloadInfo.setText(downloadInfo.getText()+"\n请选择下载目录");
         }
         else{
             downloadInfo.setText(downloadInfo.getText()+"\n正在下载，请稍后...");
+//            隐藏下载按钮
             download.setVisible(false);
             downloadCancel.setVisible(true);
-
+//            禁用选择按钮
             selectDirBtn.setDisable(true);
             versionChoiceBox.setDisable(true);
             downloadDir.setDisable(true);
+//            初始化下载类
             downloadMinecraft = new DownloadMinecraft();
+//            开始下载[参数：下载目录，下载版本，下载消息回调]
             downloadMinecraft.download(file.getPath(),versionChoiceBox.getValue(),new CallbackAdapter<Version>() {
                 @Override
+//                下载完成
                 public void done(Version result) {
                     System.out.println("下载完成：Minecraft v"+result.getVersion());
                     downloadInfo.setText(downloadInfo.getText()+"\n下载完成：Minecraft "+result.getVersion());
@@ -99,6 +97,7 @@ public class DownloadController {
                 }
 
                 @Override
+//                下载失败
                 public void failed(Throwable e) {
                     downloadInfo.setText(downloadInfo.getText()+"\n下载失败");
                     e.printStackTrace();
@@ -110,6 +109,7 @@ public class DownloadController {
                 }
 
                 @Override
+//                取消下载
                 public void cancelled() {
 //                    System.out.println("取消下载");
                     downloadInfo.setText(downloadInfo.getText()+"\n已取消下载");
@@ -118,11 +118,13 @@ public class DownloadController {
                     downloadDir.setDisable(true);
                 }
                 @Override
+//                重试[暂不可用]
                 public void retry(Throwable e, int current, int max) {
                     System.out.println("重试");
                 }
 
                 @Override
+//                下载详细信息
                 public <R> DownloadCallback<R> taskStart(DownloadTask<R> task) {
                     if(task.isCacheable()){
                         downloadInfo.appendText("\n开始下载："+task.getURI()+"\n...");
@@ -133,9 +135,24 @@ public class DownloadController {
 
         }
     }
+//    取消下载按钮事件
     public void cancelDownload(){
         downloadMinecraft.cancel();
     }
+//    初始化下载信息
+    public void initDownloadInfo(){
+        download.setVisible(false);
+        downloadCancel.setVisible(false);
+        downloadRetry.setVisible(false);
+        if(file != null){
+            downloadDir.setText(file.getPath());
+        }
+        versionChoiceBox.setOnAction(event -> {
+            download.setVisible(true);
+            downloadInfo.setText(downloadInfo.getText()+"\n选择了"+versionChoiceBox.getValue()+"版本");
+        });
+    }
+//    选择下载目录事件
     public void selectDir(){
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("选择Minecraft目录");
@@ -145,6 +162,7 @@ public class DownloadController {
             downloadDir.setText(file.getPath());
         }
     }
+//    关闭下载页面
     public void close(){
         EffectAnimation effect = new EffectAnimation();
         effect.fadeEmergeVanish(0.2,false,exit.getParent().getParent().getParent());

@@ -8,11 +8,15 @@ import org.to2mbn.jmccc.auth.AuthInfo;
 import java.io.File;
 import java.io.FileWriter;
 
-public class SaveJson {
+//json保存写入类
+public class JsonOperate {
     public void save(){
+//        创建启动类entity类
         LaunchData launchData = new LaunchData(LaunchMC.versions,LaunchMC.jreVersions,LaunchMC.authInfo,LaunchMC.microsoftAuthenticator,LaunchMC.selfDir,LaunchMC.jreDir,LaunchMC.windowSizeWidth,LaunchMC.windowSizeHeight,LaunchMC.playerFunc,LaunchMC.version,LaunchMC.username,LaunchMC.directory,LaunchMC.memory);
+//        导入Json库
         ObjectMapper mapper = new ObjectMapper();
         try {
+//            写入的json字符串[将LaunchData转换成json]
             String json = mapper.writeValueAsString(launchData);
             File file = new File(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent()+"/sfmc.json");
             FileWriter writer = new FileWriter(file);
@@ -26,8 +30,11 @@ public class SaveJson {
         ObjectMapper mapper = new ObjectMapper();
         mapper.addMixIn(AuthInfo.class, AuthInfoMixin.class);
         try {
+//            获取json文件
             File file = new File(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent()+"/sfmc.json");
+//            写入json到entity
             LaunchData launchData = mapper.readValue(file,LaunchData.class);
+//            将数据传到LaunchMC
             LaunchMC.versions = launchData.getVersions();
             LaunchMC.jreVersions = launchData.getJreVersions();
             LaunchMC.authInfo = launchData.getAuthInfo();

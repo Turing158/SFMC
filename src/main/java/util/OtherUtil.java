@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.prefs.Preferences;
 
+//其他杂七杂八的方法
 public class OtherUtil {
+//    获取本机jre版本
     public Map<String,String> getJreVersions(){
         Map<String,String> jreVersions = new HashMap<>();
         String javaHome = System.getenv("JAVA_HOME");
@@ -36,6 +38,7 @@ public class OtherUtil {
         }
         return null;
     }
+//    格式化path格式
     private String getJavaVersion(String jrePath){
         try {
             Process process = Runtime.getRuntime().exec(jrePath + File.separator + "bin" + File.separator + "java -version");

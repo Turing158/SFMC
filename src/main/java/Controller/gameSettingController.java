@@ -41,6 +41,7 @@ public class gameSettingController {
     public ComboBox<String> jreVersion;
     @FXML
     public Button selectJreDir;
+//    获取内存信息
     OperatingSystemMXBean os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     long maxMemory = os.getTotalPhysicalMemorySize()/(1024*1024);
     long freeMemory = os.getFreePhysicalMemorySize()/(1024*1024);
@@ -53,16 +54,18 @@ public class gameSettingController {
         updateJreVersion();
     }
 
-
+//    初始化jre版本信息
     public void updateJreVersion(){
         jreVersion.getItems().clear();
         jreVersion.getItems().add("自动选择");
         jreVersion.setValue("自动选择");
+//        获取jre版本信息[json缓存]
         Map<String,String> jreVersions = LaunchMC.jreVersions;
         jreVersions.forEach((k,v) -> {
             jreVersion.getItems().add(k);
         });
         jreVersion.setConverter(new StringConverter<String>() {
+//            下拉框显示的信息
             @Override
             public String toString(String object) {
                 if(object.equals("自动选择")){
@@ -70,6 +73,7 @@ public class gameSettingController {
                 }
                 return jreVersions.get(object)+"\t\t"+object;
             }
+//            下拉框的值
             @Override
             public String fromString(String string) {
                 if(string.equals("自动选择")){
@@ -79,6 +83,7 @@ public class gameSettingController {
             }
         });
         jreVersion.setOnAction(event -> {
+//            判断下是否自动选择jre版本
             if(jreVersion.getValue().equals("自动选择")){
                 LaunchMC.jreDir = null;
             }
@@ -87,6 +92,7 @@ public class gameSettingController {
             }
         });
     }
+//    添加jre目录
     public void addJreVersion(){
         FileChooser chooser = new FileChooser();
         chooser.setTitle("选择.minecraft目录");
@@ -101,11 +107,12 @@ public class gameSettingController {
             Map<String,String> jreVersions = LaunchMC.jreVersions;
             jreVersions.put(jreDir.getName(),jreDir.getAbsolutePath());
             LaunchMC.jreVersions = jreVersions;
+//            刷新此界面
             initialize();
         }
-
     }
 
+//    选择游戏目录
     public void selectDir(){
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle("选择.minecraft目录");
@@ -113,22 +120,29 @@ public class gameSettingController {
         chooser.setInitialDirectory(new File(currentDirectory));
         Stage stage = (Stage) selectDir.getScene().getWindow();
         File file = chooser.showDialog(stage);
+//        判断是否选择了目录
         if (file != null){
+//            判断是否是.minecraft目录
             if(file.getName().equals(".minecraft")){
+//                设置游戏目录
                 StartFrameController.settingGamePath = file.getAbsolutePath();
                 LaunchMC.selfDir = file;
             }
             else {
+//                提示[未做]
                 System.out.println("你选择的目录不是.minecraft目录，请选择.minecraft目录");
             }
         }
     }
+//    初始化窗口信息
     public void initWindowSize(){
         windowSizeW.setText(String.valueOf(LaunchMC.windowSizeWidth));
         windowSizeH.setText(String.valueOf(LaunchMC.windowSizeHeight));
+//        设置只能输入数字
         windowSizeW.setTextFormatter(new TextFormatter<>(new IntegerFilter()));
         windowSizeH.setTextFormatter(new TextFormatter<>(new IntegerFilter()));
     }
+//    初始化设置内存信息
     public void initMemorySlider(){
         memorySlider.setMax(maxMemory);
         memorySlider.setValue(LaunchMC.memory);
@@ -139,10 +153,12 @@ public class gameSettingController {
             int valueInt = newV.intValue();
             memoryLabel.setText(String.valueOf(valueInt));
             LaunchMC.memory = valueInt;
+//            设置不能小于1024MB
             if(valueInt < 1024){
                 memorySlider.setValue(1024);
                 LaunchMC.memory = 1024;
             }
+//            设置不能大于空闲内存
             else if(valueInt > freeMemory){
                 memorySlider.setValue(freeMemory);
                 LaunchMC.memory = (int) freeMemory;
@@ -150,7 +166,7 @@ public class gameSettingController {
             memoryLabel.setText("已分配内存:"+(int) memorySlider.getValue()+"MB/空闲内存:"+freeMemory+"MB");
         });
     }
-
+//    关闭设置界面，并保存信息
     public void close(){
         if(!windowSizeW.getText().isEmpty()){
             LaunchMC.windowSizeWidth = Integer.parseInt(windowSizeW.getText());
@@ -172,6 +188,7 @@ public class gameSettingController {
         timeline.play();
         StartFrameController.gameFlag = false;
     }
+//    强制输入数字类
     private static class IntegerFilter implements UnaryOperator<TextFormatter.Change> {
         private static final Pattern DIGIT_PATTERN = Pattern.compile("\\d*");
 
