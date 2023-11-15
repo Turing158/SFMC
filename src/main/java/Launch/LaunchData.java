@@ -15,7 +15,7 @@ public class LaunchData {
     public Map<String, String> jreVersions;
     public AuthInfo authInfo;
     public MicrosoftAuthenticator microsoftAuthenticator;
-
+    public File selfDir;
     public File jreDir;
     public int windowSizeWidth;
     public int windowSizeHeight;
@@ -27,11 +27,13 @@ public class LaunchData {
 
     public LaunchData() {
     }
-    public LaunchData(ArrayList<String> versions, Map<String, String> jreVersions, AuthInfo authInfo,MicrosoftAuthenticator microsoftAuthenticator, File jreDir, int windowSizeWidth, int windowSizeHeight, String playerFunc, String version, String username, String directory, int memory) {
+
+    public LaunchData(ArrayList<String> versions, Map<String, String> jreVersions, AuthInfo authInfo, MicrosoftAuthenticator microsoftAuthenticator, File selfDir, File jreDir, int windowSizeWidth, int windowSizeHeight, String playerFunc, String version, String username, String directory, int memory) {
         this.versions = versions;
         this.jreVersions = jreVersions;
         this.authInfo = authInfo;
         this.microsoftAuthenticator = microsoftAuthenticator;
+        this.selfDir = selfDir;
         this.jreDir = jreDir;
         this.windowSizeWidth = windowSizeWidth;
         this.windowSizeHeight = windowSizeHeight;
@@ -65,6 +67,7 @@ public class LaunchData {
     public void setAuthInfo(AuthInfo authInfo) {
         this.authInfo = authInfo;
     }
+
     public MicrosoftAuthenticator getMicrosoftAuthenticator() {
         return microsoftAuthenticator;
     }
@@ -72,6 +75,15 @@ public class LaunchData {
     public void setMicrosoftAuthenticator(MicrosoftAuthenticator microsoftAuthenticator) {
         this.microsoftAuthenticator = microsoftAuthenticator;
     }
+
+    public File getSelfDir() {
+        return selfDir;
+    }
+
+    public void setSelfDir(File selfDir) {
+        this.selfDir = selfDir;
+    }
+
     public File getJreDir() {
         return jreDir;
     }
@@ -135,6 +147,4 @@ public class LaunchData {
     public void setMemory(int memory) {
         this.memory = memory;
     }
-
-
 }

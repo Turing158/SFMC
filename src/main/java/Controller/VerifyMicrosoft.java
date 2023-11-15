@@ -1,10 +1,13 @@
 package Controller;
 
 import Launch.LaunchMC;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import jmccc.microsoft.MicrosoftAuthenticator;
 import org.to2mbn.jmccc.auth.AuthInfo;
 import util.EffectAnimation;
@@ -51,6 +54,12 @@ public class VerifyMicrosoft {
                 LaunchMC.authInfo = microsoftAuthenticator.auth();
                 LaunchMC.microsoftAuthenticator = microsoftAuthenticator;
                 LaunchMC.authenticator = microsoftAuthenticator;
+                Platform.runLater(() -> {
+                    AnchorPane parent = (AnchorPane) waitTips.getParent().getParent();
+                    parent.setVisible(false);
+                    effect.fadeEmergeVanish(0.5,true,parent);
+                    parent.getChildren().setAll(new Frame().player());
+                });
                 return null;
             }
         };

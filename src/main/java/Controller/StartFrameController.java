@@ -58,16 +58,10 @@ public class StartFrameController {
     @FXML
     public void initialize(){
         initAuthenticator();
-        File MinecraftDir = new File(settingGamePath);
-        if(settingGamePath.isEmpty()){
-            MinecraftDir = new File(rootPath+"/.minecraft");
-        }
-        LaunchMC.directory = MinecraftDir.getAbsolutePath();
+        initDir();
         updateDownloadVersions();
         getLocalVersions();
         initJreVersion();
-        System.out.println(LaunchMC.directory);
-
     }
 
     public void playerSetting(){
@@ -109,10 +103,6 @@ public class StartFrameController {
             timeline.play();
         }
         else {
-            if(LaunchMC.playerFunc.equals("microsoft") && LaunchMC.authenticator == null){
-                AuthInfo authInfo = LaunchMC.authInfo;
-
-            }
             LaunchMC launchMC = new LaunchMC();
             launchMC.start();
         }
@@ -123,6 +113,16 @@ public class StartFrameController {
             MicrosoftAuthenticator authenticator = LaunchMC.microsoftAuthenticator;
             LaunchMC.authenticator = new initAuthenticator(authenticator);
         }
+    }
+    public void initDir(){
+        if(LaunchMC.selfDir != null){
+            settingGamePath = LaunchMC.selfDir.getPath();
+        }
+        File MinecraftDir = new File(settingGamePath);
+        if(settingGamePath.isEmpty()){
+            MinecraftDir = new File(rootPath+"/.minecraft");
+        }
+        LaunchMC.directory = MinecraftDir.getAbsolutePath();
     }
     public void getLocalVersions(){
         download.setText("未发现版本\n下载Minecraft");

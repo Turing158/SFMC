@@ -10,7 +10,7 @@ import java.io.FileWriter;
 
 public class SaveJson {
     public void save(){
-        LaunchData launchData = new LaunchData(LaunchMC.versions,LaunchMC.jreVersions,LaunchMC.authInfo,LaunchMC.microsoftAuthenticator,LaunchMC.jreDir,LaunchMC.windowSizeWidth,LaunchMC.windowSizeHeight,LaunchMC.playerFunc,LaunchMC.version,LaunchMC.username,LaunchMC.directory,LaunchMC.memory);
+        LaunchData launchData = new LaunchData(LaunchMC.versions,LaunchMC.jreVersions,LaunchMC.authInfo,LaunchMC.microsoftAuthenticator,LaunchMC.selfDir,LaunchMC.jreDir,LaunchMC.windowSizeWidth,LaunchMC.windowSizeHeight,LaunchMC.playerFunc,LaunchMC.version,LaunchMC.username,LaunchMC.directory,LaunchMC.memory);
         ObjectMapper mapper = new ObjectMapper();
         try {
             String json = mapper.writeValueAsString(launchData);
@@ -32,6 +32,7 @@ public class SaveJson {
             LaunchMC.jreVersions = launchData.getJreVersions();
             LaunchMC.authInfo = launchData.getAuthInfo();
             LaunchMC.microsoftAuthenticator = launchData.getMicrosoftAuthenticator();
+            LaunchMC.selfDir = launchData.getSelfDir();
             LaunchMC.jreDir = launchData.getJreDir();
             LaunchMC.windowSizeWidth = launchData.getWindowSizeWidth();
             LaunchMC.windowSizeHeight = launchData.getWindowSizeHeight();

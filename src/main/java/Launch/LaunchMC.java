@@ -25,6 +25,7 @@ public class LaunchMC {
     public static Map<String, String> jreVersions = new HashMap<>();
     public static AuthInfo authInfo;
     public static MicrosoftAuthenticator microsoftAuthenticator;
+    public static File selfDir;
     public static File jreDir;
     public static  int windowSizeWidth = 854;
     public static  int windowSizeHeight = 480;

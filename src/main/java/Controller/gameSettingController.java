@@ -47,17 +47,9 @@ public class gameSettingController {
 
     @FXML
     public void initialize(){
-        windowSizeW.setText(String.valueOf(LaunchMC.windowSizeWidth));
-        windowSizeH.setText(String.valueOf(LaunchMC.windowSizeHeight));
-        windowSizeW.setTextFormatter(new TextFormatter<>(new IntegerFilter()));
-        windowSizeH.setTextFormatter(new TextFormatter<>(new IntegerFilter()));
         dir.setText(LaunchMC.directory);
-        memorySlider.setMax(maxMemory);
-        memorySlider.setValue(LaunchMC.memory);
-        memorySlider.setValueChanging(true);
-        memoryLabel.setText("已分配内存:"+(int) memorySlider.getValue()+"MB/空闲内存:"+freeMemory+"MB");
-        maxPhyMemory.setText(maxMemory+"MB");
-        memorySlider();
+        initWindowSize();
+        initMemorySlider();
         updateJreVersion();
     }
 
@@ -111,13 +103,25 @@ public class gameSettingController {
         if (file != null){
             if(file.getName().equals(".minecraft")){
                 StartFrameController.settingGamePath = file.getAbsolutePath();
+                LaunchMC.selfDir = file;
             }
             else {
                 System.out.println("你选择的目录不是.minecraft目录，请选择.minecraft目录");
             }
         }
     }
-    public void memorySlider(){
+    public void initWindowSize(){
+        windowSizeW.setText(String.valueOf(LaunchMC.windowSizeWidth));
+        windowSizeH.setText(String.valueOf(LaunchMC.windowSizeHeight));
+        windowSizeW.setTextFormatter(new TextFormatter<>(new IntegerFilter()));
+        windowSizeH.setTextFormatter(new TextFormatter<>(new IntegerFilter()));
+    }
+    public void initMemorySlider(){
+        memorySlider.setMax(maxMemory);
+        memorySlider.setValue(LaunchMC.memory);
+        memorySlider.setValueChanging(true);
+        memoryLabel.setText("已分配内存:"+(int) memorySlider.getValue()+"MB/空闲内存:"+freeMemory+"MB");
+        maxPhyMemory.setText(maxMemory+"MB");
         memorySlider.valueProperty().addListener((observable,oldV,newV)->{
             int valueInt = newV.intValue();
             memoryLabel.setText(String.valueOf(valueInt));

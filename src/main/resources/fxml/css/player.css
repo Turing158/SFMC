@@ -1,0 +1,21 @@
+.playerTitle {
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #131313;
+}
+
+.subtitle {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #131313;
+}
+
+.username {
+    -fx-font-size: 15px;
+    -fx-text-fill: #131313;
+}
+
+.uuid {
+    -fx-font-size: 13px;
+    -fx-text-fill: #131313;
+}

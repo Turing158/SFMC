@@ -66,9 +66,7 @@ public class PlayerSettingController {
                 Microsoft.setVisible(true);
                 LaunchMC.playerFunc = "microsoft";
             }
-            else {
-                System.out.println("选择登录方式");
-            }
+            initInfo();
         });
         if(LaunchMC.playerFunc.equals("microsoft")){
             selectFunc.setValue("微软登录");
@@ -90,12 +88,14 @@ public class PlayerSettingController {
         }
     }
     public void initInfo() {
-        if(LaunchMC.authInfo != null){
-            System.out.println("显示角色信息");
-            System.out.println(LaunchMC.authInfo.toString());
+        if(LaunchMC.playerFunc.equals("microsoft") && LaunchMC.authInfo != null) {
+            microsoftVerify.setVisible(false);
+            EffectAnimation effect =  new EffectAnimation();
+            microsoftVerify.getChildren().setAll(new Frame().player());
+            effect.fadeEmergeVanish(0.2,true,microsoftVerify);
         }
-        else {
-            System.out.println("隐藏角色信息");
+        else{
+            microsoftVerify.setVisible(false);
         }
     }
     public void close(){
