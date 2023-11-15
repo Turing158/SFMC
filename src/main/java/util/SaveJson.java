@@ -14,7 +14,7 @@ public class SaveJson {
         ObjectMapper mapper = new ObjectMapper();
         try {
             String json = mapper.writeValueAsString(launchData);
-            File file = new File(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent()+"/SFMC.json");
+            File file = new File(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent()+"/sfmc.json");
             FileWriter writer = new FileWriter(file);
             writer.write(json);
             writer.close();
@@ -26,7 +26,7 @@ public class SaveJson {
         ObjectMapper mapper = new ObjectMapper();
         mapper.addMixIn(AuthInfo.class, AuthInfoMixin.class);
         try {
-            File file = new File(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent()+"/SFMC.json");
+            File file = new File(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent()+"/sfmc.json");
             LaunchData launchData = mapper.readValue(file,LaunchData.class);
             LaunchMC.versions = launchData.getVersions();
             LaunchMC.jreVersions = launchData.getJreVersions();
@@ -46,7 +46,7 @@ public class SaveJson {
         }
     }
     public boolean exist(){
-        File file = new File(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent()+"/SFMC.json");
+        File file = new File(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent()+"/sfmc.json");
         return file.exists();
     }
 }

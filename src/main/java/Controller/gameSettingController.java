@@ -56,6 +56,8 @@ public class gameSettingController {
 
     public void updateJreVersion(){
         jreVersion.getItems().clear();
+        jreVersion.getItems().add("自动选择");
+        jreVersion.setValue("自动选择");
         Map<String,String> jreVersions = LaunchMC.jreVersions;
         jreVersions.forEach((k,v) -> {
             jreVersion.getItems().add(k);
@@ -63,15 +65,26 @@ public class gameSettingController {
         jreVersion.setConverter(new StringConverter<String>() {
             @Override
             public String toString(String object) {
+                if(object.equals("自动选择")){
+                    return "自动选择";
+                }
                 return jreVersions.get(object)+"\t\t"+object;
             }
             @Override
             public String fromString(String string) {
+                if(string.equals("自动选择")){
+                    return "自动选择";
+                }
                 return LaunchMC.jreVersions.get(string);
             }
         });
         jreVersion.setOnAction(event -> {
-            LaunchMC.jreDir = new File(jreVersion.getValue()+"\\bin\\javaw.exe");
+            if(jreVersion.getValue().equals("自动选择")){
+                LaunchMC.jreDir = null;
+            }
+            else {
+                LaunchMC.jreDir = new File(jreVersion.getValue() + "\\bin\\javaw.exe");
+            }
         });
     }
     public void addJreVersion(){
