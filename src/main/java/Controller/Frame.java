@@ -6,14 +6,16 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import util.JsonOperate;
 
 public class Frame extends Application {
     public Frame(){}
 
     @Override
-    public void start(Stage stage) throws Exception{
+    public void start(Stage stage) {
         JsonOperate json = new JsonOperate();
 //        存在则读取
         if(json.exist()){

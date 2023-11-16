@@ -6,7 +6,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="downloadPage" stylesheets="@css/download.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DownloadController">
     <Button fx:id="exit" onAction="#close" text="×" />
     <Label layoutX="-7.0" layoutY="-18.0" prefHeight="20.0" prefWidth="45.0" styleClass="versionText" text="版本：" translateX="50" translateY="40" />
-    <ComboBox fx:id="versionChoiceBox" prefHeight="23.0" prefWidth="150.0" translateX="90" translateY="20" />
+    <ComboBox fx:id="versionChoiceBox" prefHeight="23.0" prefWidth="150.0" translateX="90" translateY="20" disable="true"/>
     <Label layoutX="-7.0" layoutY="-15.0" styleClass="categoryText" text="目录：" translateX="50" translateY="70" />
     <TextField fx:id="downloadDir" layoutX="90.0" layoutY="53.0" prefHeight="23.0" prefWidth="432.0" styleClass="input" />
     <Button fx:id="selectDirBtn" layoutX="29.0" layoutY="6.0" onAction="#selectDir" styleClass="btn" text="..." translateX="500" translateY="50" />

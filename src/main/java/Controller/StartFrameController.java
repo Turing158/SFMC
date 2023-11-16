@@ -107,6 +107,12 @@ public class StartFrameController {
             timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"请输入用户名");
             timeline.play();
         }
+        else if(LaunchMC.microsoftAuthenticator == null && LaunchMC.playerFunc.equals("microsoft")){
+            checkTimeline();
+            EffectAnimation effect = new EffectAnimation();
+            timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"请进行微软正版认证");
+            timeline.play();
+        }
         else {
             LaunchMC launchMC = new LaunchMC();
             launchMC.start();
@@ -167,19 +173,6 @@ public class StartFrameController {
 //    初始化下载版本
     public void initDownloadVersions(){
         if(LaunchMC.versions.isEmpty()){
-            MinecraftDownloader versionDownloader = MinecraftDownloaderBuilder.buildDefault();
-            versionDownloader.fetchRemoteVersionList(new CallbackAdapter<RemoteVersionList>() {
-                @Override
-                public void done(RemoteVersionList result) {
-                    LaunchMC.versions.add(result.getLatestSnapshot());
-                    result.getVersions().forEach((k,v) -> {
-                        if(k.matches("\\d+\\.\\d+(\\.\\d+)?")){
-                            LaunchMC.versions.add(k);
-                        }
-                    });
-                    versionDownloader.shutdown();
-                }
-            });
 
         }
     }

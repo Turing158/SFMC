@@ -3,6 +3,8 @@ package Controller;
 import Launch.LaunchMC;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -11,6 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.to2mbn.jmccc.mcdownloader.MinecraftDownloader;
+import org.to2mbn.jmccc.mcdownloader.MinecraftDownloaderBuilder;
+import org.to2mbn.jmccc.mcdownloader.RemoteVersionList;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.CallbackAdapter;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.DownloadCallback;
 import org.to2mbn.jmccc.mcdownloader.download.tasks.DownloadTask;
@@ -46,17 +51,17 @@ public class DownloadController {
     Button selectDirBtn;
     @FXML
     public void initialize(){
-        updateVersions();
+        initDownloadVersion();
         initDownloadInfo();
     }
 //    初始化/更新下载信息
-    private void updateVersions() {
-//        获取版本列表[json缓存]
-        ArrayList<String> versions = LaunchMC.versions;
-        for (int i = 0; i < versions.size(); i++) {
-            versionChoiceBox.getItems().add(versions.get(i));
-        }
-    }
+//    private void updateVersions() {
+////        获取版本列表[json缓存]
+//        ArrayList<String> versions = LaunchMC.versions;
+//        for (int i = 0; i < versions.size(); i++) {
+//            versionChoiceBox.getItems().add(versions.get(i));
+//        }
+//    }
 //  开始下载按钮事件
     public void downloadStart(){
 //        检查下载版本是否为空
@@ -138,6 +143,34 @@ public class DownloadController {
 //    取消下载按钮事件
     public void cancelDownload(){
         downloadMinecraft.cancel();
+    }
+    public void initDownloadVersion(){
+        versionChoiceBox.setValue("正在获取版本列表...");
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() {
+                MinecraftDownloader versionDownloader = MinecraftDownloaderBuilder.buildDefault();
+                versionDownloader.fetchRemoteVersionList(new CallbackAdapter<RemoteVersionList>() {
+                    @Override
+                    public void done(RemoteVersionList result) {
+                        Platform.runLater(() ->{
+                            versionChoiceBox.getItems().clear();
+                            versionChoiceBox.setValue(result.getLatestSnapshot());
+                            versionChoiceBox.getItems().add(result.getLatestSnapshot());
+                            result.getVersions().forEach((k,v) -> {
+                                if(k.matches("\\d+\\.\\d+(\\.\\d+)?")){
+                                    versionChoiceBox.getItems().add(k);
+                                }
+                            });
+                            versionDownloader.shutdown();
+                            versionChoiceBox.setDisable(false);
+                        });
+                    }
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
     }
 //    初始化下载信息
     public void initDownloadInfo(){
