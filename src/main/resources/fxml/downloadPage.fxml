@@ -5,14 +5,24 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="downloadPage" stylesheets="@css/download.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DownloadController">
     <Button fx:id="exit" onAction="#close" text="×" />
-    <Label layoutX="-7.0" layoutY="-18.0" prefHeight="20.0" prefWidth="45.0" styleClass="versionText" text="版本：" translateX="50" translateY="40" />
-    <ComboBox fx:id="versionChoiceBox" prefHeight="23.0" prefWidth="150.0" translateX="90" translateY="20" disable="true"/>
-    <Label layoutX="-7.0" layoutY="-15.0" styleClass="categoryText" text="目录：" translateX="50" translateY="70" />
+    <Label layoutX="-7.0" layoutY="-18.0" prefHeight="20.0" prefWidth="45.0" styleClass="subtitle" text="版本：" translateX="50" translateY="40" />
+    <ComboBox fx:id="versionDownloadChoice" disable="true" prefHeight="23.0" prefWidth="150.0" styleClass="combobox" translateX="90" translateY="20" />
+    <AnchorPane fx:id="forgeDownload" layoutX="90.0" layoutY="20.0" prefHeight="23.0" prefWidth="275.0" visible="false">
+        <ComboBox fx:id="versionChoiceInForge" prefHeight="23.0" prefWidth="85.0" styleClass="combobox" />
+        <ComboBox fx:id="forgeChoice" disable="true" layoutX="93.0" prefHeight="23.0" prefWidth="185.0" styleClass="combobox" />
+    </AnchorPane>
+    <AnchorPane fx:id="liteDownload" layoutX="90.0" layoutY="20.0" prefHeight="23.0" prefWidth="275.0" visible="false">
+        <ComboBox fx:id="versionChoiceInLite" prefHeight="23.0" prefWidth="85.0" styleClass="combobox" />
+        <ComboBox fx:id="liteLoaderChoice" disable="true" layoutX="93.0" prefHeight="23.0" prefWidth="185.0" styleClass="combobox" />
+    </AnchorPane>
+    <Label layoutX="372.0" layoutY="25.0" text="额外安装：" />
+    <ComboBox fx:id="downloadModelChoice" layoutX="432.0" layoutY="20.0" prefHeight="23.0" prefWidth="125.0" styleClass="combobox" />
+    <Label layoutX="-7.0" layoutY="-15.0" styleClass="subtitle" text="目录：" translateX="50" translateY="70" />
     <TextField fx:id="downloadDir" layoutX="90.0" layoutY="53.0" prefHeight="23.0" prefWidth="432.0" styleClass="input" />
     <Button fx:id="selectDirBtn" layoutX="29.0" layoutY="6.0" onAction="#selectDir" styleClass="btn" text="..." translateX="500" translateY="50" />
     <TextArea fx:id="downloadInfo" editable="false" layoutX="-40.0" layoutY="37.0" prefHeight="250" prefWidth="500" styleClass="textArea" translateX="90" translateY="50" />
     <Button fx:id="download" layoutX="477.0" layoutY="344.0" onAction="#downloadStart" styleClass="btn" text="开始下载" />
-   <Button fx:id="downloadCancel" layoutX="477.0" layoutY="344.0" styleClass="btn" text="取消下载" onAction="#cancelDownload"/>
+   <Button fx:id="downloadCancel" layoutX="477.0" layoutY="344.0" onAction="#cancelDownload" styleClass="btn" text="取消下载" />
    <Button fx:id="openDir" layoutX="50.0" layoutY="344.0" styleClass="btn" text="打开目录" />
    <Button fx:id="downloadRetry" layoutX="482.0" layoutY="344.0" styleClass="btn" text="  重试  " />
 </AnchorPane>

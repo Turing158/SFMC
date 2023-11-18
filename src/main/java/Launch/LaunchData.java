@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Map;
 //用于json储存和写入
 public class LaunchData {
-    public ArrayList<String> versions;
     public Map<String, String> jreVersions;
     public AuthInfo authInfo;
     public MicrosoftAuthenticator microsoftAuthenticator;
@@ -25,8 +24,7 @@ public class LaunchData {
     public LaunchData() {
     }
 
-    public LaunchData(ArrayList<String> versions, Map<String, String> jreVersions, AuthInfo authInfo, MicrosoftAuthenticator microsoftAuthenticator, File selfDir, File jreDir, int windowSizeWidth, int windowSizeHeight, String playerFunc, String version, String username, String directory, int memory) {
-        this.versions = versions;
+    public LaunchData(Map<String, String> jreVersions, AuthInfo authInfo, MicrosoftAuthenticator microsoftAuthenticator, File selfDir, File jreDir, int windowSizeWidth, int windowSizeHeight, String playerFunc, String version, String username, String directory, int memory) {
         this.jreVersions = jreVersions;
         this.authInfo = authInfo;
         this.microsoftAuthenticator = microsoftAuthenticator;
@@ -41,13 +39,6 @@ public class LaunchData {
         this.memory = memory;
     }
 
-    public ArrayList<String> getVersions() {
-        return versions;
-    }
-
-    public void setVersions(ArrayList<String> versions) {
-        this.versions = versions;
-    }
 
     public Map<String, String> getJreVersions() {
         return jreVersions;

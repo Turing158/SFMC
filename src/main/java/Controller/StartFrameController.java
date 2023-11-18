@@ -9,10 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import jmccc.microsoft.MicrosoftAuthenticator;
-import org.to2mbn.jmccc.mcdownloader.MinecraftDownloader;
-import org.to2mbn.jmccc.mcdownloader.MinecraftDownloaderBuilder;
-import org.to2mbn.jmccc.mcdownloader.RemoteVersionList;
-import org.to2mbn.jmccc.mcdownloader.download.concurrent.CallbackAdapter;
+import util.DownloadMinecraft;
 import util.EffectAnimation;
 import util.OtherUtil;
 import util.initAuthenticator;
@@ -58,10 +55,9 @@ public class StartFrameController {
     Button download;
 
     @FXML
-    public void initialize(){
+    public void initialize() throws Exception {
         initAuthenticator();
         initDir();
-        initDownloadVersions();
         getLocalVersions();
         initJreVersion();
     }
@@ -142,7 +138,7 @@ public class StartFrameController {
         File versionFilePath = new File(LaunchMC.directory+"/versions");
         if(versionFilePath.exists()){
             File[] versionFiles = versionFilePath.listFiles(File::isDirectory);
-            if (versionFiles != null) {
+            if (versionFiles != null && versionFiles.length > 0) {
                 String firstVersion = versionFiles[0].getName();
                 for (int i = 0; i < versionFiles.length; i++) {
                     versionChoiceBox.getItems().add(versionFiles[i].getName());
@@ -168,12 +164,6 @@ public class StartFrameController {
             download.setVisible(true);
             versionChoiceBox.setVisible(false);
             startBtn.setVisible(false);
-        }
-    }
-//    初始化下载版本
-    public void initDownloadVersions(){
-        if(LaunchMC.versions.isEmpty()){
-
         }
     }
 //    初始化jre版本

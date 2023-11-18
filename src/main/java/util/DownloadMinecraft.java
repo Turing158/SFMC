@@ -3,13 +3,22 @@ package util;
 import org.to2mbn.jmccc.mcdownloader.MinecraftDownloader;
 import org.to2mbn.jmccc.mcdownloader.MinecraftDownloaderBuilder;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.CallbackAdapter;
+import org.to2mbn.jmccc.mcdownloader.provider.DownloadProviderChain;
+import org.to2mbn.jmccc.mcdownloader.provider.forge.ForgeDownloadProvider;
+import org.to2mbn.jmccc.mcdownloader.provider.forge.ForgeVersionList;
+import org.to2mbn.jmccc.mcdownloader.provider.liteloader.LiteloaderDownloadProvider;
 import org.to2mbn.jmccc.option.MinecraftDirectory;
 import org.to2mbn.jmccc.version.Version;
 
 import java.util.concurrent.Future;
 //下载类
 public class DownloadMinecraft {
-    MinecraftDownloader downloader = MinecraftDownloaderBuilder.create().build();
+    ForgeDownloadProvider forgeDownloadProvider = new ForgeDownloadProvider();
+    LiteloaderDownloadProvider liteloaderDownloadProvider = new LiteloaderDownloadProvider();
+    MinecraftDownloader downloader = MinecraftDownloaderBuilder.create()
+            .providerChain(DownloadProviderChain.create()
+                    .addProvider(forgeDownloadProvider))
+            .build();
     Future<Version> downloading;
     public void download(String filePath,String version,CallbackAdapter<Version> callbackAdapter){
         MinecraftDirectory dir = new MinecraftDirectory(filePath+"/.minecraft");
@@ -21,5 +30,15 @@ public class DownloadMinecraft {
     }
     public void cancel(){
         downloading.cancel(true);
+    }
+
+    public MinecraftDownloader getDownloader(){
+        return downloader;
+    }
+    public void downloadForgeVersion(CallbackAdapter<ForgeVersionList> callback){
+        downloader.download(forgeDownloadProvider.forgeVersionList(),callback);
+    }
+    public void downloadForge(){
+
     }
 }

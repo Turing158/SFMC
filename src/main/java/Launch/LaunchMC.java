@@ -20,7 +20,6 @@ import java.util.Map;
 //启动类
 public class LaunchMC {
 
-    public static ArrayList<String> versions = new ArrayList<>();
     public static Map<String, String> jreVersions = new HashMap<>();
     public static AuthInfo authInfo;
     public static MicrosoftAuthenticator microsoftAuthenticator;

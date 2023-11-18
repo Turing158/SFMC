@@ -3,11 +3,11 @@
     -fx-background-radius: 8px;
 }
 
-#versionChoiceBox{
+.combobox{
     -fx-background-color: #f1f1f1;
     -fx-cursor: hand;
 }
-#versionChoiceBox:hover{
+.combobox:hover{
     -fx-background-color: #e9e9e9;
 }
 .textArea{
@@ -22,11 +22,7 @@
     -fx-font-size: 12px;
 }
 
-.versionText {
-    -fx-font-size: 15px;
-}
-
-.categoryText {
+.subtitle{
     -fx-font-size: 15px;
 }
 .input{

@@ -12,7 +12,7 @@ import java.io.FileWriter;
 public class JsonOperate {
     public void save(){
 //        创建启动类entity类
-        LaunchData launchData = new LaunchData(LaunchMC.versions,LaunchMC.jreVersions,LaunchMC.authInfo,LaunchMC.microsoftAuthenticator,LaunchMC.selfDir,LaunchMC.jreDir,LaunchMC.windowSizeWidth,LaunchMC.windowSizeHeight,LaunchMC.playerFunc,LaunchMC.version,LaunchMC.username,LaunchMC.directory,LaunchMC.memory);
+        LaunchData launchData = new LaunchData(LaunchMC.jreVersions,LaunchMC.authInfo,LaunchMC.microsoftAuthenticator,LaunchMC.selfDir,LaunchMC.jreDir,LaunchMC.windowSizeWidth,LaunchMC.windowSizeHeight,LaunchMC.playerFunc,LaunchMC.version,LaunchMC.username,LaunchMC.directory,LaunchMC.memory);
 //        导入Json库
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -35,7 +35,6 @@ public class JsonOperate {
 //            写入json到entity
             LaunchData launchData = mapper.readValue(file,LaunchData.class);
 //            将数据传到LaunchMC
-            LaunchMC.versions = launchData.getVersions();
             LaunchMC.jreVersions = launchData.getJreVersions();
             LaunchMC.authInfo = launchData.getAuthInfo();
             LaunchMC.microsoftAuthenticator = launchData.getMicrosoftAuthenticator();
