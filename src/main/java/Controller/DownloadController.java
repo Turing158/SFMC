@@ -154,6 +154,9 @@ public class DownloadController {
         };
         new Thread(task).start();
     }
+
+
+//    获取所选版本的forge版本
     public void initForge(){
         download.setVisible(false);
         if(!versionChoiceInForge.getValue().equals("未发现本地版本")){
@@ -165,7 +168,6 @@ public class DownloadController {
                         Platform.runLater(() -> {
                             forgeChoice.getItems().clear();
                             forgeChoice.setValue(list.get(list.size()-1).getVersionName());
-                            System.out.println(list.get(list.size()-1).getVersionName());
                             for (int i = list.size()-1; i > 0; i--) {
                                 forgeChoice.getItems().add(list.get(i).getVersionName());
                             }
@@ -244,6 +246,7 @@ public class DownloadController {
 //            禁用选择按钮
             selectDirBtn.setDisable(true);
             versionDownloadChoice.setDisable(true);
+            downloadModelChoice.setDisable(true);
             downloadDir.setDisable(true);
 //            初始化下载类
 
@@ -254,7 +257,7 @@ public class DownloadController {
                 public void done(Version result) {
                     System.out.println("下载完成：Minecraft v"+result.getVersion());
                     downloadInfo.setText(downloadInfo.getText()+"\n下载完成：Minecraft "+result.getVersion());
-                    LaunchMC.directory = new File(file.getPath()+"./minecraft").getAbsolutePath();
+                    LaunchMC.directory = new File(file.getPath()+"/.minecraft").getAbsolutePath();
                     download.setVisible(false);
                     downloadCancel.setVisible(false);
                     downloadRetry.setVisible(false);
@@ -305,6 +308,7 @@ public class DownloadController {
 
         }
     }
+//    Forge的下载方法，与原版下载方法差不多
     public void ForgeDownload(){
         //        检查下载版本是否为空
         if(forgeChoice.getValue()==null || forgeChoice.getValue().equals("未发现本地版本")){
@@ -332,7 +336,7 @@ public class DownloadController {
                     download.setVisible(false);
                     downloadCancel.setVisible(false);
                     downloadRetry.setVisible(false);
-
+//                      启用这些禁用的Node
                     downloadModelChoice.setDisable(false);
                     selectDirBtn.setDisable(false);
                     versionChoiceInForge.setDisable(false);
@@ -378,7 +382,9 @@ public class DownloadController {
             });
         }
     }
-//    这里有问题，下载完Minecraft版本后，Forge版本选择框不会自动刷新，暂时无法解决
+//    已解决，终究是自己的错误
+//    tmd，MinecraftDownload()里下载完会将minecraft的游戏路径给改成下载路径，但是我  这个地方      写成了"./minecraft"    导致路径错误，无法获取版本
+//                              LaunchMC.directory = new File(file.getPath()+"/.minecraft").getAbsolutePath();
     public void getLocalVersions(){
         versionChoiceInForge.getItems().clear();
         versionChoiceInLite.getItems().clear();
@@ -387,19 +393,20 @@ public class DownloadController {
         versionChoiceInForge.setDisable(true);
         versionChoiceInLite.setDisable(true);
         File versionFilePath = new File(LaunchMC.directory+"/versions");
-        if(versionFilePath.exists()) {
-            File[] versionFiles = versionFilePath.listFiles(File::isDirectory);
-            if (versionFiles != null && versionFiles.length >0) {
-                String firstVersion = versionFiles[0].getName();
-                for (int i = 0; i < versionFiles.length; i++) {
-                    versionChoiceInForge.getItems().add(versionFiles[i].getName());
-                    versionChoiceInLite.getItems().add(versionFiles[i].getName());
-                }
-                versionChoiceInForge.setValue(firstVersion);
-                versionChoiceInLite.setValue(firstVersion);
-                versionChoiceInForge.setDisable(false);
-                versionChoiceInLite.setDisable(false);
+        File[] versionFiles = versionFilePath.listFiles(File::isDirectory);
+        if (versionFiles != null && versionFiles.length >0) {
+            String firstVersion = versionFiles[0].getName();
+            for (int i = 0; i < versionFiles.length; i++) {
+                versionChoiceInForge.getItems().add(versionFiles[i].getName());
+                versionChoiceInLite.getItems().add(versionFiles[i].getName());
             }
+            versionChoiceInForge.setValue(firstVersion);
+            versionChoiceInLite.setValue(firstVersion);
+            versionChoiceInForge.setDisable(false);
+            versionChoiceInLite.setDisable(false);
+        }
+        if(versionFilePath.exists()) {
+
         }
     }
 }
