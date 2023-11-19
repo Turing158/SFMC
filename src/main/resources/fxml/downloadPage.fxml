@@ -11,9 +11,9 @@
         <ComboBox fx:id="versionChoiceInForge" prefHeight="23.0" prefWidth="85.0" styleClass="combobox" />
         <ComboBox fx:id="forgeChoice" disable="true" layoutX="93.0" prefHeight="23.0" prefWidth="185.0" styleClass="combobox" />
     </AnchorPane>
-    <AnchorPane fx:id="liteDownload" layoutX="90.0" layoutY="20.0" prefHeight="23.0" prefWidth="275.0" visible="false">
-        <ComboBox fx:id="versionChoiceInLite" prefHeight="23.0" prefWidth="85.0" styleClass="combobox" />
-        <ComboBox fx:id="liteLoaderChoice" disable="true" layoutX="93.0" prefHeight="23.0" prefWidth="185.0" styleClass="combobox" />
+    <AnchorPane fx:id="fabricDownload" layoutX="90.0" layoutY="20.0" prefHeight="23.0" prefWidth="275.0" visible="false">
+        <ComboBox fx:id="versionChoiceInFabric" prefHeight="23.0" prefWidth="85.0" styleClass="combobox" />
+        <ComboBox fx:id="fabricChoice" disable="true" layoutX="93.0" prefHeight="23.0" prefWidth="185.0" styleClass="combobox" />
     </AnchorPane>
     <Label layoutX="372.0" layoutY="25.0" text="额外安装：" />
     <ComboBox fx:id="downloadModelChoice" layoutX="432.0" layoutY="20.0" prefHeight="23.0" prefWidth="125.0" styleClass="combobox" />

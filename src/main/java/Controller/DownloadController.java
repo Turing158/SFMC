@@ -20,6 +20,7 @@ import org.to2mbn.jmccc.mcdownloader.RemoteVersionList;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.CallbackAdapter;
 import org.to2mbn.jmccc.mcdownloader.download.concurrent.DownloadCallback;
 import org.to2mbn.jmccc.mcdownloader.download.tasks.DownloadTask;
+import org.to2mbn.jmccc.mcdownloader.provider.fabric.FabricVersionList;
 import org.to2mbn.jmccc.mcdownloader.provider.forge.ForgeVersion;
 import org.to2mbn.jmccc.mcdownloader.provider.forge.ForgeVersionList;
 import org.to2mbn.jmccc.version.Version;
@@ -36,15 +37,15 @@ public class DownloadController {
     @FXML
     public AnchorPane forgeDownload;
     @FXML
-    public AnchorPane liteDownload;
+    public AnchorPane fabricDownload;
     @FXML
     public ComboBox<String> versionChoiceInForge;
     @FXML
     public ComboBox<String> forgeChoice;
     @FXML
-    public ComboBox<String> versionChoiceInLite;
+    public ComboBox<String> versionChoiceInFabric;
     @FXML
-    public ComboBox<String> liteLoaderChoice;
+    public ComboBox<String> fabricChoice;
     public ComboBox<String> downloadModelChoice;
 
     //    初始化下载类
@@ -78,7 +79,7 @@ public class DownloadController {
 
     private void initPage() {
         downloadModelChoice.setValue("Minecraft");
-        downloadModelChoice.getItems().addAll("Minecraft","Forge","Liteloader");
+        downloadModelChoice.getItems().addAll("Minecraft","Forge","Fabric");
         downloadModelChoice.setOnAction(e -> {
             downloadModel =  downloadModelChoice.getValue();
             getLocalVersions();
@@ -86,26 +87,37 @@ public class DownloadController {
                 case "Minecraft":
                     versionDownloadChoice.setVisible(true);
                     forgeDownload.setVisible(false);
-                    liteDownload.setVisible(false);
+                    fabricDownload.setVisible(false);
                     break;
                 case "Forge":
                     versionDownloadChoice.setVisible(false);
                     forgeDownload.setVisible(true);
-                    liteDownload.setVisible(false);
+                    fabricDownload.setVisible(false);
                     initForge();
                     break;
-                case "Liteloader":
+                case "Fabric":
                     versionDownloadChoice.setVisible(false);
                     forgeDownload.setVisible(false);
-                    liteDownload.setVisible(true);
+                    fabricDownload.setVisible(true);
+                    initFabric();
                     break;
             }
         });
         versionChoiceInForge.setOnAction(e -> {
-            initForge();
+            if(!versionChoiceInForge.getItems().isEmpty()){
+                initForge();
+            }
+        });
+        versionChoiceInFabric.setOnAction(e -> {
+            if(!versionChoiceInFabric.getItems().isEmpty()){
+                initFabric();
+            }
         });
         forgeChoice.setOnAction(e -> {
             downloadInfo.setText("Forge版本：" + forgeChoice.getValue());
+        });
+        fabricChoice.setOnAction(e -> {
+            downloadInfo.setText("Fabric版本：" + fabricChoice.getValue());
         });
     }
 
@@ -159,7 +171,8 @@ public class DownloadController {
 //    获取所选版本的forge版本
     public void initForge(){
         download.setVisible(false);
-        if(!versionChoiceInForge.getValue().equals("未发现本地版本")){
+//        获取forge版本列表                                         |这个地方比较特殊，由于initForge()这个方法会运行多次，为了不报空，先加上 downloader != null
+        if(!versionChoiceInForge.getValue().equals("未发现本地版本") && downloader != null){
             downloader.downloadForgeVersion(new CallbackAdapter<ForgeVersionList>() {
                 @Override
                 public void done(ForgeVersionList result) {
@@ -179,6 +192,33 @@ public class DownloadController {
                         Platform.runLater(() -> {
                             forgeChoice.setDisable(true);
                             forgeChoice.setValue("未发现此版本Forge");
+                        });
+                    }
+
+                }
+            });
+        }
+    }
+    public void initFabric(){
+        download.setVisible(false);
+        fabricChoice.setDisable(true);
+        if(!versionChoiceInFabric.getValue().equals("未发现本地版本")){
+            downloader.downloadFabricVersion(new CallbackAdapter<FabricVersionList>() {
+                @Override
+                public void done(FabricVersionList result) {
+                    if (result != null){
+                        Platform.runLater(() -> {
+                            fabricChoice.getItems().clear();
+                            fabricChoice.setValue(result.getLatest(versionChoiceInFabric.getValue()).getVersionName());
+                            fabricChoice.getItems().add(result.getLatest(versionChoiceInFabric.getValue()).getVersionName());
+                            fabricChoice.setDisable(false);
+                            download.setVisible(true);
+                        });
+                    }
+                    else {
+                        Platform.runLater(() -> {
+                            fabricChoice.setDisable(true);
+                            fabricChoice.setValue("未发现此版本Fabric");
                         });
                     }
 
@@ -387,26 +427,23 @@ public class DownloadController {
 //                              LaunchMC.directory = new File(file.getPath()+"/.minecraft").getAbsolutePath();
     public void getLocalVersions(){
         versionChoiceInForge.getItems().clear();
-        versionChoiceInLite.getItems().clear();
+        versionChoiceInFabric.getItems().clear();
         versionChoiceInForge.setValue("未发现本地版本");
-        versionChoiceInLite.setValue("未发现本地版本");
+        versionChoiceInFabric.setValue("未发现本地版本");
         versionChoiceInForge.setDisable(true);
-        versionChoiceInLite.setDisable(true);
+        versionChoiceInFabric.setDisable(true);
         File versionFilePath = new File(LaunchMC.directory+"/versions");
         File[] versionFiles = versionFilePath.listFiles(File::isDirectory);
         if (versionFiles != null && versionFiles.length >0) {
             String firstVersion = versionFiles[0].getName();
             for (int i = 0; i < versionFiles.length; i++) {
                 versionChoiceInForge.getItems().add(versionFiles[i].getName());
-                versionChoiceInLite.getItems().add(versionFiles[i].getName());
+                versionChoiceInFabric.getItems().add(versionFiles[i].getName());
             }
             versionChoiceInForge.setValue(firstVersion);
-            versionChoiceInLite.setValue(firstVersion);
+            versionChoiceInFabric.setValue(firstVersion);
             versionChoiceInForge.setDisable(false);
-            versionChoiceInLite.setDisable(false);
-        }
-        if(versionFilePath.exists()) {
-
+            versionChoiceInFabric.setDisable(false);
         }
     }
 }
