@@ -55,7 +55,7 @@ public class StartFrameController {
     Button download;
 
     @FXML
-    public void initialize() throws Exception {
+    public void initialize() {
         initAuthenticator();
         initDir();
         getLocalVersions();
@@ -146,7 +146,9 @@ public class StartFrameController {
                 startBtn.setText("启动\n"+firstVersion);
                 LaunchMC.version = firstVersion;
                 versionChoiceBox.setValue(firstVersion);
+                LaunchMC.runtimeDir = new File(LaunchMC.directory+"/versions/"+firstVersion);
                 versionChoiceBox.setOnAction(event -> {
+                    LaunchMC.runtimeDir = new File(LaunchMC.directory+"/versions/"+versionChoiceBox.getValue());
                     LaunchMC.version = versionChoiceBox.getValue();
                     startBtn.setText("启动\n"+versionChoiceBox.getValue());
                 });

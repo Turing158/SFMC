@@ -41,7 +41,9 @@ public class gameSettingController {
     public ComboBox<String> jreVersion;
     @FXML
     public Button selectJreDir;
-//    获取内存信息
+    @FXML
+    public CheckBox versionIsolate;
+    //    获取内存信息
     OperatingSystemMXBean os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     long maxMemory = os.getTotalPhysicalMemorySize()/(1024*1024);
     long freeMemory = os.getFreePhysicalMemorySize()/(1024*1024);
@@ -52,6 +54,7 @@ public class gameSettingController {
         initWindowSize();
         initMemorySlider();
         updateJreVersion();
+        initVersionIsolate();
     }
 
 //    初始化jre版本信息
@@ -81,7 +84,11 @@ public class gameSettingController {
                 }
                 return LaunchMC.jreVersions.get(string);
             }
+
         });
+        if(LaunchMC.jreDir != null){
+            jreVersion.setValue(new File(LaunchMC.jreDir.getParent()).getParent());
+        }
         jreVersion.setOnAction(event -> {
 //            判断下是否自动选择jre版本
             if(jreVersion.getValue().equals("自动选择")){
@@ -164,6 +171,15 @@ public class gameSettingController {
                 LaunchMC.memory = (int) freeMemory;
             }
             memoryLabel.setText("已分配内存:"+(int) memorySlider.getValue()+"MB/空闲内存:"+freeMemory+"MB");
+        });
+    }
+
+
+    public void initVersionIsolate(){
+        versionIsolate.setSelected(LaunchMC.versionIsolate);
+        versionIsolate.setOnAction(e -> {
+            LaunchMC.versionIsolate = versionIsolate.isSelected();
+            System.out.println(LaunchMC.runtimeDir);
         });
     }
 //    关闭设置界面，并保存信息

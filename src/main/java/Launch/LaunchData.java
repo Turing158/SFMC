@@ -13,6 +13,7 @@ public class LaunchData {
     public MicrosoftAuthenticator microsoftAuthenticator;
     public File selfDir;
     public File jreDir;
+    public Boolean versionIsolate;
     public int windowSizeWidth;
     public int windowSizeHeight;
     public String playerFunc;
@@ -24,12 +25,13 @@ public class LaunchData {
     public LaunchData() {
     }
 
-    public LaunchData(Map<String, String> jreVersions, AuthInfo authInfo, MicrosoftAuthenticator microsoftAuthenticator, File selfDir, File jreDir, int windowSizeWidth, int windowSizeHeight, String playerFunc, String version, String username, String directory, int memory) {
+    public LaunchData(Map<String, String> jreVersions, AuthInfo authInfo, MicrosoftAuthenticator microsoftAuthenticator, File selfDir, File jreDir,Boolean versionIsolate, int windowSizeWidth, int windowSizeHeight, String playerFunc, String version, String username, String directory, int memory) {
         this.jreVersions = jreVersions;
         this.authInfo = authInfo;
         this.microsoftAuthenticator = microsoftAuthenticator;
         this.selfDir = selfDir;
         this.jreDir = jreDir;
+        this.versionIsolate = versionIsolate;
         this.windowSizeWidth = windowSizeWidth;
         this.windowSizeHeight = windowSizeHeight;
         this.playerFunc = playerFunc;
@@ -39,6 +41,13 @@ public class LaunchData {
         this.memory = memory;
     }
 
+    public Boolean getVersionIsolate() {
+        return versionIsolate;
+    }
+
+    public void setVersionIsolate(Boolean versionIsolate) {
+        this.versionIsolate = versionIsolate;
+    }
 
     public Map<String, String> getJreVersions() {
         return jreVersions;

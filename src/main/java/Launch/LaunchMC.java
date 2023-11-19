@@ -25,6 +25,7 @@ public class LaunchMC {
     public static MicrosoftAuthenticator microsoftAuthenticator;
     public static File selfDir;
     public static File jreDir;
+    public static Boolean versionIsolate = false;
     public static  int windowSizeWidth = 854;
     public static  int windowSizeHeight = 480;
     public static  String playerFunc = "";
@@ -32,6 +33,10 @@ public class LaunchMC {
     public static String username = "";
     public static String directory = "";
     public static int memory = 1024;
+
+
+
+    public static File runtimeDir;
     public static Authenticator authenticator;
     public void start(){
         if (playerFunc.equals("offline")){
@@ -50,6 +55,9 @@ public class LaunchMC {
             }
             if(memory != 0){
                 option.setMaxMemory(memory);
+            }
+            if(versionIsolate){
+                option.setRuntimeDirectory(new MinecraftDirectory(runtimeDir));
             }
             launcher.launch(option);
         } catch (LaunchException | IOException e) {

@@ -54,6 +54,7 @@ public class VerifyMicrosoft {
                         effect.fadeEmergeVanish(0.5,true,message1,message2,url,code);
                     });
                 });
+                System.out.println(microsoftAuthenticator.auth().toString());
 //                获取到的信息存入启动类里，方便用于json储存
                 LaunchMC.authInfo = microsoftAuthenticator.auth();
                 LaunchMC.microsoftAuthenticator = microsoftAuthenticator;

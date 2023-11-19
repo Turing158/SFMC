@@ -20,8 +20,12 @@
    <TextField fx:id="windowSizeH" layoutX="238.0" layoutY="169.0" prefHeight="23.0" prefWidth="60.0" styleClass="input" />
    <Label layoutX="229.0" layoutY="173.0" text="x" />
 
+    <Label layoutX="340.0" layoutY="170.0" styleClass="funcTitle" text="版本隔离：" />
+    <CheckBox fx:id="versionIsolate" layoutX="415.0" layoutY="173.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="40.0"/>
+
     <Label layoutX="28.0" layoutY="200.0" styleClass="funcTitle" text="Java版本：" />
     <ComboBox fx:id="jreVersion" layoutX="23.0" layoutY="220.0" prefHeight="23.0" prefWidth="536.0" styleClass="combobox" />
-    <Button fx:id="selectJreDir" layoutX="567.0" layoutY="220.0" text="+" onAction="#addJreVersion"/>
+    <Button fx:id="selectJreDir" layoutX="567.0" layoutY="220.0" onAction="#addJreVersion" text="+" />
+
 
 </AnchorPane>
