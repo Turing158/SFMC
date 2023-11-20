@@ -28,7 +28,7 @@ public class LaunchMC {
     public static Boolean versionIsolate = false;
     public static  int windowSizeWidth = 854;
     public static  int windowSizeHeight = 480;
-    public static  String playerFunc = "";
+    public static  String playerFunc = "offline";
     public static String version = "";
     public static String username = "";
     public static String directory = "";
@@ -59,6 +59,8 @@ public class LaunchMC {
             if(versionIsolate){
                 option.setRuntimeDirectory(new MinecraftDirectory(runtimeDir));
             }
+            option.setServerInfo(null);
+            option.setMinMemory(512);
             launcher.launch(option);
         } catch (LaunchException | IOException e) {
             e.printStackTrace();
