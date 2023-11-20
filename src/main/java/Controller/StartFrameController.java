@@ -103,7 +103,7 @@ public class StartFrameController {
             timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"请输入用户名");
             timeline.play();
         }
-        else if(LaunchMC.microsoftAuthenticator == null && LaunchMC.playerFunc.equals("microsoft")){
+        else if(LaunchMC.authenticator == null && LaunchMC.playerFunc.equals("microsoft")){
             checkTimeline();
             EffectAnimation effect = new EffectAnimation();
             timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"请进行微软正版认证");
