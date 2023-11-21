@@ -126,6 +126,9 @@ public class DownloadController {
         if(downloadModel.equals("Forge")){
             ForgeDownload();
         }
+        else if(downloadModel.equals("Fabric")){
+            FabricDownload();
+        }
         else {
             MinecraftDownload();
         }
@@ -403,6 +406,79 @@ public class DownloadController {
                     selectDirBtn.setDisable(false);
                     versionChoiceInForge.setDisable(false);
                     forgeChoice.setDisable(false);
+                    downloadDir.setDisable(false);
+                }
+
+                @Override
+                public void retry(Throwable e, int current, int max) {
+                    super.retry(e, current, max);
+                }
+
+                @Override
+                public <R> DownloadCallback<R> taskStart(DownloadTask<R> task) {
+                    System.out.println(task.getURI());
+                    if(task.isCacheable()){
+                        downloadInfo.appendText("\n开始下载："+task.getURI()+"\n...");
+                    }
+                    return super.taskStart(task);
+                }
+            });
+        }
+    }
+    public void FabricDownload(){
+        //        检查下载版本是否为空
+        if(fabricChoice.getValue()==null || fabricChoice.getValue().equals("未发现本地版本")){
+            downloadInfo.setText(downloadInfo.getText()+"\n请选择版本");
+        }
+//        检查下载目录是否为空
+        else if(file==null){
+            downloadInfo.setText(downloadInfo.getText()+"\n请选择下载目录");
+        }
+        else {
+            downloadInfo.setText(downloadInfo.getText()+"\n正在下载，请稍后...");
+//            隐藏下载按钮
+            download.setVisible(false);
+            downloadCancel.setVisible(true);
+//            禁用选择按钮
+            downloadModelChoice.setDisable(true);
+            versionChoiceInFabric.setDisable(true);
+            fabricChoice.setDisable(true);
+            selectDirBtn.setDisable(true);
+            downloadDir.setDisable(true);
+            downloader.download(file.getPath(), fabricChoice.getValue(), new CallbackAdapter<Version>() {
+                @Override
+                public void done(Version result) {
+                    downloadInfo.setText(downloadInfo.getText()+"\n下载完成：Forge "+result.getVersion());
+                    download.setVisible(false);
+                    downloadCancel.setVisible(false);
+                    downloadRetry.setVisible(false);
+//                      启用这些禁用的Node
+                    downloadModelChoice.setDisable(false);
+                    selectDirBtn.setDisable(false);
+                    versionChoiceInFabric.setDisable(false);
+                    fabricChoice.setDisable(false);
+                    downloadDir.setDisable(false);
+                }
+
+                @Override
+                public void failed(Throwable e) {
+                    downloadInfo.setText(downloadInfo.getText()+"\n下载失败");
+                    downloadRetry.setVisible(true);
+                    e.printStackTrace();
+                    downloadModelChoice.setDisable(false);
+                    selectDirBtn.setDisable(false);
+                    versionChoiceInFabric.setDisable(false);
+                    fabricChoice.setDisable(false);
+                    downloadDir.setDisable(false);
+                }
+
+                @Override
+                public void cancelled() {
+                    downloadInfo.setText(downloadInfo.getText()+"\n已取消下载");
+                    downloadModelChoice.setDisable(false);
+                    selectDirBtn.setDisable(false);
+                    versionChoiceInFabric.setDisable(false);
+                    fabricChoice.setDisable(false);
                     downloadDir.setDisable(false);
                 }
 

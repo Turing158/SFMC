@@ -91,11 +91,14 @@ public class gameSettingController {
         }
         jreVersion.setOnAction(event -> {
 //            判断下是否自动选择jre版本
-            if(jreVersion.getValue().equals("自动选择")){
-                LaunchMC.jreDir = null;
-            }
-            else {
-                LaunchMC.jreDir = new File(jreVersion.getValue() + "\\bin\\javaw.exe");
+//            不加最外层判断会报空指针，因为要刷新页面，所以得判断
+            if(jreVersion != null && jreVersion.getValue() != null){
+                if(jreVersion.getValue().equals("自动选择")){
+                    LaunchMC.jreDir = null;
+                }
+                else {
+                    LaunchMC.jreDir = new File(jreVersion.getValue() + "\\bin\\javaw.exe");
+                }
             }
         });
     }
@@ -112,7 +115,8 @@ public class gameSettingController {
             File jreBinDir = jreBinJavaWDir.getParentFile();
             File jreDir = jreBinDir.getParentFile();
             Map<String,String> jreVersions = LaunchMC.jreVersions;
-            jreVersions.put(jreDir.getName(),jreDir.getAbsolutePath());
+            jreVersions.put(jreDir.getAbsolutePath(),jreDir.getName());
+            System.out.println(jreVersions);
             LaunchMC.jreVersions = jreVersions;
 //            刷新此界面
             initialize();

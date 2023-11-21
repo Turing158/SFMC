@@ -15,6 +15,9 @@ import util.OtherUtil;
 import util.initAuthenticator;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 public class StartFrameController {
 
@@ -170,8 +173,10 @@ public class StartFrameController {
     }
 //    初始化jre版本
     public void initJreVersion(){
-        OtherUtil otherUtil = new OtherUtil();
-        LaunchMC.jreVersions =  otherUtil.getJreVersions();
+        if(LaunchMC.jreVersions.isEmpty()){
+            OtherUtil otherUtil = new OtherUtil();
+            LaunchMC.jreVersions = otherUtil.getJreVersions();
+        }
     }
 //    防止动画撞车
     public void checkTimeline(){

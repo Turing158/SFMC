@@ -1,5 +1,6 @@
 package Controller;
 
+import Launch.LaunchMC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,22 +11,25 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import util.JsonOperate;
+import util.OtherUtil;
 
 public class Frame extends Application {
     public Frame(){}
 
     @Override
     public void start(Stage stage) {
+
         JsonOperate json = new JsonOperate();
 //        存在则读取
         if(json.exist()){
             json.load();
         }
+
         stage.setScene(new Frame().StartFrame());
         stage.getIcons().add(new Image("img/ico.png"));
         stage.setHeight(500);
         stage.setWidth(800);
-        stage.setTitle("SFMC 1.0");
+        stage.setTitle("SFMC 1.2");
         stage.setResizable(false);
         stage.setFullScreen(false);
         stage.setOnCloseRequest(event -> {
