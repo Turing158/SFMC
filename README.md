@@ -46,17 +46,17 @@
 > Q: Why didn't you respond after clicking **Microsoft verification**?  
 > A: There may not be a default browser set. Click on the **link** of **launcher** , open the browser yourself, paste it into the address bar, and access it
 >
-> Q: Why have you been clicking **Microsoft Verification** and continuing to **"please wait"** ? 
+> Q: Why have you been clicking **Microsoft Verification** and continuing to **"please wait"** ?  
 > A: Please check if your network is abnormal or if your device is connected to the internet
 >
 > Q: Why does a webpage pop up after clicking **Microsoft verification**, but the webpage keeps loading?  
 > A: Please check if your network is abnormal or if your device is connected to the internet
 >
-> Q: After entering the **verification code**, click Next and continue to log in to this interface using **Window Hello and security key**.
-> A: 重新打开**启动器**的**链接**，再次输入**验证代码**，点下一步
+> Q: After entering the **verification code**, click Next and continue to log in to this interface using **Window Hello and security key**.  
+> A: Reopen the **link** to the **Launcher**, enter the **verification code** again, and click Next
 >
 > Q: Microsoft shows that **verification is complete**, but the initiator has not changed  
-> A: Your account may **not have Minecraft**,If so, please go to [ _www.minecraft.net_ ](https://www.minecraft.net)  and **log in to Microsoft**. Click on the **profile** to refresh the **profile**, and then use **Microsoft authentication** on the launcher here.
+> A: Your account may **not have Minecraft**,If so, please go to [ _www.minecraft.net_ ](https://www.minecraft.net)  and **log in to Microsoft**. Click on the **profile** to refresh the **profile**, and then use **Microsoft authentication** on the launcher here.  
 >
 > _At present, this is the problem that I have tested and will encounter. If there are any problems, please provide timely feedback. Thank you!_
 > ***
