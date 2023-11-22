@@ -1,6 +1,19 @@
-# SFMC 简陋的MC启动器
 ***
-
+- [English](#English)
+- [中文](#Chinese)
+***
+#### English
+# SFMC Simple Minecraft Launcher
+***
+## Catalogue
+- [Brief Introduction](#Brief Introduction)
+- [function](#function)
+- [Introduce](#Introduce)
+    - [Main Interface](#Main Interface)
+    - [Player Settings Interface](#Player Settings Interface)
+    - [Game settings interface](#Game settings interface)
+    - [Download interface](#Download interface)
+- [Thank you for using](#Thank you for using)
 ### Brief Introduction
 > A Minecraft launcher written through JMCCC, built by Java FX with an interface that is currently incomplete and may not be very attractive
 ![home](doc/home.png)
@@ -72,12 +85,24 @@
 > **Fabric** is Only the latest
 > ![download](doc/download.png)
 ***
-### 感谢使用
+### Thank you for using
 > This starter **doesn't have much technical content** [after all, it's someone else's bag], it's purely for practice use  
 > Don't look at the size of this launcher, JavaFX accounts for 10 Mb, and there are also some packages with very little code, so the size of the launcher is so large.  
 > If there are any issues, please provide timely feedback. Thank you!
+***
 
-
+-
+-
+-
+-
+-
+-
+-
+-
+***
+#### Chinese
+# SFMC 简陋的MC启动器
+***
 ## 目录
 - [简介](#简介)
 - [功能](#功能)
