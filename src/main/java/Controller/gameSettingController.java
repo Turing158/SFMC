@@ -43,6 +43,10 @@ public class gameSettingController {
     public Button selectJreDir;
     @FXML
     public CheckBox versionIsolate;
+    @FXML
+    public CheckBox autoMemory;
+    @FXML
+    public TextField memoryInput;
     //    获取内存信息
     OperatingSystemMXBean os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     long maxMemory = os.getTotalPhysicalMemorySize()/(1024*1024);
@@ -155,8 +159,32 @@ public class gameSettingController {
     }
 //    初始化设置内存信息
     public void initMemorySlider(){
+        memoryInput.setTextFormatter(new TextFormatter<>(new IntegerFilter()));
+        autoMemory.setSelected(LaunchMC.autoMemory);
+        autoMemory.setOnAction(e -> {
+            LaunchMC.autoMemory = autoMemory.isSelected();
+            initMemorySlider();
+        });
+        if(autoMemory.isSelected()){
+            memorySlider.setDisable(true);
+            memoryInput.setDisable(true);
+            if(freeMemory/3 > 1024){
+                LaunchMC.memory = (int) (freeMemory/3);
+            }
+            else if(freeMemory < 1024){
+                LaunchMC.memory = (int) freeMemory;
+            }
+            else {
+                LaunchMC.memory = 1024;
+            }
+        }
+        else{
+            memorySlider.setDisable(false);
+            memoryInput.setDisable(false);
+        }
         memorySlider.setMax(maxMemory);
         memorySlider.setValue(LaunchMC.memory);
+        memoryInput.setText(String.valueOf(LaunchMC.memory));
         memorySlider.setValueChanging(true);
         memoryLabel.setText("已分配内存:"+(int) memorySlider.getValue()+"MB/空闲内存:"+freeMemory+"MB");
         maxPhyMemory.setText(maxMemory+"MB");
@@ -174,6 +202,7 @@ public class gameSettingController {
                 memorySlider.setValue(freeMemory);
                 LaunchMC.memory = (int) freeMemory;
             }
+            memoryInput.setText(String.valueOf(LaunchMC.memory));
             memoryLabel.setText("已分配内存:"+(int) memorySlider.getValue()+"MB/空闲内存:"+freeMemory+"MB");
         });
     }
@@ -183,7 +212,6 @@ public class gameSettingController {
         versionIsolate.setSelected(LaunchMC.versionIsolate);
         versionIsolate.setOnAction(e -> {
             LaunchMC.versionIsolate = versionIsolate.isSelected();
-            System.out.println(LaunchMC.runtimeDir);
         });
     }
 //    关闭设置界面，并保存信息

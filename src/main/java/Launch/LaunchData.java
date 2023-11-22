@@ -13,6 +13,7 @@ public class LaunchData {
     public MicrosoftAuthenticator microsoftAuthenticator;
     public File selfDir;
     public File jreDir;
+    public Boolean autoMemory;
     public Boolean versionIsolate;
     public int windowSizeWidth;
     public int windowSizeHeight;
@@ -25,12 +26,13 @@ public class LaunchData {
     public LaunchData() {
     }
 
-    public LaunchData(Map<String, String> jreVersions, AuthInfo authInfo, MicrosoftAuthenticator microsoftAuthenticator, File selfDir, File jreDir,Boolean versionIsolate, int windowSizeWidth, int windowSizeHeight, String playerFunc, String version, String username, String directory, int memory) {
+    public LaunchData(Map<String, String> jreVersions, AuthInfo authInfo, MicrosoftAuthenticator microsoftAuthenticator, File selfDir, File jreDir, Boolean autoMemory, Boolean versionIsolate, int windowSizeWidth, int windowSizeHeight, String playerFunc, String version, String username, String directory, int memory) {
         this.jreVersions = jreVersions;
         this.authInfo = authInfo;
         this.microsoftAuthenticator = microsoftAuthenticator;
         this.selfDir = selfDir;
         this.jreDir = jreDir;
+        this.autoMemory = autoMemory;
         this.versionIsolate = versionIsolate;
         this.windowSizeWidth = windowSizeWidth;
         this.windowSizeHeight = windowSizeHeight;
@@ -39,6 +41,14 @@ public class LaunchData {
         this.username = username;
         this.directory = directory;
         this.memory = memory;
+    }
+
+    public Boolean getAutoMemory() {
+        return autoMemory;
+    }
+
+    public void setAutoMemory(Boolean autoMemory) {
+        this.autoMemory = autoMemory;
     }
 
     public Boolean getVersionIsolate() {

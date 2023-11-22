@@ -25,6 +25,7 @@ public class LaunchMC {
     public static MicrosoftAuthenticator microsoftAuthenticator;
     public static File selfDir;
     public static File jreDir;
+    public static Boolean autoMemory = true;
     public static Boolean versionIsolate = false;
     public static  int windowSizeWidth = 854;
     public static  int windowSizeHeight = 480;
