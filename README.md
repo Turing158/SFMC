@@ -8,7 +8,7 @@
 - [Brief Introduction](#brief-introduction)
 - [Function](#Function)
 - [Introduce](#Introduce)
-    - [Main Interface](#)
+    - [Main Interface](#main-interface)
     - [Player Settings Interface](#)
     - [Game settings interface](#)
     - [Download interface](#)
@@ -89,16 +89,9 @@
 > Don't look at the size of this launcher, JavaFX accounts for 10 Mb, and there are also some packages with very little code, so the size of the launcher is so large.  
 > If there are any issues, please provide timely feedback. Thank you!
 ***
-
--
--
--
--
--
--
--
--
 ***
+***
+
 # SFMC 简陋的MC启动器
 ***
 ## 目录
