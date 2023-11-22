@@ -8,10 +8,10 @@
 - [Brief Introduction](#brief-introduction)
 - [Function](#Function)
 - [Introduce](#Introduce)
-    - [Main Interface](#main-interface)
-    - [Player Settings Interface](#)
-    - [Game settings interface](#)
-    - [Download interface](#)
+    - [Main interface](#main-interface)
+    - [Player Settings interface](#player-settings-interface)
+    - [Game Settings interface](#game-settings-interface)
+    - [Download interface](#download-interface)
 - [Thank you for using](#thank-you-for-using)
 ### Brief Introduction
 > A Minecraft launcher written through JMCCC, built by Java FX with an interface that is currently incomplete and may not be very attractive
@@ -37,11 +37,11 @@
 
 ***
 ### Introduce
-> #### Main Interface
+> #### Main interface
 > On the left is the function list, Minecraft can be activated in the lower right corner, and the arrow on the right can select the version.
 > ![home](doc/home.png)
 > ***
-> #### Player Settings Interface
+> #### Player Settings interface
 > There are currently two login methods, offline and Microsoft's legitimate login.  
 > Just log in offline and enter the username you want, Microsoft verification is quite troublesome.
 > ![player](doc/player.png)
@@ -72,7 +72,7 @@
 >
 > _At present, this is the problem that I have tested and will encounter. If there are any problems, please provide timely feedback. Thank you!_
 > ***
-> #### Game settings interface
+> #### Game Settings interface
 > You can select a game directory, adjust game memory, select the appropriate JRE version, adjust window size, and enable version isolation  
 > _I forgot to add **memory for automatic allocation**. I will add it later, as well as the jvm startup parameters and minecraft startup parameters._
 > ![setting](doc/Setting.png)
