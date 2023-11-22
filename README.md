@@ -1,26 +1,25 @@
 ***
-- [English](#English)
-- [中文](#Chinese)
+- [English](#sfmc-simple-minecraft-launcher)
+- [中文](#sfmc-简陋的mc启动器)
 ***
-#### English
 # SFMC Simple Minecraft Launcher
 ***
 ## Catalogue
-- [Brief Introduction](#Brief Introduction)
-- [function](#function)
+- [Brief Introduction](#brief-introduction)
+- [Function](#Function)
 - [Introduce](#Introduce)
-    - [Main Interface](#Main Interface)
-    - [Player Settings Interface](#Player Settings Interface)
-    - [Game settings interface](#Game settings interface)
-    - [Download interface](#Download interface)
-- [Thank you for using](#Thank you for using)
+    - [Main Interface](#)
+    - [Player Settings Interface](#)
+    - [Game settings interface](#)
+    - [Download interface](#)
+- [Thank you for using](#thank-you-for-using)
 ### Brief Introduction
 > A Minecraft launcher written through JMCCC, built by Java FX with an interface that is currently incomplete and may not be very attractive
 ![home](doc/home.png)
 
 ***
 
-### function
+### Function
 > - [x] Launch Minecraft
 > - [x] Choose Minecraft version
 > - [x] Download all versions of **Minecraft**
@@ -100,7 +99,6 @@
 -
 -
 ***
-#### Chinese
 # SFMC 简陋的MC启动器
 ***
 ## 目录
