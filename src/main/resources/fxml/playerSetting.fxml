@@ -3,10 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="playSetting" stylesheets="@css/playerSetting.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSettingController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="playSetting" stylesheets="@css/playerSetting.css,@css/nodeElement.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSettingController">
     <Button fx:id="exit" onAction="#close" text="×" />
     <Label layoutX="14.0" layoutY="14.0" styleClass="title" text="玩家设置" />
-    <ComboBox fx:id="selectFunc" layoutX="7.0" layoutY="37.0" prefHeight="23.0" prefWidth="161.0" />
+    <ComboBox fx:id="selectFunc" layoutX="7.0" layoutY="37.0" prefHeight="23.0" prefWidth="161.0" styleClass="combobox"/>
 
     <AnchorPane fx:id="outline" layoutX="4.0" layoutY="74.0" prefHeight="30.0" prefWidth="168.0" visible="false">
         <Label layoutY="7.0" text="玩家名：" />

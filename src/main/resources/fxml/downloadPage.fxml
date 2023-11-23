@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="downloadPage" stylesheets="@css/download.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DownloadController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="downloadPage" stylesheets="@css/download.css,@css/nodeElement.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DownloadController">
     <Button fx:id="exit" onAction="#close" text="×" />
     <Label layoutX="-7.0" layoutY="-18.0" prefHeight="20.0" prefWidth="45.0" styleClass="subtitle" text="版本：" translateX="50" translateY="40" />
     <ComboBox fx:id="versionDownloadChoice" disable="true" prefHeight="23.0" prefWidth="150.0" styleClass="combobox" translateX="90" translateY="20" />

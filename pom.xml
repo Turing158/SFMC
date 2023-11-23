@@ -79,6 +79,33 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>io.github.fvarrui</groupId>
+                <artifactId>javapackager</artifactId>
+                <version>1.7.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                        <configuration>
+                            <!-- mandatory -->
+                            <mainClass>path.to.your.mainClass</mainClass>
+                            <!-- optional -->
+                            <bundleJre>true|false</bundleJre>
+                            <generateInstaller>true|false</generateInstaller>
+                            <administratorRequired>true|false</administratorRequired>
+                            <platform>auto|linux|mac|windows</platform>
+                            <additionalResources>
+                                <additionalResource>file path</additionalResource>
+                                <additionalResource>folder path</additionalResource>
+                                <additionalResource>...</additionalResource>
+                            </additionalResources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

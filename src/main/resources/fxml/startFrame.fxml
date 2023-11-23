@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="main" stylesheets="@css/startFrame.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StartFrameController">
-    <HBox fx:id="tipsBox" styleClass="tipsBox" visible="false">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="main" stylesheets="@css/startFrame.css,@css/nodeElement.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StartFrameController">
+    <HBox fx:id="tipsBox" styleClass="tipsBox" visible="false" translateY="400">
         <Text fx:id="tips" styleClass="tips" />
     </HBox>
     <AnchorPane fx:id="version" translateX="620" translateY="400">

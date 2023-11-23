@@ -60,19 +60,6 @@
 .leftMenu{
     -fx-background-color: #f1f1f155;
 }
-.tipsBox{
-    -fx-background-color: #f1f1f1aa;
-    -fx-padding: 5px 10px;
-    -fx-position-shape: center;
-    -fx-translate-Y: 400px;
-    -fx-background-radius: 5px;
-    -fx-effect: dropshadow(gaussian, #13131388, 10, 0, 0, 2);
-}
-.tips{
-    -fx-font-size: 15px;
-    -fx-text-fill: #131313;
-    -fx-font-weight: bold;
-}
 
 .playSettingBtn,.gameSettingBtn,.downloadGameBtn{
     -fx-text-fill: #131313;

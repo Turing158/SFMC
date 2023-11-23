@@ -2,25 +2,25 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Text?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="gameSetting" stylesheets="@css/gameSetting.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.gameSettingController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="gameSetting" stylesheets="@css/gameSetting.css,@css/nodeElement.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.gameSettingController">
     <Button fx:id="exit" onAction="#close" text="×" />
-    <HBox fx:id="tipsBox" styleClass="tipsBox" visible="false">
+    <HBox fx:id="tipsBox" styleClass="tipsBox" translateY="360" visible="false">
         <Text fx:id="tips" styleClass="tips" />
     </HBox>
     <Label layoutX="30.0" layoutY="32.0" prefHeight="23.0" prefWidth="95.0" styleClass="funcTitle" text="选择目录:" />
-    <Button fx:id="selectDir" layoutX="567.0" layoutY="55.0" onAction="#selectDir" prefHeight="23.0" prefWidth="25.0" text="..." />
+    <Button fx:id="selectDir" layoutX="564.0" layoutY="55.0" onAction="#selectDir" prefHeight="23.0" prefWidth="25.0" styleClass="btn" text="..." />
     <TextField fx:id="dir" layoutX="23.0" layoutY="25.0" prefHeight="23.0" prefWidth="536.0" styleClass="input" translateY="30" />
 
     <Label layoutX="27.0" layoutY="104.0" styleClass="funcTitle" text="最大启动内存" />
-    <TextField fx:id="memoryInput" layoutX="122.0" layoutY="103.0" prefHeight="23.0" prefWidth="60.0" styleClass="input"/>
+    <TextField fx:id="memoryInput" layoutX="122.0" layoutY="103.0" prefHeight="23.0" prefWidth="60.0" styleClass="input" />
     <Label layoutX="185.0" layoutY="107.0" text="MB" />
     <Label layoutX="27.0" layoutY="140.0" text="0MB" />
     <Label fx:id="maxPhyMemory" layoutX="510.0" layoutY="140.0" prefHeight="15.0" prefWidth="67.0" text="16000MB" />
     <Label fx:id="memoryLabel" layoutX="226.0" layoutY="27.0" text="已分配内存:00000MB/空闲内存:00000MB" translateY="80" />
     <Label layoutX="465.0" layoutY="104.0" styleClass="funcTitle" text="自动分配：" />
-    <CheckBox fx:id="autoMemory" layoutX="543.0" layoutY="107.0" />
+    <CheckBox fx:id="autoMemory" layoutX="542.0" layoutY="107.0" styleClass="checkBox" />
     <Slider fx:id="memorySlider" layoutX="30.0" layoutY="26.0" prefHeight="14.0" prefWidth="536.0" translateY="100" />
 
     <Label layoutX="20.0" layoutY="170.0" styleClass="funcTitle" text="Minecraft窗口大小：" />
@@ -33,7 +33,7 @@
 
     <Label layoutX="28.0" layoutY="200.0" styleClass="funcTitle" text="Java版本：" />
     <ComboBox fx:id="jreVersion" layoutX="23.0" layoutY="220.0" prefHeight="23.0" prefWidth="536.0" styleClass="combobox" />
-    <Button fx:id="selectJreDir" layoutX="567.0" layoutY="220.0" onAction="#addJreVersion" text="+" />
+    <Button fx:id="selectJreDir" layoutX="564.0" layoutY="220.0" onAction="#addJreVersion" styleClass="btn" text="+" />
 
 
 
