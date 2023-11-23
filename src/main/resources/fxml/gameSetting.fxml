@@ -3,8 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.Text?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="gameSetting" stylesheets="@css/gameSetting.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.gameSettingController">
     <Button fx:id="exit" onAction="#close" text="×" />
+    <HBox fx:id="tipsBox" styleClass="tipsBox" visible="false">
+        <Text fx:id="tips" styleClass="tips" />
+    </HBox>
     <Label layoutX="30.0" layoutY="32.0" prefHeight="23.0" prefWidth="95.0" styleClass="funcTitle" text="选择目录:" />
     <Button fx:id="selectDir" layoutX="567.0" layoutY="55.0" onAction="#selectDir" prefHeight="23.0" prefWidth="25.0" text="..." />
     <TextField fx:id="dir" layoutX="23.0" layoutY="25.0" prefHeight="23.0" prefWidth="536.0" styleClass="input" translateY="30" />

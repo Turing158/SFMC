@@ -23,3 +23,16 @@
 .input:hover,.input:focused,.combobox:hover{
     -fx-background-color: #e9e9e9;
 }
+.tipsBox{
+    -fx-background-color: #f1f1f1aa;
+    -fx-padding: 5px 10px;
+    -fx-position-shape: center;
+    -fx-translate-Y: 408px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, #13131388, 10, 0, 0, 2);
+}
+.tips{
+    -fx-font-size: 15px;
+    -fx-text-fill: #131313;
+    -fx-font-weight: bold;
+}

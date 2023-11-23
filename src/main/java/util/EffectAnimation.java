@@ -95,7 +95,7 @@ public class EffectAnimation {
     }
     public Timeline tipsEffect(Node tipsBox,Text text, double seconds, double waitTime,String tips){
         text.setText(tips);
-        tipsBox.setTranslateX(tipsBox.getScene().getWidth()/2 - text.getLayoutBounds().getWidth()/2 - ((HBox) tipsBox).getPadding().getLeft());
+        tipsBox.setTranslateX(tipsBox.getParent().getLayoutBounds().getWidth()/2 - text.getLayoutBounds().getWidth()/2 - ((HBox) tipsBox).getPadding().getLeft());
         return fadeEffect(tipsBox, seconds, waitTime);
     }
 //    用于停止动画

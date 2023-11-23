@@ -5,7 +5,11 @@ import com.sun.management.OperatingSystemMXBean;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -21,6 +25,7 @@ import java.util.regex.Pattern;
 
 public class gameSettingController {
 
+    Timeline timeline;
     @FXML
     public Button selectDir;
     @FXML
@@ -47,6 +52,10 @@ public class gameSettingController {
     public CheckBox autoMemory;
     @FXML
     public TextField memoryInput;
+    @FXML
+    public HBox tipsBox;
+    @FXML
+    public Text tips;
     //    获取内存信息
     OperatingSystemMXBean os = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     long maxMemory = os.getTotalPhysicalMemorySize()/(1024*1024);
@@ -146,6 +155,10 @@ public class gameSettingController {
             else {
 //                提示[未做]
                 System.out.println("你选择的目录不是.minecraft目录，请选择.minecraft目录");
+                EffectAnimation effect = new EffectAnimation();
+                checkTimeline();
+                timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"你选择的目录不是.minecraft目录，请选择.minecraft目录");
+                timeline.play();
             }
         }
     }
@@ -160,6 +173,19 @@ public class gameSettingController {
 //    初始化设置内存信息
     public void initMemorySlider(){
         memoryInput.setTextFormatter(new TextFormatter<>(new IntegerFilter()));
+        AnchorPane pane = (AnchorPane) memoryInput.getParent();
+        memoryInput.setOnMouseClicked(e -> {
+            e.consume();
+        });
+        pane.setOnMouseClicked(e -> {
+            if(memoryInput.isFocused()){
+                int value = setMemoryForInput();
+                memorySlider.setValue(value);
+                memoryLabel.setText("已分配内存:"+value+"MB/空闲内存:"+freeMemory+"MB");
+                memoryInput.getParent().requestFocus();
+            }
+        });
+
         autoMemory.setSelected(LaunchMC.autoMemory);
         autoMemory.setOnAction(e -> {
             LaunchMC.autoMemory = autoMemory.isSelected();
@@ -214,8 +240,22 @@ public class gameSettingController {
             LaunchMC.versionIsolate = versionIsolate.isSelected();
         });
     }
+    public int setMemoryForInput(){
+        int value = 0;
+        if(memoryInput.getText() != null){
+            value = Integer.parseInt(memoryInput.getText());
+        }
+        if(value < 1024){
+            value = 1024;
+        }
+        else if(value > freeMemory){
+            value = (int) freeMemory;
+        }
+        return value;
+    }
 //    关闭设置界面，并保存信息
     public void close(){
+        LaunchMC.memory = setMemoryForInput();
         if(!windowSizeW.getText().isEmpty()){
             LaunchMC.windowSizeWidth = Integer.parseInt(windowSizeW.getText());
         }
@@ -246,6 +286,11 @@ public class gameSettingController {
                 return change;
             }
             return null;
+        }
+    }
+    public void checkTimeline(){
+        if(timeline != null){
+            timeline.stop();
         }
     }
 }
