@@ -9,15 +9,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import jmccc.microsoft.MicrosoftAuthenticator;
-import util.DownloadMinecraft;
 import util.EffectAnimation;
 import util.OtherUtil;
 import util.initAuthenticator;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
 
 public class StartFrameController {
 

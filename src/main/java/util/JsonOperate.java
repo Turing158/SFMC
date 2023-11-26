@@ -3,6 +3,8 @@ package util;
 import Launch.LaunchData;
 import Launch.LaunchMC;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.to2mbn.jmccc.auth.AuthInfo;
 
 import java.io.File;
@@ -15,9 +17,11 @@ public class JsonOperate {
         LaunchData launchData = new LaunchData(LaunchMC.jreVersions,LaunchMC.authInfo,LaunchMC.microsoftAuthenticator,LaunchMC.selfDir,LaunchMC.jreDir,LaunchMC.autoMemory,LaunchMC.versionIsolate,LaunchMC.windowSizeWidth,LaunchMC.windowSizeHeight,LaunchMC.playerFunc,LaunchMC.version,LaunchMC.username,LaunchMC.directory,LaunchMC.memory);
 //        导入Json库
         ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        ObjectWriter objectWriter= mapper.writerWithDefaultPrettyPrinter();
         try {
 //            写入的json字符串[将LaunchData转换成json]
-            String json = mapper.writeValueAsString(launchData);
+            String json = objectWriter.writeValueAsString(launchData);
             File file = new File(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent()+"/sfmc.json");
             FileWriter writer = new FileWriter(file);
             writer.write(json);
@@ -28,7 +32,7 @@ public class JsonOperate {
     }
     public void load(){
         ObjectMapper mapper = new ObjectMapper();
-        mapper.addMixIn(AuthInfo.class, AuthInfoMixin.class);
+        mapper.addMixInAnnotations(AuthInfo.class, AuthInfoMixin.class);
         try {
 //            获取json文件
             File file = new File(new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).getParent()+"/sfmc.json");

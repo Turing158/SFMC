@@ -1,17 +1,13 @@
 package Controller;
 
-import Launch.LaunchMC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import util.JsonOperate;
-import util.OtherUtil;
 
 public class Frame extends Application {
     public Frame(){}
