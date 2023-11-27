@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="launchFrame" stylesheets="@css/launchFrame.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LaunchFrameController">
+    <Label layoutX="14.0" layoutY="14.0" text="正在启动游戏..." />
+    
+    <Button fx:id="cancel" layoutX="555" layoutY="370" onAction="#cancel" styleClass="cancel" text="取消" />
+   <Label layoutX="39.0" layoutY="53.0" text="Label" />
+   <Label layoutX="39.0" layoutY="87.0" text="Label" />
+   <Label layoutX="39.0" layoutY="123.0" text="Label" />
+</AnchorPane>

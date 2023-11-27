@@ -1,0 +1,10 @@
+.launchFrame {
+    -fx-background-color: #ffffffee;
+    -fx-background-radius: 8px;
+}
+.cancel{
+    -fx-background-color: transparent;
+}
+.cancel:hover{
+    -fx-background-color: #e2e2e2;
+}

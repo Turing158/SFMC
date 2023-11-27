@@ -109,8 +109,14 @@ public class StartFrameController {
             timeline.play();
         }
         else {
-            LaunchMC launchMC = new LaunchMC();
-            launchMC.start();
+            checkTimeline();
+            sonFrameSource.getChildren().setAll(new Frame().launchFrame());
+            EffectAnimation effect = new EffectAnimation();
+            effect.fadeEmergeVanish(0.1,true,sonFrame);
+            timeline =  effect.switchPage(sonFrameSource,0.3,425,25,true);
+            timeline.play();
+//            LaunchMC launchMC = new LaunchMC();
+//            launchMC.start();
         }
     }
 //    初始化正版验证信息
@@ -143,8 +149,14 @@ public class StartFrameController {
                     versionChoiceBox.getItems().add(versionFiles[i].getName());
                 }
                 startBtn.setText("启动\n"+firstVersion);
-                LaunchMC.version = firstVersion;
-                versionChoiceBox.setValue(firstVersion);
+                if(LaunchMC.version.isEmpty()){
+                    LaunchMC.version = firstVersion;
+                    versionChoiceBox.setValue(firstVersion);
+                }
+                else{
+                    versionChoiceBox.setValue(LaunchMC.version);
+                    startBtn.setText("启动\n"+versionChoiceBox.getValue());
+                }
                 LaunchMC.runtimeDir = new File(LaunchMC.directory+"/versions/"+firstVersion);
                 versionChoiceBox.setOnAction(event -> {
                     LaunchMC.runtimeDir = new File(LaunchMC.directory+"/versions/"+versionChoiceBox.getValue());
