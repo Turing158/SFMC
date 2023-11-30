@@ -7,6 +7,7 @@ import org.to2mbn.jmccc.auth.OfflineAuthenticator;
 import org.to2mbn.jmccc.launch.LaunchException;
 import org.to2mbn.jmccc.launch.Launcher;
 import org.to2mbn.jmccc.launch.LauncherBuilder;
+import org.to2mbn.jmccc.launch.ProcessListener;
 import org.to2mbn.jmccc.option.JavaEnvironment;
 import org.to2mbn.jmccc.option.LaunchOption;
 import org.to2mbn.jmccc.option.MinecraftDirectory;
@@ -35,11 +36,10 @@ public class LaunchMC {
     public static String directory = "";
     public static int memory = 1024;
 
-
-
+    public static Process process;
     public static File runtimeDir;
     public static Authenticator authenticator;
-    public void start(){
+    public void start(ProcessListener processListener){
         if (playerFunc.equals("offline")){
             authenticator = new OfflineAuthenticator(username);
         }
@@ -62,9 +62,12 @@ public class LaunchMC {
             }
             option.setServerInfo(null);
             option.setMinMemory(512);
-            launcher.launch(option);
+            process =  launcher.launch(option,processListener);
         } catch (LaunchException | IOException e) {
             e.printStackTrace();
         }
+    }
+    public static void destroy(){
+        process.destroy();
     }
 }

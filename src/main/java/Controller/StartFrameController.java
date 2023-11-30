@@ -2,6 +2,7 @@ package Controller;
 
 import Launch.LaunchMC;
 import javafx.animation.Timeline;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -9,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import jmccc.microsoft.MicrosoftAuthenticator;
+import org.to2mbn.jmccc.launch.ProcessListener;
 import util.EffectAnimation;
 import util.OtherUtil;
 import util.initAuthenticator;
@@ -16,7 +18,7 @@ import util.initAuthenticator;
 import java.io.File;
 
 public class StartFrameController {
-
+    LaunchMC launchMC = new LaunchMC();
     @FXML
     HBox tipsBox;
     @FXML
@@ -115,8 +117,41 @@ public class StartFrameController {
             effect.fadeEmergeVanish(0.1,true,sonFrame);
             timeline =  effect.switchPage(sonFrameSource,0.3,425,25,true);
             timeline.play();
-//            LaunchMC launchMC = new LaunchMC();
-//            launchMC.start();
+
+            launchMC.start(new ProcessListener() {
+                boolean started = false;
+
+                @Override
+                public void onLog(String s) {
+                    System.out.println(s);
+                    if(!started){
+                        started = true;
+                        Task<Void> task = new Task<Void>() {
+                            @Override
+                            protected Void call() throws Exception {
+                                if(started){
+                                    Thread.sleep(1000);
+                                    effect.fadeEmergeVanish(0.2,false,sonFrame);
+                                    effect.switchPage(sonFrameSource,0.2,25,425,false).play();
+                                }
+                                return null;
+                            }
+                        };
+                        new Thread(task).start();
+                    }
+
+                }
+
+                @Override
+                public void onErrorLog(String s) {
+                    System.out.println(s);
+                }
+
+                @Override
+                public void onExit(int i) {
+                    System.out.println(i);
+                }
+            });
         }
     }
 //    初始化正版验证信息
