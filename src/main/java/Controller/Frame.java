@@ -25,7 +25,7 @@ public class Frame extends Application {
         stage.getIcons().add(new Image("img/ico.png"));
         stage.setHeight(500);
         stage.setWidth(800);
-        stage.setTitle("SFMC 1.2");
+        stage.setTitle("SFMC 1.3");
         stage.setResizable(false);
         stage.setFullScreen(false);
         stage.setOnCloseRequest(event -> {

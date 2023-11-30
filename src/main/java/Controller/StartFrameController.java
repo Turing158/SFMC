@@ -118,40 +118,7 @@ public class StartFrameController {
             timeline =  effect.switchPage(sonFrameSource,0.3,425,25,true);
             timeline.play();
 
-            launchMC.start(new ProcessListener() {
-                boolean started = false;
 
-                @Override
-                public void onLog(String s) {
-                    System.out.println(s);
-                    if(!started){
-                        started = true;
-                        Task<Void> task = new Task<Void>() {
-                            @Override
-                            protected Void call() throws Exception {
-                                if(started){
-                                    Thread.sleep(1000);
-                                    effect.fadeEmergeVanish(0.2,false,sonFrame);
-                                    effect.switchPage(sonFrameSource,0.2,25,425,false).play();
-                                }
-                                return null;
-                            }
-                        };
-                        new Thread(task).start();
-                    }
-
-                }
-
-                @Override
-                public void onErrorLog(String s) {
-                    System.out.println(s);
-                }
-
-                @Override
-                public void onExit(int i) {
-                    System.out.println(i);
-                }
-            });
         }
     }
 //    初始化正版验证信息
