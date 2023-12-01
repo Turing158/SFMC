@@ -76,6 +76,9 @@ public class LaunchFrameController {
             @Override
             public void onExit(int i) {
                 System.out.println(i);
+                if(i == 1){
+                    System.out.println("！启动失败！");
+                }
             }
         });
     }
