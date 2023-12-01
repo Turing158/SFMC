@@ -60,6 +60,7 @@ public class LaunchMC {
             if(versionIsolate){
                 option.setRuntimeDirectory(new MinecraftDirectory(runtimeDir));
             }
+
             option.setServerInfo(null);
             option.setMinMemory(512);
             process =  launcher.launch(option,processListener);

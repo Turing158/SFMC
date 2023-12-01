@@ -2,9 +2,16 @@
     -fx-background-color: #ffffffee;
     -fx-background-radius: 8px;
 }
+.launchTittle{
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
 .cancel{
     -fx-background-color: transparent;
 }
 .cancel:hover{
     -fx-background-color: #e2e2e2;
+}
+.content{
+    -fx-font-size: 15px;
 }
