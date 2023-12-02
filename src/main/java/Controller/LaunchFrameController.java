@@ -81,7 +81,7 @@ public class LaunchFrameController {
                 System.out.println(i);
                 if(i == 1){
                     Platform.runLater(() -> {
-                        error.setText("ERROR: !启动失败!");
+                        error.setText("ERROR: \t!启动失败!\n\t1.请检查jre版本是否支持该Minecraft版本\n\t2.请检查所分配的内存是否能够运行Minecraft\n\t3.请检查Minecraft目录或版本核心是否有损坏");
                         effect.fadeEmergeVanish(0.2,true,error);
                     });
                 }
