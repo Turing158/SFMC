@@ -104,6 +104,12 @@ public class StartFrameController {
             timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"请输入用户名");
             timeline.play();
         }
+        else if(LaunchMC.playerFunc.equals("online")){
+            checkTimeline();
+            EffectAnimation effect = new EffectAnimation();
+            timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"⚠ERROR:由于微软收购了Mojang，不支持正版验证");
+            timeline.play();
+        }
         else if(LaunchMC.authenticator == null && LaunchMC.playerFunc.equals("microsoft")){
             checkTimeline();
             EffectAnimation effect = new EffectAnimation();

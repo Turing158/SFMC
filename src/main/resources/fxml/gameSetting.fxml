@@ -34,8 +34,4 @@
     <Label layoutX="28.0" layoutY="200.0" styleClass="funcTitle" text="Java版本：" />
     <ComboBox fx:id="jreVersion" layoutX="23.0" layoutY="220.0" prefHeight="23.0" prefWidth="536.0" styleClass="combobox" />
     <Button fx:id="selectJreDir" layoutX="564.0" layoutY="220.0" onAction="#addJreVersion" styleClass="btn" text="+" />
-
-
-
-
 </AnchorPane>

@@ -1,6 +1,7 @@
 package Controller;
 
 import Launch.LaunchMC;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,6 +16,8 @@ public class LaunchFrameController {
     public Label user;
     @FXML
     public Label waitLaunch;
+    @FXML
+    public Label error;
     EffectAnimation effect = new EffectAnimation();
     LaunchMC launchMC = new LaunchMC();
     @FXML
@@ -77,7 +80,10 @@ public class LaunchFrameController {
             public void onExit(int i) {
                 System.out.println(i);
                 if(i == 1){
-                    System.out.println("！启动失败！");
+                    Platform.runLater(() -> {
+                        error.setText("ERROR: !启动失败!");
+                        effect.fadeEmergeVanish(0.2,true,error);
+                    });
                 }
             }
         });

@@ -4,19 +4,21 @@ import Launch.LaunchMC;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import util.EffectAnimation;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 public class PlayerSettingController {
+    EffectAnimation effect =  new EffectAnimation();
     @FXML
     public ComboBox<String> selectFunc;
-    @FXML
-    public TextField playerUser;
-    @FXML
-    public TextField playerPassword;
-    @FXML
-    public Button playerVerify;
     @FXML
     public Button playerMicrosoft;
     @FXML
@@ -28,18 +30,34 @@ public class PlayerSettingController {
     @FXML
     public AnchorPane microsoftVerify;
     @FXML
+    public Hyperlink linkMoveAccount;
+    @FXML
+    public Hyperlink linkHow;
+    @FXML
+    public Label onlineTips;
+    @FXML
     TextField playerName;
     @FXML
     Button exit;
     @FXML
     public void initialize(){
+        initOther();
         initSelectFunc();
         initInfo();
 
     }
+    public void initOther(){
+        onlineTips.setText("⚠ERROR: \n由于Mojang被微软[Microsoft]收入，Mojang账户的登录不再受支持，您必须迁移至微软账户才能登录Minecraft");
+        linkMoveAccount.setOnAction(event -> {
+            moveAccount();
+        });
+        linkHow.setOnAction(event -> {
+            how();
+        });
+    }
 //    微软认证按钮
     public void microsoftLogin() {
-        EffectAnimation effect =  new EffectAnimation();
+
         microsoftVerify.getChildren().setAll(new Frame().verifyMicrosoft());
         effect.fadeEmergeVanish(0.2,true,microsoftVerify);
     }
@@ -49,21 +67,18 @@ public class PlayerSettingController {
         selectFunc.getItems().addAll("离线登录","正版登录","微软登录");
         selectFunc.setOnAction(event -> {
             if(selectFunc.getValue().equals("离线登录")){
-                outline.setVisible(true);
-                online.setVisible(false);
-                Microsoft.setVisible(false);
+                effect.fadeEmergeVanish(0.2,true,outline);
+                effect.fadeEmergeVanish(0.2,false,online,Microsoft);
                 LaunchMC.playerFunc = "offline";
             }
             else if(selectFunc.getValue().equals("正版登录")){
-                outline.setVisible(false);
-                online.setVisible(true);
-                Microsoft.setVisible(false);
+                effect.fadeEmergeVanish(0.2,true,online);
+                effect.fadeEmergeVanish(0.2,false,outline,Microsoft);
                 LaunchMC.playerFunc = "online";
             }
             else  if(selectFunc.getValue().equals("微软登录")){
-                outline.setVisible(false);
-                online.setVisible(false);
-                Microsoft.setVisible(true);
+                effect.fadeEmergeVanish(0.2,true,Microsoft);
+                effect.fadeEmergeVanish(0.2,false,outline,online);
                 LaunchMC.playerFunc = "microsoft";
             }
 //            初始化玩家角色信息[用于正版]
@@ -101,6 +116,28 @@ public class PlayerSettingController {
             microsoftVerify.setVisible(false);
         }
     }
+    public void moveAccount(){
+        openBrowser("https://www.minecraft.net/login?view=mojang");
+    }
+    public void how(){
+        openBrowser("https://help.minecraft.net/hc/en-us/articles/4403192913933");
+    }
+
+    public void openBrowser(String url){
+        Desktop desktop = Desktop.getDesktop();
+        if (desktop.isSupported(Desktop.Action.BROWSE)) {
+            try {
+                URI uri = new URI(url);
+                desktop.browse(uri);
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            System.out.println("不支持打开浏览器");
+        }
+    }
+
     public void close(){
         LaunchMC.username = playerName.getText();
         EffectAnimation effect = new EffectAnimation();

@@ -17,7 +17,7 @@ import java.util.concurrent.Future;
 public class DownloadMinecraft {
     ForgeDownloadProvider forgeDownloadProvider = new ForgeDownloadProvider();
     FabricDownloadProvider fabricDownloadProvider = new FabricDownloadProvider();
-    LiteloaderDownloadProvider liteloaderDownloadProvider = new LiteloaderDownloadProvider();
+
     MinecraftDownloader downloader = MinecraftDownloaderBuilder.create()
             .providerChain(DownloadProviderChain.create()
                     .addProvider(forgeDownloadProvider)

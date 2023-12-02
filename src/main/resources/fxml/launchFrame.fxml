@@ -10,4 +10,5 @@
    <Label fx:id="loadUser" layoutX="39.0" layoutY="53.0" styleClass="content" text="加载用户名..." visible="false" />
    <Label fx:id="user" layoutX="39.0" layoutY="87.0" styleClass="content" text="Label" visible="false" />
    <Label fx:id="waitLaunch" layoutX="39.0" layoutY="123.0" styleClass="content" text="等待游戏启动..." visible="false" />
+   <Label fx:id="error" layoutX="24.0" layoutY="200.0" text="Error" styleClass="error" visible="false"/>
 </AnchorPane>

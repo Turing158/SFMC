@@ -6,25 +6,27 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="playSetting" stylesheets="@css/playerSetting.css,@css/nodeElement.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSettingController">
     <Button fx:id="exit" onAction="#close" text="×" />
     <Label layoutX="14.0" layoutY="14.0" styleClass="title" text="玩家设置" />
-    <ComboBox fx:id="selectFunc" layoutX="7.0" layoutY="37.0" prefHeight="23.0" prefWidth="161.0" styleClass="combobox"/>
+    <ComboBox fx:id="selectFunc" layoutX="7.0" layoutY="37.0" prefHeight="23.0" prefWidth="161.0" styleClass="combobox" />
 
     <AnchorPane fx:id="outline" layoutX="4.0" layoutY="74.0" prefHeight="30.0" prefWidth="168.0" visible="false">
         <Label layoutY="7.0" text="玩家名：" />
         <TextField fx:id="playerName" layoutX="48.0" layoutY="3.0" prefHeight="23.0" prefWidth="120.0" styleClass="input" />
     </AnchorPane>
 
-    <AnchorPane fx:id="online" layoutX="4.0" layoutY="74.0" visible="false">
-        <Label layoutY="7.0" text="用户名：" />
-        <TextField fx:id="playerUser" layoutX="46.0" layoutY="3.0" prefHeight="23.0" prefWidth="120.0" styleClass="input" />
-        <Label layoutX="6.0" layoutY="36.0" text="密码：" />
-        <TextField fx:id="playerPassword" layoutX="46.0" layoutY="32.0" prefHeight="23.0" prefWidth="120.0" styleClass="input" />
-        <Button fx:id="playerVerify" layoutX="113.0" layoutY="60.0" mnemonicParsing="false" styleClass="btn" text="登录" />
+    <AnchorPane fx:id="online" layoutX="4.0" layoutY="74.0" prefHeight="140.0" prefWidth="588.0" visible="false">
+        <Label fx:id="onlineTips" layoutX="29.0" layoutY="14.0" prefHeight="83.0" prefWidth="527.0" styleClass="onlineTips" textOverrun="CLIP" wrapText="true" />
+      <Hyperlink fx:id="linkMoveAccount" layoutX="52.0" layoutY="120.0" styleClass="link" text="🔗 Mojang迁移至微软账户" />
+      <Hyperlink fx:id="linkHow" layoutX="226.0" layoutY="120.0" styleClass="link" text="🔗 如何迁移？" />
+        
     </AnchorPane>
 
-    <AnchorPane fx:id="Microsoft" layoutX="4.0" layoutY="74.0" prefHeight="30.0" prefWidth="168.0" visible="false">
+    <AnchorPane fx:id="Microsoft" layoutX="4.0" layoutY="74.0" prefHeight="30.0" prefWidth="168.0" visible="true">
         <Button fx:id="playerMicrosoft" layoutX="4.0" layoutY="3.0" mnemonicParsing="false" onAction="#microsoftLogin" prefHeight="23.0" prefWidth="161.0" styleClass="btn" text="微软验证" />
+        <Label layoutX="29.0" layoutY="36.0" text="点一下即可进行认证" />
+        <Label layoutX="29.0" layoutY="51.0" text="想验证其他账号同上" />
     </AnchorPane>
     <AnchorPane fx:id="microsoftVerify" layoutX="212.0" layoutY="15.0" prefHeight="375.0" prefWidth="375.0" />
+
 
 
 </AnchorPane>

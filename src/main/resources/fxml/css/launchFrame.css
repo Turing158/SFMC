@@ -12,6 +12,10 @@
 .cancel:hover{
     -fx-background-color: #e2e2e2;
 }
-.content{
+.content,.error{
     -fx-font-size: 15px;
+}
+
+.error {
+    -fx-text-fill: #660000;
 }
