@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import org.to2mbn.jmccc.auth.AuthenticationException;
 import org.to2mbn.jmccc.auth.Authenticator;
 import org.to2mbn.jmccc.auth.OfflineAuthenticator;
 import util.EffectAnimation;
@@ -16,6 +17,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class NEWPlayerSettingController {
 
@@ -68,10 +71,24 @@ public class NEWPlayerSettingController {
             effect.fadeEmergeVanish(0.2,true,player);
         });
     }
-    public void addOutlinePlayer(){
+    public void addOutlinePlayer() throws AuthenticationException {
         if(!outlineUsername.getText().isEmpty()){
-            OfflineAuthenticator offlineAuthenticator = new OfflineAuthenticator(outlineUsername.getText());
-            LaunchMC.players.add(new Player("outline",offlineAuthenticator));
+            ArrayList<Player> players = LaunchMC.players;
+            boolean flag = true;
+            for (int i = 0; i < players.size(); i++) {
+                if(players.get(i).getAuthenticator().auth().getUsername().equals(outlineUsername.getText())){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag){
+                OfflineAuthenticator offlineAuthenticator = new OfflineAuthenticator(outlineUsername.getText());
+                LaunchMC.players.add(new Player("outline",offlineAuthenticator));
+                initPlayerPage();
+            }
+            else {
+                System.out.println("玩家已存在");
+            }
             effect.fadeEmergeVanish(0.2,false,outline,addPlayer);
             effect.fadeEmergeVanish(0.2,true,player);
         }

@@ -8,4 +8,7 @@
     -fx-background-radius: 5px;
     -fx-background-color: #dd9922;
     -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Microsoft YaHei";
 }
