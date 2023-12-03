@@ -3,10 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="375.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/11.0.14-internal" stylesheets="@css/player.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerController">
-    <Label fx:id="title" layoutX="21.0" layoutY="14.0" text="...登录" styleClass="playerTitle"/>
-    <Label layoutX="21.0" layoutY="68.0" text="用户名：" styleClass="subtitle"/>
-    <Label fx:id="username" layoutX="21.0" layoutY="88.0" styleClass="username"/>
-    <Label layoutX="24.0" layoutY="120.0" text="UUID：" styleClass="subtitle"/>
-    <Label fx:id="uuid" layoutX="24.0" layoutY="145.0" styleClass="uuid"/>
+<AnchorPane prefHeight="370.0" prefWidth="415.0" stylesheets="@css/player.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerController">
+    <Label fx:id="playerPage" visible="false"/>
+<!--    <RadioButton layoutX="10.0" layoutY="15.0" prefHeight="45.0" prefWidth="390.0" text="角色" />-->
+<!--    <Button layoutX="360.0" layoutY="20.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" text="🚮" />-->
 </AnchorPane>

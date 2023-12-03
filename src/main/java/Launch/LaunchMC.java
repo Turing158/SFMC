@@ -1,5 +1,6 @@
 package Launch;
 
+import entity.Player;
 import jmccc.microsoft.MicrosoftAuthenticator;
 import org.to2mbn.jmccc.auth.AuthInfo;
 import org.to2mbn.jmccc.auth.Authenticator;
@@ -22,6 +23,7 @@ import java.util.Map;
 public class LaunchMC {
 
     public static Map<String, String> jreVersions = new HashMap<>();
+    public static ArrayList<Player> players = new ArrayList<>();
     public static AuthInfo authInfo;
     public static MicrosoftAuthenticator microsoftAuthenticator;
     public static File selfDir;
@@ -30,7 +32,7 @@ public class LaunchMC {
     public static Boolean versionIsolate = false;
     public static  int windowSizeWidth = 854;
     public static  int windowSizeHeight = 480;
-    public static  String playerFunc = "offline";
+    public static String playerFunc = "offline";
     public static String version = "";
     public static String username = "";
     public static String directory = "";
@@ -49,7 +51,7 @@ public class LaunchMC {
                     version,
                     authenticator,
                     new MinecraftDirectory(directory));
-            option.commandlineVariables().put("version_type","StarFall 1.0");
+            option.commandlineVariables().put("version_type","StarFall 1.4");
             option.setWindowSize(WindowSize.window(windowSizeWidth,windowSizeHeight));
             if(jreDir != null){
                 option.setJavaEnvironment(new JavaEnvironment(jreDir));

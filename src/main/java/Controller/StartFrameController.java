@@ -66,7 +66,7 @@ public class StartFrameController {
     public void playerSetting(){
         if(!downloadFlag && !playerFlag && !gameFlag){
             checkTimeline();
-            sonFrameSource.getChildren().setAll(new Frame().playerSetting());
+            sonFrameSource.getChildren().setAll(new Frame().newPlayerSetting());
             EffectAnimation effect = new EffectAnimation();
             effect.fadeEmergeVanish(0.1,true,sonFrame);
             timeline =  effect.switchPage(sonFrameSource,0.3,425,25,true);

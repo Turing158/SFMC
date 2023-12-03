@@ -25,7 +25,7 @@ public class Frame extends Application {
         stage.getIcons().add(new Image("img/ico.png"));
         stage.setHeight(500);
         stage.setWidth(800);
-        stage.setTitle("SFMC 1.3");
+        stage.setTitle("SFMC 1.4");
         stage.setResizable(false);
         stage.setFullScreen(false);
         stage.setOnCloseRequest(event -> {
@@ -106,6 +106,18 @@ public class Frame extends Application {
         try{
             FXMLLoader fxml = new FXMLLoader();
             fxml.setLocation(getClass().getClassLoader().getResource("fxml/launchFrame.fxml"));
+            AnchorPane pane = fxml.load();
+            return pane;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Node newPlayerSetting(){
+        try{
+            FXMLLoader fxml = new FXMLLoader();
+            fxml.setLocation(getClass().getClassLoader().getResource("fxml/NEWplayerSetting.fxml"));
             AnchorPane pane = fxml.load();
             return pane;
         }catch (Exception e){

@@ -20,12 +20,12 @@
         
     </AnchorPane>
 
-    <AnchorPane fx:id="Microsoft" layoutX="4.0" layoutY="74.0" prefHeight="30.0" prefWidth="168.0" visible="true">
+    <AnchorPane fx:id="Microsoft" layoutX="4.0" layoutY="74.0" prefHeight="30.0" prefWidth="168.0">
         <Button fx:id="playerMicrosoft" layoutX="4.0" layoutY="3.0" mnemonicParsing="false" onAction="#microsoftLogin" prefHeight="23.0" prefWidth="161.0" styleClass="btn" text="微软验证" />
         <Label layoutX="29.0" layoutY="36.0" text="点一下即可进行认证" />
         <Label layoutX="29.0" layoutY="51.0" text="想验证其他账号同上" />
     </AnchorPane>
-    <AnchorPane fx:id="microsoftVerify" layoutX="212.0" layoutY="15.0" prefHeight="375.0" prefWidth="375.0" />
+    <AnchorPane fx:id="microsoftVerify" layoutX="177.0" layoutY="15.0" prefHeight="375.0" prefWidth="415.0" />
 
 
 
