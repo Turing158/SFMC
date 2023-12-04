@@ -98,22 +98,10 @@ public class StartFrameController {
     }
 //    开始游戏按钮
     public void startBtn() {
-        if(LaunchMC.username.isEmpty() && LaunchMC.playerFunc.equals("offline")){
+        if(LaunchMC.authenticator == null){
             checkTimeline();
             EffectAnimation effect = new EffectAnimation();
-            timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"请输入用户名");
-            timeline.play();
-        }
-        else if(LaunchMC.playerFunc.equals("online")){
-            checkTimeline();
-            EffectAnimation effect = new EffectAnimation();
-            timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"⚠ERROR:由于微软收购了Mojang，不支持正版验证");
-            timeline.play();
-        }
-        else if(LaunchMC.authenticator == null && LaunchMC.playerFunc.equals("microsoft")){
-            checkTimeline();
-            EffectAnimation effect = new EffectAnimation();
-            timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"请进行微软正版认证");
+            timeline = effect.tipsEffect(tipsBox,tips,0.2,2,"请选择角色");
             timeline.play();
         }
         else {
@@ -123,8 +111,6 @@ public class StartFrameController {
             effect.fadeEmergeVanish(0.1,true,sonFrame);
             timeline =  effect.switchPage(sonFrameSource,0.3,425,25,true);
             timeline.play();
-
-
         }
     }
 //    初始化正版验证信息

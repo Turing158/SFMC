@@ -19,7 +19,8 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class NEWPlayerSettingController {
-
+    @FXML
+    public AnchorPane microsoftVerify;
     EffectAnimation effect = new EffectAnimation();
 
     @FXML
@@ -63,13 +64,13 @@ public class NEWPlayerSettingController {
         if(!outline.isVisible()){
             effect.fadeEmergeVanish(0.2,true,outline);
         }
-        effect.fadeEmergeVanish(0.2,false,online,player);
+        effect.fadeEmergeVanish(0.2,false,online,player,microsoftVerify);
         cancelOutline.setOnAction(event -> {
             effect.fadeEmergeVanish(0.2,false,outline,addPlayer);
             effect.fadeEmergeVanish(0.2,true,player);
         });
     }
-    public void addOutlinePlayer() throws AuthenticationException {
+    public void addOutlinePlayer() {
         if(!outlineUsername.getText().isEmpty()){
             ArrayList<Player> players = LaunchMC.players;
             boolean flag = true;
@@ -88,7 +89,7 @@ public class NEWPlayerSettingController {
             else {
                 System.out.println("玩家已存在");
             }
-            effect.fadeEmergeVanish(0.2,false,outline,addPlayer);
+            effect.fadeEmergeVanish(0.2,false,outline,addPlayer,microsoftVerify);
             effect.fadeEmergeVanish(0.2,true,player);
         }
         else {
@@ -102,7 +103,7 @@ public class NEWPlayerSettingController {
         if(!online.isVisible()){
             effect.fadeEmergeVanish(0.2,true,online);
         }
-        effect.fadeEmergeVanish(0.2,false,outline,player);
+        effect.fadeEmergeVanish(0.2,false,outline,player,microsoftVerify);
         onlineTips.setText("⚠ERROR: \n\n由于Mojang被微软[Microsoft]收入，Mojang账户的登录不再受支持，您必须迁移至微软账户才能登录Minecraft");
         linkMoveAccount.setOnAction(event -> {
             openBrowser("https://www.minecraft.net/login?view=mojang");
@@ -114,6 +115,11 @@ public class NEWPlayerSettingController {
             effect.fadeEmergeVanish(0.2,false,online,addPlayer);
             effect.fadeEmergeVanish(0.2,true,player);
         });
+    }
+    public void addOnlinePlayer(){
+        microsoftVerify.getChildren().setAll(new Frame().verifyMicrosoft());
+        effect.fadeEmergeVanish(0.2,true,microsoftVerify);
+        effect.fadeEmergeVanish(0.2,false,online,addPlayer,outline,player);
     }
     public void openBrowser(String url){
         Desktop desktop = Desktop.getDesktop();

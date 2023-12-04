@@ -1,6 +1,7 @@
 package Controller;
 
 import Launch.LaunchMC;
+import entity.Player;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -55,17 +56,23 @@ public class VerifyMicrosoft {
                         effect.fadeEmergeVanish(0.5,true,message1,message2,url,code);
                     });
                 });
+                if (microsoftAuthenticator.auth() != null){
 //                获取到的信息存入启动类里，方便用于json储存
-                LaunchMC.authInfo = microsoftAuthenticator.auth();
-                LaunchMC.microsoftAuthenticator = microsoftAuthenticator;
-                LaunchMC.authenticator = microsoftAuthenticator;
+                    Player player = new Player();
+                    player.setMicrosoftAuthenticator(microsoftAuthenticator);
+                    player.setAuthInfo(microsoftAuthenticator.auth());
+                    LaunchMC.players.add(player);
 //                在多线程里得用这个方法来调整界面
-                Platform.runLater(() -> {
-                    AnchorPane parent = (AnchorPane) waitTips.getParent().getParent();
-                    parent.setVisible(false);
-                    effect.fadeEmergeVanish(0.5,true,parent);
-                    parent.getChildren().setAll(new Frame().player());
-                });
+                    Platform.runLater(() -> {
+                        AnchorPane parent = (AnchorPane) waitTips.getParent().getParent();
+                        parent.getChildren().setAll(new Frame().player());
+                    });
+                }
+                else {
+                    Platform.runLater(() -> {
+                        System.out.println("登录失败");
+                    });
+                }
                 return null;
             }
         };

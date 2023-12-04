@@ -10,7 +10,7 @@
    <AnchorPane layoutX="6.0" layoutY="52.0" prefHeight="306.0" prefWidth="147.0">
        <Button onAction="#outlinePage" prefHeight="46.0" prefWidth="147.0" text="离线登录" />
        <Button layoutY="58.0" onAction="#onlinePage" prefHeight="46.0" prefWidth="147.0" text="正版登录" />
-       <Button layoutY="117.0" prefHeight="46.0" prefWidth="147.0" text="微软登录" />
+       <Button layoutY="117.0" onAction="#addOnlinePlayer" prefHeight="46.0" prefWidth="147.0" text="微软登录" />
    </AnchorPane>
     <AnchorPane fx:id="addPlayer" layoutX="177.0" layoutY="24.0" prefHeight="370.0" prefWidth="415.0" visible="false">
         <AnchorPane fx:id="outline" layoutX="68.0" layoutY="26.0" prefHeight="159.0" prefWidth="282.0" visible="false">
@@ -26,7 +26,7 @@
             <Button fx:id="cancelOnline" layoutX="345.0" layoutY="138.0" prefHeight="25.0" prefWidth="48.0" text="取消" />
         </AnchorPane>
     </AnchorPane>
-
+    <AnchorPane fx:id="microsoftVerify" styleClass="microsoftVerify" layoutX="177.0" layoutY="24.0" prefHeight="370.0" prefWidth="415.0" visible="false"/>
 
 
 </AnchorPane>

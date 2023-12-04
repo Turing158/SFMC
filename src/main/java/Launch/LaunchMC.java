@@ -24,6 +24,7 @@ public class LaunchMC {
 
     public static Map<String, String> jreVersions = new HashMap<>();
     public static ArrayList<Player> players = new ArrayList<>();
+    public static int selectPlayer = -1;
     public static AuthInfo authInfo;
     public static MicrosoftAuthenticator microsoftAuthenticator;
     public static File selfDir;
@@ -42,9 +43,7 @@ public class LaunchMC {
     public static File runtimeDir;
     public static Authenticator authenticator;
     public void start(ProcessListener processListener){
-        if (playerFunc.equals("offline")){
-            authenticator = new OfflineAuthenticator(username);
-        }
+
         Launcher launcher = LauncherBuilder.create().printDebugCommandline(true).nativeFastCheck(false).build();
         try {
             LaunchOption option = new LaunchOption(
@@ -62,10 +61,11 @@ public class LaunchMC {
             if(versionIsolate){
                 option.setRuntimeDirectory(new MinecraftDirectory(runtimeDir));
             }
-
             option.setServerInfo(null);
             option.setMinMemory(512);
+
             process =  launcher.launch(option,processListener);
+            System.out.println("a");
         } catch (LaunchException | IOException e) {
             e.printStackTrace();
         }

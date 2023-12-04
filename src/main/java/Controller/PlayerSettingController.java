@@ -57,7 +57,6 @@ public class PlayerSettingController {
     }
 //    微软认证按钮
     public void microsoftLogin() {
-
         microsoftVerify.getChildren().setAll(new Frame().verifyMicrosoft());
         effect.fadeEmergeVanish(0.2,true,microsoftVerify);
     }
