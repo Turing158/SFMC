@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.to2mbn.jmccc.auth.AuthenticationException;
-import org.to2mbn.jmccc.auth.Authenticator;
 import org.to2mbn.jmccc.auth.OfflineAuthenticator;
 import util.EffectAnimation;
 
@@ -18,7 +17,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class NEWPlayerSettingController {
 
@@ -76,14 +74,15 @@ public class NEWPlayerSettingController {
             ArrayList<Player> players = LaunchMC.players;
             boolean flag = true;
             for (int i = 0; i < players.size(); i++) {
-                if(players.get(i).getAuthenticator().auth().getUsername().equals(outlineUsername.getText())){
+                if(players.get(i).getOffUsername().equals(outlineUsername.getText())){
                     flag = false;
                     break;
                 }
             }
             if(flag){
-                OfflineAuthenticator offlineAuthenticator = new OfflineAuthenticator(outlineUsername.getText());
-                LaunchMC.players.add(new Player("outline",offlineAuthenticator));
+                Player player = new Player();
+                player.setOffUsername(outlineUsername.getText());
+                LaunchMC.players.add(player);
                 initPlayerPage();
             }
             else {

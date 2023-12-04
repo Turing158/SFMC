@@ -1,29 +1,28 @@
 package entity;
 
+import jmccc.microsoft.MicrosoftAuthenticator;
 import org.to2mbn.jmccc.auth.Authenticator;
+import org.to2mbn.jmccc.auth.OfflineAuthenticator;
 
 public class Player {
-    String state;
-    Authenticator authenticator;
+    String offUsername;
+    MicrosoftAuthenticator microsoftAuthenticator;
+
     public Player(){}
-    public Player(String state, Authenticator authenticator) {
-        this.state = state;
-        this.authenticator = authenticator;
+
+    public String getOffUsername() {
+        return offUsername;
     }
 
-    public String getState() {
-        return state;
+    public void setOffUsername(String offUsername) {
+        this.offUsername = offUsername;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public MicrosoftAuthenticator getMicrosoftAuthenticator() {
+        return microsoftAuthenticator;
     }
 
-    public Authenticator getAuthenticator() {
-        return authenticator;
-    }
-
-    public void setAuthenticator(Authenticator authenticator) {
-        this.authenticator = authenticator;
+    public void setMicrosoftAuthenticator(MicrosoftAuthenticator microsoftAuthenticator) {
+        this.microsoftAuthenticator = microsoftAuthenticator;
     }
 }

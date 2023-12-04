@@ -1,7 +1,9 @@
 package Launch;
 
+import entity.Player;
 import jmccc.microsoft.MicrosoftAuthenticator;
 import org.to2mbn.jmccc.auth.AuthInfo;
+import org.to2mbn.jmccc.auth.Authenticator;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.Map;
 //用于json储存和写入
 public class LaunchData {
     public Map<String, String> jreVersions;
+    public ArrayList<Player> players;
     public AuthInfo authInfo;
     public MicrosoftAuthenticator microsoftAuthenticator;
     public File selfDir;
@@ -26,8 +29,9 @@ public class LaunchData {
     public LaunchData() {
     }
 
-    public LaunchData(Map<String, String> jreVersions, AuthInfo authInfo, MicrosoftAuthenticator microsoftAuthenticator, File selfDir, File jreDir, Boolean autoMemory, Boolean versionIsolate, int windowSizeWidth, int windowSizeHeight, String playerFunc, String version, String username, String directory, int memory) {
+    public LaunchData(Map<String, String> jreVersions, ArrayList<Player> players, AuthInfo authInfo, MicrosoftAuthenticator microsoftAuthenticator, File selfDir, File jreDir, Boolean autoMemory, Boolean versionIsolate, int windowSizeWidth, int windowSizeHeight, String playerFunc, String version, String username, String directory, int memory) {
         this.jreVersions = jreVersions;
+        this.players = players;
         this.authInfo = authInfo;
         this.microsoftAuthenticator = microsoftAuthenticator;
         this.selfDir = selfDir;
@@ -41,6 +45,14 @@ public class LaunchData {
         this.username = username;
         this.directory = directory;
         this.memory = memory;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
     }
 
     public Boolean getAutoMemory() {

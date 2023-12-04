@@ -5,6 +5,7 @@ import Launch.LaunchMC;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import entity.AuthInfoMixin;
 import org.to2mbn.jmccc.auth.AuthInfo;
 
 import java.io.File;
@@ -14,7 +15,7 @@ import java.io.FileWriter;
 public class JsonOperate {
     public void save(){
 //        创建启动类entity类
-        LaunchData launchData = new LaunchData(LaunchMC.jreVersions,LaunchMC.authInfo,LaunchMC.microsoftAuthenticator,LaunchMC.selfDir,LaunchMC.jreDir,LaunchMC.autoMemory,LaunchMC.versionIsolate,LaunchMC.windowSizeWidth,LaunchMC.windowSizeHeight,LaunchMC.playerFunc,LaunchMC.version,LaunchMC.username,LaunchMC.directory,LaunchMC.memory);
+        LaunchData launchData = new LaunchData(LaunchMC.jreVersions,LaunchMC.players,LaunchMC.authInfo,LaunchMC.microsoftAuthenticator,LaunchMC.selfDir,LaunchMC.jreDir,LaunchMC.autoMemory,LaunchMC.versionIsolate,LaunchMC.windowSizeWidth,LaunchMC.windowSizeHeight,LaunchMC.playerFunc,LaunchMC.version,LaunchMC.username,LaunchMC.directory,LaunchMC.memory);
 //        导入Json库
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -40,6 +41,7 @@ public class JsonOperate {
             LaunchData launchData = mapper.readValue(file,LaunchData.class);
 //            将数据传到LaunchMC
             LaunchMC.jreVersions = launchData.getJreVersions();
+            LaunchMC.players = launchData.getPlayers();
             LaunchMC.authInfo = launchData.getAuthInfo();
             LaunchMC.microsoftAuthenticator = launchData.getMicrosoftAuthenticator();
             LaunchMC.selfDir = launchData.getSelfDir();
