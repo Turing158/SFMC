@@ -25,15 +25,12 @@ public class LaunchMC {
     public static Map<String, String> jreVersions = new HashMap<>();
     public static ArrayList<Player> players = new ArrayList<>();
     public static int selectPlayer = -1;
-    public static AuthInfo authInfo;
-    public static MicrosoftAuthenticator microsoftAuthenticator;
     public static File selfDir;
     public static File jreDir;
     public static Boolean autoMemory = true;
     public static Boolean versionIsolate = false;
     public static  int windowSizeWidth = 854;
     public static  int windowSizeHeight = 480;
-    public static String playerFunc = "offline";
     public static String version = "";
     public static String username = "";
     public static String directory = "";
@@ -63,14 +60,14 @@ public class LaunchMC {
             }
             option.setServerInfo(null);
             option.setMinMemory(512);
-
             process =  launcher.launch(option,processListener);
-            System.out.println("a");
         } catch (LaunchException | IOException e) {
             e.printStackTrace();
         }
     }
     public static void destroy(){
-        process.destroy();
+        if(process != null){
+            process.destroy();
+        }
     }
 }

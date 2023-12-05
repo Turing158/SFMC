@@ -12,15 +12,13 @@ import java.util.Map;
 public class LaunchData {
     public Map<String, String> jreVersions;
     public ArrayList<Player> players;
-    public AuthInfo authInfo;
-    public MicrosoftAuthenticator microsoftAuthenticator;
+    public int selectPlayer;
     public File selfDir;
     public File jreDir;
     public Boolean autoMemory;
     public Boolean versionIsolate;
     public int windowSizeWidth;
     public int windowSizeHeight;
-    public String playerFunc;
     public String version;
     public String username;
     public String directory;
@@ -29,22 +27,28 @@ public class LaunchData {
     public LaunchData() {
     }
 
-    public LaunchData(Map<String, String> jreVersions, ArrayList<Player> players, AuthInfo authInfo, MicrosoftAuthenticator microsoftAuthenticator, File selfDir, File jreDir, Boolean autoMemory, Boolean versionIsolate, int windowSizeWidth, int windowSizeHeight, String playerFunc, String version, String username, String directory, int memory) {
+    public LaunchData(Map<String, String> jreVersions, ArrayList<Player> players, int selectPlayer, File selfDir, File jreDir, Boolean autoMemory, Boolean versionIsolate, int windowSizeWidth, int windowSizeHeight, String version, String username, String directory, int memory) {
         this.jreVersions = jreVersions;
         this.players = players;
-        this.authInfo = authInfo;
-        this.microsoftAuthenticator = microsoftAuthenticator;
+        this.selectPlayer = selectPlayer;
         this.selfDir = selfDir;
         this.jreDir = jreDir;
         this.autoMemory = autoMemory;
         this.versionIsolate = versionIsolate;
         this.windowSizeWidth = windowSizeWidth;
         this.windowSizeHeight = windowSizeHeight;
-        this.playerFunc = playerFunc;
         this.version = version;
         this.username = username;
         this.directory = directory;
         this.memory = memory;
+    }
+
+    public int getSelectPlayer() {
+        return selectPlayer;
+    }
+
+    public void setSelectPlayer(int selectPlayer) {
+        this.selectPlayer = selectPlayer;
     }
 
     public ArrayList<Player> getPlayers() {
@@ -79,22 +83,6 @@ public class LaunchData {
         this.jreVersions = jreVersions;
     }
 
-    public AuthInfo getAuthInfo() {
-        return authInfo;
-    }
-
-    public void setAuthInfo(AuthInfo authInfo) {
-        this.authInfo = authInfo;
-    }
-
-    public MicrosoftAuthenticator getMicrosoftAuthenticator() {
-        return microsoftAuthenticator;
-    }
-
-    public void setMicrosoftAuthenticator(MicrosoftAuthenticator microsoftAuthenticator) {
-        this.microsoftAuthenticator = microsoftAuthenticator;
-    }
-
     public File getSelfDir() {
         return selfDir;
     }
@@ -125,14 +113,6 @@ public class LaunchData {
 
     public void setWindowSizeHeight(int windowSizeHeight) {
         this.windowSizeHeight = windowSizeHeight;
-    }
-
-    public String getPlayerFunc() {
-        return playerFunc;
-    }
-
-    public void setPlayerFunc(String playerFunc) {
-        this.playerFunc = playerFunc;
     }
 
     public String getVersion() {

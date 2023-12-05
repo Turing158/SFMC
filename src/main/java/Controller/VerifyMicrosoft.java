@@ -5,6 +5,7 @@ import entity.Player;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import jmccc.microsoft.MicrosoftAuthenticator;
@@ -16,12 +17,16 @@ import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class VerifyMicrosoft {
     @FXML
     public Label message1;
     @FXML
     public Label message2;
+    @FXML
+    public Button cancel;
     String verificationUri;
     String userCode;
     @FXML
@@ -40,7 +45,6 @@ public class VerifyMicrosoft {
             protected Void call() throws Exception {
 //                调用微软验证登录函数
                 MicrosoftAuthenticator microsoftAuthenticator = MicrosoftAuthenticator.login(microsoftVerification -> {
-                    System.out.println("start verify");
 //                    获取到的url和code展示
                     verificationUri = microsoftVerification.verificationUri;
                     userCode = microsoftVerification.userCode;
@@ -57,20 +61,30 @@ public class VerifyMicrosoft {
                     });
                 });
                 if (microsoftAuthenticator.auth() != null){
-//                获取到的信息存入启动类里，方便用于json储存
+                    System.out.println(microsoftAuthenticator.auth().getUsername());
+                    ArrayList<Player> players = LaunchMC.players;
+                    System.out.println("xun");
+                    for (int i = 0; i < players.size(); i++) {
+                        if (players.get(i).getAuthInfo() != null && players.get(i).getAuthInfo().getUsername().equals(microsoftAuthenticator.auth().getUsername())) {
+                            players.remove(players.get(i));
+                            break;
+                        }
+                    }
+                    //                获取到的信息存入启动类里，方便用于json储存
                     Player player = new Player();
                     player.setMicrosoftAuthenticator(microsoftAuthenticator);
                     player.setAuthInfo(microsoftAuthenticator.auth());
+                    LaunchMC.selectPlayer = players.size();
                     LaunchMC.players.add(player);
 //                在多线程里得用这个方法来调整界面
                     Platform.runLater(() -> {
-                        AnchorPane parent = (AnchorPane) waitTips.getParent().getParent();
-                        parent.getChildren().setAll(new Frame().player());
+                        closePage();
                     });
+
                 }
                 else {
                     Platform.runLater(() -> {
-                        System.out.println("登录失败");
+                        message2.setText("登录失败，请重试\t1.需要刷新微软Minecraft的profile\n2.你没有购买Minecraft或者Minecraft绑定微软账户");
                     });
                 }
                 return null;
@@ -92,6 +106,11 @@ public class VerifyMicrosoft {
         else{
             System.out.println("不支持打开浏览器");
         }
+    }
+    public void closePage(){
+        AnchorPane parent = (AnchorPane) waitTips.getParent().getParent();
+        parent.getChildren().setAll(new Frame().player());
+
     }
 //  复制方法
     public void copyUrl(){

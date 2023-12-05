@@ -2,7 +2,6 @@ package Controller;
 
 import Launch.LaunchMC;
 import javafx.animation.Timeline;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -10,15 +9,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import jmccc.microsoft.MicrosoftAuthenticator;
-import org.to2mbn.jmccc.launch.ProcessListener;
 import util.EffectAnimation;
 import util.OtherUtil;
-import util.initAuthenticator;
+import entity.InitAuthenticator;
 
 import java.io.File;
 
 public class StartFrameController {
-    LaunchMC launchMC = new LaunchMC();
     @FXML
     HBox tipsBox;
     @FXML
@@ -57,7 +54,6 @@ public class StartFrameController {
 
     @FXML
     public void initialize() {
-        initAuthenticator();
         initDir();
         getLocalVersions();
         initJreVersion();
@@ -66,7 +62,7 @@ public class StartFrameController {
     public void playerSetting(){
         if(!downloadFlag && !playerFlag && !gameFlag){
             checkTimeline();
-            sonFrameSource.getChildren().setAll(new Frame().newPlayerSetting());
+            sonFrameSource.getChildren().setAll(new Frame().playerSetting());
             EffectAnimation effect = new EffectAnimation();
             effect.fadeEmergeVanish(0.1,true,sonFrame);
             timeline =  effect.switchPage(sonFrameSource,0.3,425,25,true);
@@ -111,13 +107,6 @@ public class StartFrameController {
             effect.fadeEmergeVanish(0.1,true,sonFrame);
             timeline =  effect.switchPage(sonFrameSource,0.3,425,25,true);
             timeline.play();
-        }
-    }
-//    初始化正版验证信息
-    public void initAuthenticator(){
-        if(LaunchMC.playerFunc.equals("microsoft")){
-            MicrosoftAuthenticator authenticator = LaunchMC.microsoftAuthenticator;
-            LaunchMC.authenticator = new initAuthenticator(authenticator);
         }
     }
 //    初始化游戏目录

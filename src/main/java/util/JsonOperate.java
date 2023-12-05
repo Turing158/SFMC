@@ -15,7 +15,7 @@ import java.io.FileWriter;
 public class JsonOperate {
     public void save(){
 //        创建启动类entity类
-        LaunchData launchData = new LaunchData(LaunchMC.jreVersions,LaunchMC.players,LaunchMC.authInfo,LaunchMC.microsoftAuthenticator,LaunchMC.selfDir,LaunchMC.jreDir,LaunchMC.autoMemory,LaunchMC.versionIsolate,LaunchMC.windowSizeWidth,LaunchMC.windowSizeHeight,LaunchMC.playerFunc,LaunchMC.version,LaunchMC.username,LaunchMC.directory,LaunchMC.memory);
+        LaunchData launchData = new LaunchData(LaunchMC.jreVersions,LaunchMC.players,LaunchMC.selectPlayer,LaunchMC.selfDir,LaunchMC.jreDir,LaunchMC.autoMemory,LaunchMC.versionIsolate,LaunchMC.windowSizeWidth,LaunchMC.windowSizeHeight,LaunchMC.version,LaunchMC.username,LaunchMC.directory,LaunchMC.memory);
 //        导入Json库
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -42,15 +42,13 @@ public class JsonOperate {
 //            将数据传到LaunchMC
             LaunchMC.jreVersions = launchData.getJreVersions();
             LaunchMC.players = launchData.getPlayers();
-            LaunchMC.authInfo = launchData.getAuthInfo();
-            LaunchMC.microsoftAuthenticator = launchData.getMicrosoftAuthenticator();
+            LaunchMC.selectPlayer = launchData.getSelectPlayer();
             LaunchMC.selfDir = launchData.getSelfDir();
             LaunchMC.jreDir = launchData.getJreDir();
             LaunchMC.autoMemory = launchData.getAutoMemory();
             LaunchMC.versionIsolate = launchData.getVersionIsolate();
             LaunchMC.windowSizeWidth = launchData.getWindowSizeWidth();
             LaunchMC.windowSizeHeight = launchData.getWindowSizeHeight();
-            LaunchMC.playerFunc = launchData.getPlayerFunc();
             LaunchMC.version = launchData.getVersion();
             LaunchMC.username = launchData.getUsername();
             LaunchMC.directory = launchData.getDirectory();

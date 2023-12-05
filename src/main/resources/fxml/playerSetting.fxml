@@ -6,27 +6,27 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="playSetting" stylesheets="@css/playerSetting.css,@css/nodeElement.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSettingController">
     <Button fx:id="exit" onAction="#close" text="×" />
     <Label layoutX="14.0" layoutY="14.0" styleClass="title" text="玩家设置" />
-    <ComboBox fx:id="selectFunc" layoutX="7.0" layoutY="37.0" prefHeight="23.0" prefWidth="161.0" styleClass="combobox" />
-
-    <AnchorPane fx:id="outline" layoutX="4.0" layoutY="74.0" prefHeight="30.0" prefWidth="168.0" visible="false">
-        <Label layoutY="7.0" text="玩家名：" />
-        <TextField fx:id="playerName" layoutX="48.0" layoutY="3.0" prefHeight="23.0" prefWidth="120.0" styleClass="input" />
+    <AnchorPane fx:id="player" layoutX="177.0" layoutY="24.0" prefHeight="370.0" prefWidth="415.0" />
+   <AnchorPane layoutX="6.0" layoutY="52.0" prefHeight="306.0" prefWidth="147.0">
+       <Button onAction="#outlinePage" prefHeight="46.0" prefWidth="147.0" text="离线登录" />
+       <Button layoutY="58.0" onAction="#onlinePage" prefHeight="46.0" prefWidth="147.0" text="正版登录" />
+       <Button layoutY="117.0" onAction="#addOnlinePlayer" prefHeight="46.0" prefWidth="147.0" text="微软登录" />
+   </AnchorPane>
+    <AnchorPane fx:id="addPlayer" layoutX="177.0" layoutY="24.0" prefHeight="370.0" prefWidth="415.0" visible="false">
+        <AnchorPane fx:id="outline" layoutX="68.0" layoutY="26.0" prefHeight="159.0" prefWidth="282.0" visible="false">
+            <Label layoutX="12.0" layoutY="24.0" text="玩家名：" />
+            <TextField fx:id="outlineUsername" layoutX="60.0" layoutY="19.0" prefHeight="25.0" prefWidth="200.0" promptText="请填写玩家名" />
+            <Button fx:id="addOutline" layoutX="60.0" layoutY="98.0" prefHeight="25.0" prefWidth="54.0" text="确定" onAction="#addOutlinePlayer"/>
+            <Button fx:id="cancelOutline" layoutX="206.0" layoutY="98.0" prefHeight="25.0" prefWidth="54.0" text="取消" />
+        </AnchorPane>
+        <AnchorPane fx:id="online" layoutX="5.0" layoutY="26.0" prefHeight="188.0" prefWidth="407.0" visible="false">
+            <Label fx:id="onlineTips" layoutX="2.0" layoutY="14.0" prefHeight="102.0" prefWidth="405.0" styleClass="onlineTips" textOverrun="CLIP" wrapText="true" />
+            <Hyperlink fx:id="linkMoveAccount" layoutX="2.0" layoutY="140.0" styleClass="link" text="🔗 Mojang迁移至微软账户" />
+            <Hyperlink fx:id="linkHow" layoutX="197.0" layoutY="140.0" styleClass="link" text="🔗 如何迁移？" />
+            <Button fx:id="cancelOnline" layoutX="345.0" layoutY="138.0" prefHeight="25.0" prefWidth="48.0" text="取消" />
+        </AnchorPane>
     </AnchorPane>
-
-    <AnchorPane fx:id="online" layoutX="4.0" layoutY="74.0" prefHeight="140.0" prefWidth="588.0" visible="false">
-        <Label fx:id="onlineTips" layoutX="29.0" layoutY="14.0" prefHeight="83.0" prefWidth="527.0" styleClass="onlineTips" textOverrun="CLIP" wrapText="true" />
-      <Hyperlink fx:id="linkMoveAccount" layoutX="52.0" layoutY="120.0" styleClass="link" text="🔗 Mojang迁移至微软账户" />
-      <Hyperlink fx:id="linkHow" layoutX="226.0" layoutY="120.0" styleClass="link" text="🔗 如何迁移？" />
-        
-    </AnchorPane>
-
-    <AnchorPane fx:id="Microsoft" layoutX="4.0" layoutY="74.0" prefHeight="30.0" prefWidth="168.0">
-        <Button fx:id="playerMicrosoft" layoutX="4.0" layoutY="3.0" mnemonicParsing="false" onAction="#microsoftLogin" prefHeight="23.0" prefWidth="161.0" styleClass="btn" text="微软验证" />
-        <Label layoutX="29.0" layoutY="36.0" text="点一下即可进行认证" />
-        <Label layoutX="29.0" layoutY="51.0" text="想验证其他账号同上" />
-    </AnchorPane>
-    <AnchorPane fx:id="microsoftVerify" layoutX="177.0" layoutY="15.0" prefHeight="375.0" prefWidth="415.0" />
-
+    <AnchorPane fx:id="microsoftVerify" styleClass="microsoftVerify" layoutX="177.0" layoutY="24.0" prefHeight="370.0" prefWidth="415.0" visible="false"/>
 
 
 </AnchorPane>

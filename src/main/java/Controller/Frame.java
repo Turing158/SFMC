@@ -114,15 +114,4 @@ public class Frame extends Application {
         return null;
     }
 
-    public Node newPlayerSetting(){
-        try{
-            FXMLLoader fxml = new FXMLLoader();
-            fxml.setLocation(getClass().getClassLoader().getResource("fxml/NEWplayerSetting.fxml"));
-            AnchorPane pane = fxml.load();
-            return pane;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
 }

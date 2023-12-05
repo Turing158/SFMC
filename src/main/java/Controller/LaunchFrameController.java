@@ -42,7 +42,6 @@ public class LaunchFrameController {
                 else {
                     user.setText("离线登录 -> 用户名: "+player.getOffUsername());
                 }
-                System.out.println(LaunchMC.authenticator);
                 Thread.sleep(200);
                 effect.fadeEmergeVanish(0.2,true,user);
                 Thread.sleep(200);
