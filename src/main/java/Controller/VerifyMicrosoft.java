@@ -108,9 +108,13 @@ public class VerifyMicrosoft {
         }
     }
     public void closePage(){
+        EffectAnimation effect = new EffectAnimation();
         AnchorPane parent = (AnchorPane) waitTips.getParent().getParent();
-        parent.getChildren().setAll(new Frame().player());
-
+        AnchorPane main = (AnchorPane) parent.getParent();
+        effect.fadeEmergeVanish(0.2,false,parent);
+        AnchorPane playerPane = (AnchorPane) main.getChildren().get(2);
+        playerPane.getChildren().setAll(new Frame().player());
+        effect.fadeEmergeVanish(0.2,true,playerPane);
     }
 //  复制方法
     public void copyUrl(){

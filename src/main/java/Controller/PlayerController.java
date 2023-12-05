@@ -61,6 +61,7 @@ public class PlayerController {
                 button.setLayoutY(20.0+55*i);
                 button.setPrefHeight(35);
                 button.setPrefWidth(35);
+                button.getStyleClass().add("delete");
 //                int一个final的i
                 int finalI = i;
                 button.setOnAction(e->{

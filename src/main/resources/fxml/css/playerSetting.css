@@ -3,8 +3,11 @@
     -fx-background-radius: 8px;
 }
 .title{
-    -fx-font-size: 15px;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
+}
+.text{
+    -fx-font-size: 14px;
 }
 .link{
     -fx-font-weight: bold;
@@ -18,4 +21,15 @@
     -fx-padding: 10px;
     -fx-font-size: 13px;
     -fx-text-fill: #660000;
+}
+.loginBg{
+    -fx-background-color: #66666644;
+}
+.loginBtn{
+    -fx-background-color: transparent;
+    -fx-font-size: 15px;
+    -fx-text-fill: #131313;
+}
+.loginBtn:hover{
+    -fx-background-color: #ffffff66;
 }
