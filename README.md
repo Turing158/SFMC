@@ -44,15 +44,18 @@
 > #### Player Settings interface
 > There are currently two login methods, offline and Microsoft's legitimate login.  
 > Just log in offline and enter the username you want, Microsoft verification is quite troublesome.
-> ![player](doc/player.png)
+> 
+> New Panel：
+> ![newPlayer](doc/newPlayer.png)
 > Microsoft Verification Steps：
 > 1. After selecting Microsoft Verification, verification will not start. You must click on **Microsoft Verification** to start verification.
 > 2. After clicking, a webpage will pop up asking you to enter the verification code. [if the browser is not opened, the default browser may not be set]
 > 3. Next, the webpage will ask you to verify your Microsoft account. [_depending on the situation, you may be asked to enter the Microsoft account password, or you may be asked to enter the startup password_]
 > 4. After successful verification, a page with completed verification will pop up, and you can then close the page.
-> ![verify](doc/verify.png)
+> 
+> New panel:
+> ![newVerify.png](doc/newVerify.png)
 > 5. After waiting for 4-10 seconds, it will automatically jump to your character information page.
-     > ![img_1.png](doc/alreadyVerify.png)
 >
 > **Possible issues that may arise during validation：**  
 > Q: Why didn't you respond after clicking **Microsoft verification**?  
@@ -135,15 +138,18 @@
 > #### 玩家设置界面
 > 目前有两种登录方式，离线和微软的正版登录
 > 离线登录输入你想要的用户名即可，微软验证比较的麻烦
-> ![player](doc/player.png)
+> 
+> 新界面
+> ![player](doc/newPlayer.png)
 > 微软验证步骤：
 > 1. 选择微软验证后，不会开始验证，得点击 **微软验证** 才能开始验证
 > 2. 点击后会弹出一个网页，会让你输入验证代码[若浏览器没打开可能没设置默认浏览器]
 > 3. 接着网页会让你验证你的微软账号[_看情况，可能会让你输入微软账号密码，可能会让你输入开机密码_]
 > 4. 验证成功后，会弹出一个验证完成的页面，这下你就可以关闭页面
-> ![verify](doc/verify.png)
+> 
+> 新界面
+> ![verify](doc/newVerify.png)
 > 5. 等待4-10秒后，会自动跳转到你的角色信息页面
-> ![img_1.png](doc/alreadyVerify.png)
 > 
 > **可能在验证中出现的问题：**  
 > Q: 为什么点 **微软验证** 后，没有反应  

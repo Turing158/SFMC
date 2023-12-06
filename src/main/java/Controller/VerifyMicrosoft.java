@@ -75,7 +75,7 @@ public class VerifyMicrosoft {
                     Player player = new Player();
                     player.setMicrosoftAuthenticator(microsoftAuthenticator);
                     player.setAuthInfo(microsoftAuthenticator.auth());
-                    LaunchMC.selectPlayer = 1;
+                    LaunchMC.selectPlayer = 0;
                     LaunchMC.players.add(0,player);
 //                在多线程里得用这个方法来调整界面
                     Platform.runLater(() -> {
