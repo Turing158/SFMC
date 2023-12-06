@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="playSetting" stylesheets="@css/playerSetting.css,@css/nodeElement.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSettingController">
-    <Button fx:id="exit" layoutX="3" onAction="#close" text="×" styleClass="exit"/>
-    <Label layoutX="40.0" layoutY="15.0" styleClass="title" text="玩家设置" />
+    <Button fx:id="exit" onAction="#close" text="×" style="-fx-font-size: 18px"/>
+    <Label layoutX="40.0" layoutY="15.0" styleClass="title" style="-fx-font-size: 16px" text="玩家设置" />
     <ScrollBar fx:id="playerScrollBar" layoutX="585.0" layoutY="25.0" orientation="VERTICAL" prefHeight="370.0" prefWidth="14.0" visibleAmount="1.0" />
     <Pane fx:id="player" layoutX="170.0" layoutY="25.0" maxHeight="370.0" prefHeight="370.0" prefWidth="415.0" />
    <AnchorPane prefHeight="400.0" prefWidth="147.0" styleClass="loginBg">
