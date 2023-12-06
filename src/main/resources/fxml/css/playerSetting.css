@@ -2,6 +2,18 @@
     -fx-background-color: #ffffffcc;
     -fx-background-radius: 8px;
 }
+.exit{
+    -fx-background-color: transparent;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #131313;
+    -fx-padding: 0px 5px;
+    -fx-background-radius: 3 8 3 3;
+}
+.exit:hover{
+    -fx-background-color: #44444444;
+    -fx-text-fill: green;
+}
 .title{
     -fx-font-size: 16px;
     -fx-font-weight: bold;

@@ -4,29 +4,30 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="playSetting" stylesheets="@css/playerSetting.css,@css/nodeElement.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerSettingController">
-    <Button fx:id="exit" onAction="#close" text="×" />
+    <Button fx:id="exit" layoutX="3" onAction="#close" text="×" styleClass="exit"/>
     <Label layoutX="40.0" layoutY="15.0" styleClass="title" text="玩家设置" />
-    <AnchorPane fx:id="player" layoutX="177.0" layoutY="24.0" prefHeight="370.0" prefWidth="415.0" />
+    <ScrollBar fx:id="playerScrollBar" layoutX="585.0" layoutY="25.0" orientation="VERTICAL" prefHeight="370.0" prefWidth="14.0" visibleAmount="1.0" />
+    <Pane fx:id="player" layoutX="170.0" layoutY="25.0" maxHeight="370.0" prefHeight="370.0" prefWidth="415.0" />
    <AnchorPane prefHeight="400.0" prefWidth="147.0" styleClass="loginBg">
-       <Button onAction="#outlinePage" layoutY="66.0" prefHeight="46.0" prefWidth="147.0" text="离线登录" styleClass="loginBtn"/>
-       <Button layoutY="120.0" onAction="#onlinePage" prefHeight="46.0" prefWidth="147.0" text="正版登录" styleClass="loginBtn"/>
-       <Button layoutY="176.0" onAction="#addOnlinePlayer" prefHeight="46.0" prefWidth="147.0" text="微软登录" styleClass="loginBtn"/>
+       <Button layoutY="66.0" onAction="#outlinePage" prefHeight="46.0" prefWidth="147.0" styleClass="loginBtn" text="离线登录" />
+       <Button layoutY="120.0" onAction="#onlinePage" prefHeight="46.0" prefWidth="147.0" styleClass="loginBtn" text="正版登录" />
+       <Button layoutY="176.0" onAction="#addOnlinePlayer" prefHeight="46.0" prefWidth="147.0" styleClass="loginBtn" text="微软登录" />
    </AnchorPane>
-    <AnchorPane fx:id="addPlayer" layoutX="177.0" layoutY="24.0" prefHeight="370.0" prefWidth="415.0" visible="false">
+    <AnchorPane fx:id="addPlayer" layoutX="170.0" layoutY="25.0" prefHeight="370.0" prefWidth="415.0" visible="false">
         <AnchorPane fx:id="outline" layoutX="68.0" layoutY="26.0" prefHeight="159.0" prefWidth="282.0" visible="false">
-            <Label layoutX="10.0" layoutY="23.0" text="玩家名：" styleClass="text"/>
-            <TextField fx:id="outlineUsername" layoutX="60.0" layoutY="19.0" prefHeight="25.0" prefWidth="200.0" promptText="请填写玩家名" styleClass="input"/>
-            <Button fx:id="addOutline" layoutX="60.0" layoutY="98.0" prefHeight="25.0" prefWidth="54.0" text="确定" styleClass="btn" onAction="#addOutlinePlayer"/>
-            <Button fx:id="cancelOutline" layoutX="206.0" layoutY="98.0" prefHeight="25.0" prefWidth="54.0" text="取消" styleClass="btn"/>
+            <Label layoutX="10.0" layoutY="23.0" styleClass="text" text="玩家名：" />
+            <TextField fx:id="outlineUsername" layoutX="60.0" layoutY="19.0" prefHeight="25.0" prefWidth="200.0" promptText="请填写玩家名" styleClass="input" />
+            <Button fx:id="addOutline" layoutX="60.0" layoutY="98.0" onAction="#addOutlinePlayer" prefHeight="25.0" prefWidth="54.0" styleClass="btn" text="确定" />
+            <Button fx:id="cancelOutline" layoutX="206.0" layoutY="98.0" prefHeight="25.0" prefWidth="54.0" styleClass="btn" text="取消" />
         </AnchorPane>
         <AnchorPane fx:id="online" layoutX="5.0" layoutY="26.0" prefHeight="188.0" prefWidth="407.0" visible="false">
             <Label fx:id="onlineTips" layoutX="2.0" layoutY="14.0" prefHeight="102.0" prefWidth="405.0" styleClass="onlineTips" textOverrun="CLIP" wrapText="true" />
             <Hyperlink fx:id="linkMoveAccount" layoutX="2.0" layoutY="140.0" styleClass="link" text="🔗 Mojang迁移至微软账户" />
             <Hyperlink fx:id="linkHow" layoutX="197.0" layoutY="140.0" styleClass="link" text="🔗 如何迁移？" />
-            <Button fx:id="cancelOnline" layoutX="345.0" layoutY="138.0" prefHeight="25.0" prefWidth="48.0" text="取消" styleClass="btn"/>
+            <Button fx:id="cancelOnline" layoutX="345.0" layoutY="138.0" prefHeight="25.0" prefWidth="48.0" styleClass="btn" text="取消" />
         </AnchorPane>
     </AnchorPane>
-    <AnchorPane fx:id="microsoftVerify" styleClass="microsoftVerify" layoutX="177.0" layoutY="24.0" prefHeight="370.0" prefWidth="415.0" visible="false"/>
+    <AnchorPane fx:id="microsoftVerify" layoutX="170.0" layoutY="25.0" prefHeight="370.0" prefWidth="415.0" styleClass="microsoftVerify" visible="false" />
 
 
 </AnchorPane>

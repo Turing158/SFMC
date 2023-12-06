@@ -3,10 +3,7 @@ package Controller;
 import Launch.LaunchMC;
 import entity.Player;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import jmccc.microsoft.MicrosoftAuthenticator;
 import org.to2mbn.jmccc.auth.AuthenticationException;
@@ -65,6 +62,8 @@ public class PlayerController {
 //                int一个final的i
                 int finalI = i;
                 button.setOnAction(e->{
+                    AnchorPane playerSetting = (AnchorPane) pane.getParent().getParent();
+                    ScrollBar scrollBar = (ScrollBar) playerSetting.getChildren().get(2);
 //                    获取指示器
                     int selectPlayer = LaunchMC.selectPlayer;
 //                    如果删除的角色是当前选中的角色
@@ -81,6 +80,8 @@ public class PlayerController {
                     effect.fadeEmergeVanish(0.2,false,radioButton);
 //                    移除角色
                     players.remove(players.get(finalI));
+                    scrollBar.setVisible(players.size() > 6);
+
                     try {
 //                        重新初始化角色
                         initPlayer();

@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="370.0" prefWidth="415.0" stylesheets="@css/player.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PlayerController">
-    <Label fx:id="playerPage" visible="false"/>
+    <Label fx:id="playerPage" visible="false" />
+
 <!--    <RadioButton layoutX="10.0" layoutY="15.0" prefHeight="45.0" prefWidth="390.0" text="角色" />-->
 <!--    <Button layoutX="360.0" layoutY="20.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" text="🚮" />-->
 </AnchorPane>

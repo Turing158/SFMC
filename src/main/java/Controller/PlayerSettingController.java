@@ -2,14 +2,17 @@ package Controller;
 
 import Launch.LaunchMC;
 import entity.Player;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
-import org.to2mbn.jmccc.auth.AuthenticationException;
-import org.to2mbn.jmccc.auth.OfflineAuthenticator;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import util.EffectAnimation;
 
 import java.awt.*;
@@ -21,12 +24,14 @@ import java.util.ArrayList;
 public class PlayerSettingController {
     @FXML
     public AnchorPane microsoftVerify;
+    @FXML
+    public ScrollBar playerScrollBar;
     EffectAnimation effect = new EffectAnimation();
 
     @FXML
     public Button exit;
     @FXML
-    public AnchorPane player;
+    public Pane player;
     @FXML
     public AnchorPane addPlayer;
     @FXML
@@ -53,7 +58,49 @@ public class PlayerSettingController {
         initPlayerPage();
     }
     public void initPlayerPage(){
+        Rectangle clip = new Rectangle(player.getPrefWidth(),player.getPrefHeight());
+        player.setClip(clip);
         player.getChildren().setAll(new Frame().player());
+        AnchorPane content = (AnchorPane) player.getChildren().get(0);
+        if(LaunchMC.players.size() > 6){
+            playerScrollBar.setVisible(true);
+        }
+        else {
+            playerScrollBar.setVisible(false);
+        }
+        Platform.runLater(()->{
+            playerScrollBar.setVisibleAmount(30);
+        });
+        playerScrollBar.valueProperty().addListener((observable, oldValue, newValue) -> {
+            double scrollValue = newValue.doubleValue();
+            double contentHeight = content.getHeight();
+            double scrollHeight = playerScrollBar.getHeight();
+            double translateY = -scrollValue * (contentHeight-scrollHeight)/100;
+            content.setTranslateY(translateY);
+        });
+        playerScrollBar.getParent().addEventFilter(ScrollEvent.SCROLL, event -> {
+            double deltaY = event.getDeltaY(); // 获取滚轮滚动的垂直方向增量
+            double value = playerScrollBar.getValue();
+            if(value >= 0 && value <= 100){
+                double setValue = playerScrollBar.getValue()-deltaY/5;
+                if(setValue >= 0 && setValue <= 100){
+                    playerScrollBar.setValue(setValue);
+                }
+                else if(setValue > 100){
+                    playerScrollBar.setValue(100);
+                }
+                else {
+                    playerScrollBar.setValue(0);
+                }
+
+            }
+            else if(value > 100){
+                playerScrollBar.setValue(100);
+            }
+            else{
+                playerScrollBar.setValue(0);
+            }
+        });
     }
 
 
@@ -86,12 +133,14 @@ public class PlayerSettingController {
                 LaunchMC.selectPlayer = players.size();
                 LaunchMC.players.add(player);
                 initPlayerPage();
+
             }
             else {
                 System.out.println("玩家已存在");
             }
             effect.fadeEmergeVanish(0.2,false,outline,addPlayer,microsoftVerify);
             effect.fadeEmergeVanish(0.2,true,player);
+            outlineUsername.clear();
         }
         else {
             System.out.println("请填写玩家名");

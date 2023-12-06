@@ -7,7 +7,9 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import jmccc.microsoft.MicrosoftAuthenticator;
 import util.EffectAnimation;
 
@@ -63,7 +65,6 @@ public class VerifyMicrosoft {
                 if (microsoftAuthenticator.auth() != null){
                     System.out.println(microsoftAuthenticator.auth().getUsername());
                     ArrayList<Player> players = LaunchMC.players;
-                    System.out.println("xun");
                     for (int i = 0; i < players.size(); i++) {
                         if (players.get(i).getAuthInfo() != null && players.get(i).getAuthInfo().getUsername().equals(microsoftAuthenticator.auth().getUsername())) {
                             players.remove(players.get(i));
@@ -74,8 +75,8 @@ public class VerifyMicrosoft {
                     Player player = new Player();
                     player.setMicrosoftAuthenticator(microsoftAuthenticator);
                     player.setAuthInfo(microsoftAuthenticator.auth());
-                    LaunchMC.selectPlayer = players.size();
-                    LaunchMC.players.add(player);
+                    LaunchMC.selectPlayer = 1;
+                    LaunchMC.players.add(0,player);
 //                在多线程里得用这个方法来调整界面
                     Platform.runLater(() -> {
                         closePage();
@@ -112,7 +113,7 @@ public class VerifyMicrosoft {
         AnchorPane parent = (AnchorPane) waitTips.getParent().getParent();
         AnchorPane main = (AnchorPane) parent.getParent();
         effect.fadeEmergeVanish(0.2,false,parent);
-        AnchorPane playerPane = (AnchorPane) main.getChildren().get(2);
+        Pane playerPane = (Pane) main.getChildren().get(3);
         playerPane.getChildren().setAll(new Frame().player());
         effect.fadeEmergeVanish(0.2,true,playerPane);
     }
