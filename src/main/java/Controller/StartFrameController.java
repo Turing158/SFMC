@@ -1,6 +1,7 @@
 package Controller;
 
 import Launch.LaunchMC;
+import entity.Player;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import jmccc.microsoft.MicrosoftAuthenticator;
+import org.to2mbn.jmccc.auth.OfflineAuthenticator;
 import util.EffectAnimation;
 import util.OtherUtil;
 import entity.InitAuthenticator;
@@ -94,6 +96,18 @@ public class StartFrameController {
     }
 //    开始游戏按钮
     public void startBtn() {
+        if(LaunchMC.selectPlayer != -1){
+            Player player = LaunchMC.players.get(LaunchMC.selectPlayer);
+            if(player.getOffUsername() != null){
+                LaunchMC.authenticator = new OfflineAuthenticator(player.getOffUsername());
+            }
+            else{
+                MicrosoftAuthenticator microsoftAuthenticator = player.getMicrosoftAuthenticator();
+                InitAuthenticator initAuthenticator = new InitAuthenticator(microsoftAuthenticator);
+                initAuthenticator.customAuth(player.getAuthInfo());
+                LaunchMC.authenticator = initAuthenticator;
+            }
+        }
         if(LaunchMC.authenticator == null){
             checkTimeline();
             EffectAnimation effect = new EffectAnimation();
