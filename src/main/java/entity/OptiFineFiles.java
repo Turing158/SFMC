@@ -38,6 +38,16 @@ public class OptiFineFiles {
         this.version = version;
     }
 
+    public OptiFineFiles() {
+    }
+
+    public OptiFineFiles(String name, String md5, String time, String version) {
+        this.name = name;
+        this.md5 = md5;
+        this.time = time;
+        this.version = version;
+    }
+
     @Override
     public String toString() {
         return "OptiFineFiles{" +

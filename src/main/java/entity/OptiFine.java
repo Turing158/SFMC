@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OptiFine {
-    List<OptiFineVersion> versions;
+    List<String> versions;
     List<OptiFineFiles> files;
 
-    public List<OptiFineVersion> getVersions() {
+    public List<String> getVersions() {
         return versions;
     }
 
-    public void setVersions(List<OptiFineVersion> versions) {
+    public void setVersions(List<String> versions) {
         this.versions = versions;
     }
 
@@ -20,6 +20,14 @@ public class OptiFine {
     }
 
     public void setFiles(List<OptiFineFiles> files) {
+        this.files = files;
+    }
+
+    public OptiFine() {
+    }
+
+    public OptiFine(List<String> versions, List<OptiFineFiles> files) {
+        this.versions = versions;
         this.files = files;
     }
 
