@@ -12,43 +12,37 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class OptiFineDownload {
+
     private OptiFine optiFine;
-    public OptiFineDownload() throws IOException {
-        URL url = new URL("https://optifine.cn/api");
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
-        int code = connection.getResponseCode();
-        if (code == HttpURLConnection.HTTP_OK) {
-            InputStream inputStream = connection.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String line;
-            StringBuilder sb = new StringBuilder();
-            while ((line = bufferedReader.readLine()) != null) {
-                sb.append(line);
-            }
-            ObjectMapper mapper = new ObjectMapper();
-            optiFine = mapper.readValue(sb.toString(), OptiFine.class);
-        }
+    private final String api = "https://bmclapi2.bangbang93.com/optifine";
+    public OptiFineDownload() {
+
     }
-    public List<String> getOptiFineVersions(String MinecraftVersion) {
-        List<String> optiFineVersions = new ArrayList<>();
-        for (int i = 0; i < optiFine.getFiles().size(); i++) {
-            OptiFineFiles optiFineFiles = optiFine.getFiles().get(i);
-            if(optiFineFiles.getVersion().equals(MinecraftVersion)){
-                optiFineVersions.add(optiFineFiles.getName());
-            }
-        }
-        Collections.reverse(optiFineVersions);
-        return optiFineVersions;
+
+    public List<OptiFine> getOptiFineVersions(String MinecraftVersion) throws IOException{
+        String link = api+"/"+MinecraftVersion;
+        String jsonStr = HttpRequest.GET(link);
+        ObjectMapper mapper = new ObjectMapper();
+        List<OptiFine> optiFines = mapper.readValue(jsonStr, List.class);
+        Collections.reverse(optiFines);
+        return optiFines;
     }
 
     public static void main(String[] args) throws IOException {
         OptiFineDownload optiFineDownload = new OptiFineDownload();
-        List<String> optiFineVersion = optiFineDownload.getOptiFineVersions("1.12");
+        System.out.println(optiFineDownload.getOptiFineVersions("1.12").toString());
+//        List<String> optiFineVersion = optiFineDownload.getOptiFineVersions("1.12");
+//        optiFineDownload.download("OptiFine_1.10.2_HD_U_C1.jar");
+
+
     }
+
+//    public void download(String optiFineVersion) throws IOException {
+//        String link = "https://optifine.cn/download/"+optiFineVersion;
+//        URL url = new URL(link);
+//        System.out.println(url.);
+//    }
 }
