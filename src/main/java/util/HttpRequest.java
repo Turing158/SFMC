@@ -40,7 +40,7 @@ public class HttpRequest {
         return null;
     }
 
-    public void download(String link) throws IOException {
+    public static void download(String link) throws IOException {
         URL url = new URL(link);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
